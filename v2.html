@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>District Management Group | Supporting K-12 districts (v2)</title>
+  <meta name="description" content="DMG partners with public school districts on student outcomes, strategic planning and budgeting, enrollment and attendance, scheduling, and special education.">
+  <link rel="icon" type="image/svg+xml" href="assets/brand/dmg-logo-stacked.svg">
+  <script>document.documentElement.classList.add('js');</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,400;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0&display=block" rel="stylesheet">
+  <!-- styles.css carries the shared tokens, nav, footer and buttons; v2.css is
+       everything that makes this version its own layout -->
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="v2.css">
+</head>
+<body>
+
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-nav" id="site-nav">
+    <div class="container nav-inner">
+      <div class="nav-brand">
+        <a class="nav-logo" href="#top" aria-label="District Management Group home">
+          <!-- one asset, two colorways: the white PNG is used directly over the hero,
+               and re-tinted to Dark Blue via a mask once the nav goes white -->
+          <img class="logo-reversed" src="assets/brand/dmg-logo-white.png" alt="District Management Group" width="1844" height="333">
+          <span class="logo-standard" role="img" aria-label="District Management Group"></span>
+        </a>
+        <!-- version switcher. Sized to fit inside the nav's existing height. -->
+        <nav class="version-switch" aria-label="Design version">
+          <a href="index.html">v1</a>
+          <span aria-hidden="true">/</span>
+          <a href="v2.html" aria-current="page">v2</a>
+        </nav>
+      </div>
+
+      <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Menu">
+        <span class="material-symbols-rounded" aria-hidden="true">menu</span>
+      </button>
+
+      <nav aria-label="Primary">
+        <ul class="nav-menu" id="nav-menu">
+          <li class="nav-item">
+            <button type="button" aria-expanded="false" aria-controls="drop-about">About <span class="material-symbols-rounded" aria-hidden="true">expand_more</span></button>
+            <ul class="dropdown" id="drop-about">
+              <li><a href="#">Our Approach</a></li>
+              <li><a href="#">Our Team</a></li>
+              <li><a href="#">Careers</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <button type="button" aria-expanded="false" aria-controls="drop-help">How We Help <span class="material-symbols-rounded" aria-hidden="true">expand_more</span></button>
+            <!-- layer 2 opens to the side on hover / focus-within -->
+            <ul class="dropdown" id="drop-help">
+              <li class="has-sub">
+                <a href="#row-student-outcomes" data-open-row aria-haspopup="true">Student Outcomes<span class="material-symbols-rounded sub-caret" aria-hidden="true">chevron_right</span></a>
+                <ul class="dropdown dropdown--sub">
+                  <li><a href="#">Literacy Improvement</a></li>
+                  <li><a href="#">Math Improvement</a></li>
+                  <li><a href="#">Turnaround School Support</a></li>
+                  <li><a href="#">Special Education and MTSS Reviews</a></li>
+                </ul>
+              </li>
+              <li class="has-sub">
+                <a href="#row-strategic-planning" data-open-row aria-haspopup="true">Strategic Planning and Budgeting<span class="material-symbols-rounded sub-caret" aria-hidden="true">chevron_right</span></a>
+                <ul class="dropdown dropdown--sub">
+                  <li><a href="#">Prioritizing Resources and Initiatives for Strategic Management (PRISM)</a></li>
+                  <li><a href="#">Academic ROI Institute</a></li>
+                  <li><a href="#">Strategic Planning</a></li>
+                  <li><a href="#">Strategic Budgeting</a></li>
+                </ul>
+              </li>
+              <li class="has-sub">
+                <a href="#row-enrollment" data-open-row aria-haspopup="true">Enrollment and Attendance<span class="material-symbols-rounded sub-caret" aria-hidden="true">chevron_right</span></a>
+                <ul class="dropdown dropdown--sub">
+                  <li><a href="#">Decreasing Absenteeism</a></li>
+                  <li><a href="#">Strategic Enrollment Planning</a></li>
+                </ul>
+              </li>
+              <li class="has-sub">
+                <a href="#row-scheduling" data-open-row aria-haspopup="true">Scheduling<span class="material-symbols-rounded sub-caret" aria-hidden="true">chevron_right</span></a>
+                <ul class="dropdown dropdown--sub">
+                  <li><a href="#">DMSchedules</a></li>
+                  <li><a href="#">Secondary Scheduling Institute</a></li>
+                  <li><a href="#">Elementary Scheduling and Design Institute</a></li>
+                </ul>
+              </li>
+              <li><a href="#">Custom Requests</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <button type="button" aria-expanded="false" aria-controls="drop-council">DMCouncil <span class="material-symbols-rounded" aria-hidden="true">expand_more</span></button>
+            <ul class="dropdown" id="drop-council">
+              <li class="has-sub">
+                <a href="#" aria-haspopup="true">DMCouncil Membership<span class="material-symbols-rounded sub-caret" aria-hidden="true">chevron_right</span></a>
+                <ul class="dropdown dropdown--sub">
+                  <li><a href="#">Membership Overview</a></li>
+                  <li><a href="#">Finance Leadership Council</a></li>
+                  <li><a href="#">Special Education Leadership Council</a></li>
+                </ul>
+              </li>
+              <li><a href="#">DMG Summit</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <button type="button" aria-expanded="false" aria-controls="drop-pd">PD + Events <span class="material-symbols-rounded" aria-hidden="true">expand_more</span></button>
+            <ul class="dropdown" id="drop-pd">
+              <li><a href="#">Academic ROI Institute</a></li>
+              <li><a href="#">Secondary Scheduling Institute</a></li>
+              <li><a href="#">Elementary Scheduling and Design Institute</a></li>
+              <li><a href="#">DMG Summit</a></li>
+              <li><a href="#">DMG Calendar (incl. DMS CC, RTs)</a></li>
+            </ul>
+          </li>
+          <li class="nav-item"><a href="#testimonials-section">Success Stories</a></li>
+          <li class="nav-item">
+            <button type="button" aria-expanded="false" aria-controls="drop-resources">Resources <span class="material-symbols-rounded" aria-hidden="true">expand_more</span></button>
+            <ul class="dropdown" id="drop-resources">
+              <li><a href="#">Resource Library</a></li>
+              <li><a href="#">DMJournal</a></li>
+            </ul>
+          </li>
+          <li class="nav-item"><a class="btn btn--primary nav-cta" href="#contact">Contact Us</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+
+  <main id="main" class="dx">
+
+    <!-- ============ 01 MASTHEAD ============ -->
+    <section class="dx-sec dx-mast" id="top" aria-label="Introduction">
+      <div class="dx-mast-media" aria-hidden="true">
+        <video autoplay muted loop playsinline preload="metadata" poster="assets/video/hero-poster.jpg">
+          <source src="assets/video/hero.mp4" type="video/mp4">
+        </video>
+        <span class="dx-mast-tint"></span>
+      </div>
+      <div class="dx-wrap">
+
+        <div class="dx-mast-grid">
+          <h1 class="dx-h1">Supporting<br>K&#8209;12 districts</h1>
+          <div class="dx-mast-side">
+            <p class="dx-lede">through leveraging management techniques and education best practices.</p>
+            <p class="dx-runin">
+              <span>Inside</span>
+              <a href="#dx-05" data-jump="0">Student Outcomes</a><i>/</i><a href="#dx-05" data-jump="1">Strategic Planning and Budgeting</a><i>/</i><a href="#dx-05" data-jump="2">Enrollment and Attendance</a><i>/</i><a href="#dx-05" data-jump="3">Scheduling</a><i>/</i><a href="#dx-05" data-jump="4">Special Education</a>
+            </p>
+            <div class="dx-mast-ctas">
+              <a class="btn btn--warm" href="#contact">Contact Us</a>
+              <a class="btn btn--line" href="#dx-05">See How We Help</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ============ 02 FIGURES TABLE ============ -->
+    <section class="dx-sec" id="dx-02" aria-labelledby="dx-02-t">
+      <div class="dx-wrap">
+        <h2 id="dx-02-t" class="dx-h2" data-reveal>The record, in figures</h2>
+
+        <dl class="dx-figs">
+          <div class="stat dx-fig" data-reveal style="--stagger:0">
+            <dt>Years in practice</dt>
+            <dd><span class="count" data-target="22">22</span></dd>
+          </div>
+          <div class="stat dx-fig" data-reveal style="--stagger:1">
+            <dt>States</dt>
+            <dd><span class="count" data-target="34">34</span></dd>
+          </div>
+          <div class="stat dx-fig" data-reveal style="--stagger:2">
+            <dt>Districts supported</dt>
+            <dd><span class="count" data-target="700" data-suffix="+">700+</span></dd>
+          </div>
+          <div class="stat dx-fig" data-reveal style="--stagger:3">
+            <dt>School and district leaders</dt>
+            <dd><span class="count" data-target="1000" data-format="comma" data-suffix="s">1,000s</span></dd>
+          </div>
+          <div class="stat dx-fig" data-reveal style="--stagger:4">
+            <dt>Students supported</dt>
+            <dd><span class="count" data-target="1000000" data-format="comma" data-suffix="s">1,000,000s</span></dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+
+    <!-- ============ 03 PARTNERS (v1 treatment, unchanged) ============ -->
+    <section class="dx-sec dx-sec--flush" id="dx-03">
+      <div class="dx-wrap"><h2 class="dx-eyebrow" id="marquee-title">Districts we've partnered with</h2></div>
+
+    <!-- ================= DISTRICT LOGO MARQUEE =================
+         Treatment toggle: add class "marquee--tinted" to this section for the
+         normalized dark-blue version (Bain-like). Remove it for full color. -->
+    <section class="logo-marquee marquee--tinted" id="logo-marquee" aria-labelledby="marquee-title">
+      
+      <div class="marquee">
+        <ul class="marquee-track">
+          <li class="mlogo"><img src="assets/img/logos/atlanta-public-schools.png" alt="Atlanta Public Schools" width="459" height="180" loading="lazy"></li>
+          <li class="mlogo"><img src="assets/img/logos/barrington-220-community-unit-school-district.png" alt="Barrington 220 Community Unit School District" width="410" height="180" loading="lazy"></li>
+          <li class="mlogo"><img src="assets/img/logos/beaverton-school-district.png" alt="Beaverton School District" width="786" height="180" loading="lazy"></li>
+          <li class="mlogo"><img src="assets/img/logos/bibb-county-school-district.png" alt="Bibb County School District" width="420" height="180" loading="lazy"></li>
+          <li class="mlogo"><img src="assets/img/logos/birmingham-city-schools.png" alt="Birmingham City Schools" width="920" height="180" loading="lazy"></li>
+          <li class="mlogo"><img src="assets/img/logos/boston-public-schools.png" alt="Boston Public Schools" width="344" height="180" loading="lazy"></li>
+          <li class="mlogo"><img src="assets/img/logos/boulder-valley-school-district.png" alt="Boulder Valley School District" width="750" height="180" loading="lazy"></li>
+          <li class="mlogo"><img src="assets/img/logos/chelmsford-public-schools.png" alt="Chelmsford Public Schools" width="268" height="180" loading="lazy"></li>
+          <li class="mlogo"><img src="assets/img/logos/fairfax-county-public-schools.png" alt="Fairfax County Public Schools" width="270" height="180" loading="lazy"></li>
+          <li class="mlogo"><img src="assets/img/logos/farmington-public-schools.png" alt="Farmington Public Schools" width="591" height="180" loading="lazy"></li>
+          <li class="mlogo"><img src="assets/img/logos/fort-worth-independent-school-district.png" alt="Fort Worth Independent School District" width="734" height="180" loading="lazy"></li>
+          <li class="mlogo"><img src="assets/img/logos/fresno-unified-school-district.png" alt="Fresno Unified School District" width="345" height="180" loading="lazy"></li>
+          <li class="mlogo"><img src="assets/img/logos/grand-island-public-schools.png" alt="Grand Island Public Schools" width="320" height="180" loading="lazy"></li>
+          <li class="mlogo"><img src="assets/img/logos/gwinnett-county-public-schools.png" alt="Gwinnett County Public Schools" width="261" height="180" loading="lazy"></li>
+          <li class="mlogo"><img src="assets/img/logos/indian-prairie-school-district-204.png" alt="Indian Prairie School District 204" width="432" height="180" loading="lazy"></li>
+          <li class="mlogo"><img src="assets/img/logos/iowa-city-community-school-district.png" alt="Iowa City Community School District" width="322" height="180" loading="lazy"></li>
+          <li class="mlogo"><img src="assets/img/logos/killeen-independent-school-district.png" alt="Killeen Independent School District" width="333" height="180" loading="lazy"></li>
+          <li class="mlogo"><img src="assets/img/logos/kyrene-school-district.png" alt="Kyrene School District" width="652" height="180" loading="lazy"></li>
+          <li class="mlogo"><img src="assets/img/logos/lc.png" alt="LC" width="192" height="180" loading="lazy"></li>
+          <li class="mlogo"><img src="assets/img/logos/los-angeles-unified-school-district.png" alt="Los Angeles Unified School District" width="178" height="180" loading="lazy"></li>
+          <li class="mlogo"><img src="assets/img/logos/millcreek-township-school-district.png" alt="Millcreek Township School District" width="250" height="180" loading="lazy"></li>
+          <li class="mlogo"><img src="assets/img/logos/mounds-view-public-schools.png" alt="Mounds View Public Schools" width="668" height="180" loading="lazy"></li>
+          <li class="mlogo"><img src="assets/img/logos/nebraska-department-of-education.png" alt="Nebraska Department of Education" width="180" height="180" loading="lazy"></li>
+          <li class="mlogo"><img src="assets/img/logos/newport-news-public-schools.png" alt="Newport News Public Schools" width="162" height="180" loading="lazy"></li>
+          <li class="mlogo"><img src="assets/img/logos/nf.png" alt="NF" width="180" height="180" loading="lazy"></li>
+          <li class="mlogo"><img src="assets/img/logos/port-chester-public-schools.png" alt="Port Chester Public Schools" width="748" height="180" loading="lazy"></li>
+          <li class="mlogo"><img src="assets/img/logos/providence-schools.png" alt="Providence Schools" width="423" height="180" loading="lazy"></li>
+          <li class="mlogo"><img src="assets/img/logos/ride-rhode-island-department-of-education.png" alt="RIDE Rhode Island Department of Education" width="638" height="180" loading="lazy"></li>
+          <li class="mlogo"><img src="assets/img/logos/rockford-public-schools.png" alt="Rockford Public Schools" width="700" height="180" loading="lazy"></li>
+          <li class="mlogo"><img src="assets/img/logos/san-bernardino-city-unified-school-district.png" alt="San Bernardino City Unified School District" width="180" height="180" loading="lazy"></li>
+          <li class="mlogo"><img src="assets/img/logos/saratoga-springs-city-school-district.png" alt="Saratoga Springs City School District" width="400" height="180" loading="lazy"></li>
+          <li class="mlogo"><img src="assets/img/logos/school-district-of-lancaster.png" alt="School District of Lancaster" width="272" height="180" loading="lazy"></li>
+          <li class="mlogo"><img src="assets/img/logos/school-district-u-46.png" alt="School District U-46" width="182" height="180" loading="lazy"></li>
+          <li class="mlogo"><img src="assets/img/logos/seattle-public-schools.png" alt="Seattle Public Schools" width="483" height="180" loading="lazy"></li>
+          <li class="mlogo"><img src="assets/img/logos/sioux-falls-school-district.png" alt="Sioux Falls School District" width="180" height="180" loading="lazy"></li>
+          <li class="mlogo"><img src="assets/img/logos/south-san-antonio-independent-school-district.png" alt="South San Antonio Independent School District" width="177" height="180" loading="lazy"></li>
+          <li class="mlogo"><img src="assets/img/logos/the-school-district-of-philadelphia.png" alt="The School District of Philadelphia" width="177" height="180" loading="lazy"></li>
+          <li class="mlogo"><img src="assets/img/logos/utica.png" alt="Utica" width="207" height="180" loading="lazy"></li>
+          <li class="mlogo"><img src="assets/img/logos/wake-county-public-school-system.png" alt="Wake County Public School System" width="818" height="180" loading="lazy"></li>
+          <li class="mlogo"><img src="assets/img/logos/webster-parish-schools.png" alt="Webster Parish Schools" width="180" height="180" loading="lazy"></li>
+          <li class="mlogo"><img src="assets/img/logos/wilmette-public-schools-district-39.png" alt="Wilmette Public Schools District 39" width="213" height="180" loading="lazy"></li>
+          <li class="mlogo"><img src="assets/img/logos/wilson-school-district.png" alt="Wilson School District" width="150" height="180" loading="lazy"></li>
+        </ul>
+        <ul class="marquee-track" aria-hidden="true">
+          <li class="mlogo"><img src="assets/img/logos/atlanta-public-schools.png" alt="" width="459" height="180" loading="lazy"></li>
+          <li class="mlogo"><img src="assets/img/logos/barrington-220-community-unit-school-district.png" alt="" width="410" height="180" loading="lazy"></li>
+          <li class="mlogo"><img src="assets/img/logos/beaverton-school-district.png" alt="" width="786" height="180" loading="lazy"></li>
+          <li class="mlogo"><img src="assets/img/logos/bibb-county-school-district.png" alt="" width="420" height="180" loading="lazy"></li>
+          <li class="mlogo"><img src="assets/img/logos/birmingham-city-schools.png" alt="" width="920" height="180" loading="lazy"></li>
+          <li class="mlogo"><img src="assets/img/logos/boston-public-schools.png" alt="" width="344" height="180" loading="lazy"></li>
+          <li class="mlogo"><img src="assets/img/logos/boulder-valley-school-district.png" alt="" width="750" height="180" loading="lazy"></li>
+          <li class="mlogo"><img src="assets/img/logos/chelmsford-public-schools.png" alt="" width="268" height="180" loading="lazy"></li>
+          <li class="mlogo"><img src="assets/img/logos/fairfax-county-public-schools.png" alt="" width="270" height="180" loading="lazy"></li>
+          <li class="mlogo"><img src="assets/img/logos/farmington-public-schools.png" alt="" width="591" height="180" loading="lazy"></li>
+          <li class="mlogo"><img src="assets/img/logos/fort-worth-independent-school-district.png" alt="" width="734" height="180" loading="lazy"></li>
+          <li class="mlogo"><img src="assets/img/logos/fresno-unified-school-district.png" alt="" width="345" height="180" loading="lazy"></li>
+          <li class="mlogo"><img src="assets/img/logos/grand-island-public-schools.png" alt="" width="320" height="180" loading="lazy"></li>
+          <li class="mlogo"><img src="assets/img/logos/gwinnett-county-public-schools.png" alt="" width="261" height="180" loading="lazy"></li>
+          <li class="mlogo"><img src="assets/img/logos/indian-prairie-school-district-204.png" alt="" width="432" height="180" loading="lazy"></li>
+          <li class="mlogo"><img src="assets/img/logos/iowa-city-community-school-district.png" alt="" width="322" height="180" loading="lazy"></li>
+          <li class="mlogo"><img src="assets/img/logos/killeen-independent-school-district.png" alt="" width="333" height="180" loading="lazy"></li>
+          <li class="mlogo"><img src="assets/img/logos/kyrene-school-district.png" alt="" width="652" height="180" loading="lazy"></li>
+          <li class="mlogo"><img src="assets/img/logos/lc.png" alt="" width="192" height="180" loading="lazy"></li>
+          <li class="mlogo"><img src="assets/img/logos/los-angeles-unified-school-district.png" alt="" width="178" height="180" loading="lazy"></li>
+          <li class="mlogo"><img src="assets/img/logos/millcreek-township-school-district.png" alt="" width="250" height="180" loading="lazy"></li>
+          <li class="mlogo"><img src="assets/img/logos/mounds-view-public-schools.png" alt="" width="668" height="180" loading="lazy"></li>
+          <li class="mlogo"><img src="assets/img/logos/nebraska-department-of-education.png" alt="" width="180" height="180" loading="lazy"></li>
+          <li class="mlogo"><img src="assets/img/logos/newport-news-public-schools.png" alt="" width="162" height="180" loading="lazy"></li>
+          <li class="mlogo"><img src="assets/img/logos/nf.png" alt="" width="180" height="180" loading="lazy"></li>
+          <li class="mlogo"><img src="assets/img/logos/port-chester-public-schools.png" alt="" width="748" height="180" loading="lazy"></li>
+          <li class="mlogo"><img src="assets/img/logos/providence-schools.png" alt="" width="423" height="180" loading="lazy"></li>
+          <li class="mlogo"><img src="assets/img/logos/ride-rhode-island-department-of-education.png" alt="" width="638" height="180" loading="lazy"></li>
+          <li class="mlogo"><img src="assets/img/logos/rockford-public-schools.png" alt="" width="700" height="180" loading="lazy"></li>
+          <li class="mlogo"><img src="assets/img/logos/san-bernardino-city-unified-school-district.png" alt="" width="180" height="180" loading="lazy"></li>
+          <li class="mlogo"><img src="assets/img/logos/saratoga-springs-city-school-district.png" alt="" width="400" height="180" loading="lazy"></li>
+          <li class="mlogo"><img src="assets/img/logos/school-district-of-lancaster.png" alt="" width="272" height="180" loading="lazy"></li>
+          <li class="mlogo"><img src="assets/img/logos/school-district-u-46.png" alt="" width="182" height="180" loading="lazy"></li>
+          <li class="mlogo"><img src="assets/img/logos/seattle-public-schools.png" alt="" width="483" height="180" loading="lazy"></li>
+          <li class="mlogo"><img src="assets/img/logos/sioux-falls-school-district.png" alt="" width="180" height="180" loading="lazy"></li>
+          <li class="mlogo"><img src="assets/img/logos/south-san-antonio-independent-school-district.png" alt="" width="177" height="180" loading="lazy"></li>
+          <li class="mlogo"><img src="assets/img/logos/the-school-district-of-philadelphia.png" alt="" width="177" height="180" loading="lazy"></li>
+          <li class="mlogo"><img src="assets/img/logos/utica.png" alt="" width="207" height="180" loading="lazy"></li>
+          <li class="mlogo"><img src="assets/img/logos/wake-county-public-school-system.png" alt="" width="818" height="180" loading="lazy"></li>
+          <li class="mlogo"><img src="assets/img/logos/webster-parish-schools.png" alt="" width="180" height="180" loading="lazy"></li>
+          <li class="mlogo"><img src="assets/img/logos/wilmette-public-schools-district-39.png" alt="" width="213" height="180" loading="lazy"></li>
+          <li class="mlogo"><img src="assets/img/logos/wilson-school-district.png" alt="" width="150" height="180" loading="lazy"></li>
+        </ul>
+      </div>
+    </section>
+    </section>
+
+    <!-- ============ 04 APPROACH ============ -->
+    <section class="dx-sec" id="dx-04" aria-labelledby="dx-04-t">
+      <div class="dx-wrap">
+        <h2 id="dx-04-t" class="dx-h2" data-reveal>A multidisciplinary approach</h2>
+
+        <div class="dx-appr" data-reveal>
+          <div class="dx-appr-text">
+          <p class="dx-drop">At DMG, we leverage a multi-pronged approach that includes consulting, professional development, coaching, software solutions, and a membership program to tackle <span class="mark" style="--mark-i:0">system-level challenges</span> across public school districts. Our approach is informed by management principles, research-based best practices, and insights gathered from working with <span class="mark mark--circle" style="--mark-i:1">hundreds of districts<svg viewBox="0 0 200 60" preserveAspectRatio="none" aria-hidden="true"><ellipse cx="100" cy="30" rx="95" ry="25" pathLength="100"/></svg></span> across the country.</p>
+          </div>
+          <figure class="dx-portrait">
+            <img src="assets/img/approach-summit.jpg" alt="A DMG Summit speaker presenting data to district leaders" width="820" height="1100" loading="lazy">
+            <figcaption>DMG Summit &mdash; district leaders reviewing results together</figcaption>
+          </figure>
+      </div>
+    </section>
+
+    <!-- ============ 05 WHAT WE DO — five articles, nothing hidden ============ -->
+    <section class="dx-sec dx-sec--dark" id="dx-05" aria-labelledby="dx-05-t">
+      <div class="dx-wrap">
+        <h2 id="dx-05-t" class="dx-h2" data-reveal>How we help</h2>
+
+        <article class="dx-art" id="dx-a0" data-reveal>
+          <span class="dx-art-i"><span class="material-symbols-rounded" aria-hidden="true">school</span></span>
+          <div class="dx-art-body">
+            <h3>Student Outcomes</h3>
+            <p class="dx-art-lede">Raise student achievement in <span class="mark" style="--mark-i:0">8 to 10 weeks</span> through performance coaching.</p>
+            <p class="dx-art-links"><a href="#">Literacy Improvement</a><i>/</i><a href="#">Math Improvement</a><i>/</i><a href="#">Turnaround School Support</a></p>
+          </div>
+          <aside class="dx-proof">
+            <span class="dx-proof-k">Success story</span>
+            <span class="dx-proof-fig"><span class="material-symbols-rounded" aria-hidden="true">arrow_upward</span><span class="count" data-target="43" data-suffix="%" aria-hidden="true">43%</span><span class="visually-hidden">Up 43 percent</span></span>
+            <span class="dx-proof-d">Huntsville City Schools (AL)</span>
+            <p>In ACAP math proficiency in one year through DMG's Breakthrough Results program.</p>
+            <p class="dx-proof-n">ACAP: Alabama Comprehensive Assessment Program</p>
+            <a class="dx-more" href="#">Read More</a>
+          </aside>
+        </article>
+
+        <article class="dx-art" id="dx-a1" data-reveal>
+          <span class="dx-art-i"><span class="material-symbols-rounded" aria-hidden="true">query_stats</span></span>
+          <div class="dx-art-body">
+            <h3>Strategic Planning and Budgeting</h3>
+            <p class="dx-art-lede">Shape the direction of your district, and know which programs work, for whom, and <span class="mark mark--circle" style="--mark-i:0">at what cost<svg viewBox="0 0 200 60" preserveAspectRatio="none" aria-hidden="true"><ellipse cx="100" cy="30" rx="95" ry="25" pathLength="100"/></svg></span>.</p>
+            <p class="dx-art-links"><a href="#">Prioritizing Resources and Initiatives for Strategic Management (PRISM)</a><i>/</i><a href="#">Academic ROI Institute</a><i>/</i><a href="#">Strategic Planning and Budgeting</a></p>
+          </div>
+          <aside class="dx-proof">
+            <span class="dx-proof-k">Success story</span>
+            <span class="dx-proof-fig"><span class="count" data-target="73000" data-format="comma">73,000</span></span>
+            <span class="dx-proof-u">students</span>
+            <span class="dx-proof-d">Fresno Unified School District (CA)</span>
+            <p>California's third-largest district used PRISM to align resources to priorities.</p>
+            <a class="dx-more" href="#">Read More</a>
+          </aside>
+        </article>
+
+        <article class="dx-art" id="dx-a2" data-reveal>
+          <span class="dx-art-i"><span class="material-symbols-rounded" aria-hidden="true">event_available</span></span>
+          <div class="dx-art-body">
+            <h3>Enrollment and Attendance</h3>
+            <p class="dx-art-lede"><span class="mark" style="--mark-i:0">Proactively reverse</span> chronic absenteeism and plan for enrollment shifts.</p>
+            <p class="dx-art-links"><a href="#">Decreasing Absenteeism</a><i>/</i><a href="#">Strategic Enrollment Planning</a></p>
+          </div>
+          <aside class="dx-proof">
+            <span class="dx-proof-k">Success story</span>
+            <span class="dx-proof-fig"><span class="material-symbols-rounded" aria-hidden="true">arrow_downward</span><span class="count" data-target="56" data-suffix="%" aria-hidden="true">56%</span><span class="visually-hidden">Down 56 percent</span></span>
+            <span class="dx-proof-d">Bibb County (GA)</span>
+            <p>Chronic absenteeism in a targeted 10-week intervention.</p>
+            <a class="dx-more" href="#">Read More</a>
+          </aside>
+        </article>
+
+        <article class="dx-art" id="dx-a3" data-reveal>
+          <span class="dx-art-i"><span class="material-symbols-rounded" aria-hidden="true">calendar_month</span></span>
+          <div class="dx-art-body">
+            <h3>Scheduling</h3>
+            <p class="dx-art-lede">Build schedules that <span class="mark" style="--mark-i:0">protect instruction</span>, prove individualized education program (IEP) compliance, and make better use of staff.</p>
+            <p class="dx-art-links"><a href="#">DMSchedules Software</a><i>/</i><a href="#">Secondary Scheduling Institute</a><i>/</i><a href="#">Elementary Scheduling and Design Institute</a></p>
+          </div>
+          <aside class="dx-proof dx-proof--nostat">
+            <span class="dx-proof-k">Success story</span>
+            <span class="dx-proof-d">New Fairfield (CT)</span>
+            <p>Maximized support-staff time and improved student performance with DMSchedules.</p>
+            <a class="dx-more" href="#">Read More</a>
+          </aside>
+        </article>
+
+        <article class="dx-art" id="dx-a4" data-reveal>
+          <span class="dx-art-i"><span class="material-symbols-rounded" aria-hidden="true">volunteer_activism</span></span>
+          <div class="dx-art-body">
+            <h3>Special Education</h3>
+            <p class="dx-art-lede">Review special education <span class="mark" style="--mark-i:0">cost, compliance, and service delivery</span>.</p>
+            <p class="dx-art-links"><a href="#">Special Education and Multi-Tiered System of Supports (MTSS) Reviews</a></p>
+          </div>
+          <aside class="dx-proof dx-proof--nostat">
+            <span class="dx-proof-k">Success story</span>
+            <span class="dx-proof-d">Littleton Elementary School District (AZ)</span>
+            <p>Protected Tier 1 instruction and expanded special education capacity with DMSchedules Student Services.</p>
+            <a class="dx-more" href="#">Read More</a>
+          </aside>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============ 06 VALUES — hanging numerals, two columns ============ -->
+    <section class="dx-sec" id="dx-06" aria-labelledby="dx-06-t">
+      <div class="dx-wrap">
+        <h2 id="dx-06-t" class="dx-h2" data-reveal>Our values</h2>
+        <p class="dx-sub" data-reveal style="--stagger:1">Grounded in a goal to bring about lasting improvement in public education.</p>
+
+        <ol class="dx-vals">
+          <li data-reveal style="--stagger:0"><span class="dx-val-m" aria-hidden="true"></span><h3>Partnership</h3><p>We learn your district's history, context, and data before we recommend anything.</p></li>
+          <li data-reveal style="--stagger:1"><span class="dx-val-m" aria-hidden="true"></span><h3>Impact</h3><p>Measurable, sustainable results, plus support through implementation, not a report on a shelf.</p></li>
+          <li data-reveal style="--stagger:2"><span class="dx-val-m" aria-hidden="true"></span><h3>Collaboration</h3><p>We know more together, drawing on 700+ districts and proven practice from both sectors.</p></li>
+          <li data-reveal style="--stagger:3"><span class="dx-val-m" aria-hidden="true"></span><h3>Systems Thinking</h3><p>Whole-system solutions aligned to your priorities, because isolated fixes rarely hold.</p></li>
+        </ol>
+        <p class="dx-vals-cta" data-reveal><a class="link" href="#">Learn More</a></p>
+      </div>
+    </section>
+
+    <!-- ============ 07 TESTIMONIALS — photo left, quote right (as v1) ============ -->
+    <section class="dx-sec dx-sec--tint" id="dx-07" aria-labelledby="dx-07-t">
+      <div class="dx-wrap">
+        <h2 id="dx-07-t" class="dx-h2" data-reveal>Testimonials</h2>
+
+        <div class="dx-stage" id="v2-stage">
+          <figure class="dx-q is-active" data-index="0">
+            <div class="dx-q-photo">
+              <img src="assets/img/headshots/erik-gundersen.png" alt="Erik Gundersen, Superintendent of Suffern Central School District" width="900" height="900">
+            </div>
+            <div class="dx-q-body">
+              <blockquote><p>DMG <strong>truly understands what matters most to a district</strong> and adapts their work to address each district's unique needs. As a result, we've worked with DMG on <strong>several different focus areas</strong>, including our strategic plan and our strategic enrollment plan.</p></blockquote>
+            </div>
+            <figcaption class="dx-q-attr">
+              <span class="dx-q-name"><cite>Erik Gundersen</cite><span class="rule" aria-hidden="true"></span></span>
+              <span class="dx-q-role">Superintendent, Suffern Central School District (NY)</span>
+              <span class="dx-q-logo"><img src="assets/img/logos/suffern-central.webp" alt="Suffern Central School District logo" width="368" height="175" loading="lazy"></span>
+            </figcaption>
+          </figure>
+
+          <figure class="dx-q" data-index="1">
+            <div class="dx-q-photo">
+              <img src="assets/img/headshots/mark-sullivan.png" alt="Mark Sullivan, Superintendent of Birmingham City Schools" width="900" height="900" loading="lazy">
+            </div>
+            <div class="dx-q-body">
+              <blockquote><p>We saw <strong>amazing gains in third-grade literacy and numeracy</strong> through the Breakthrough Results program. It created momentum and enthusiasm for what Birmingham City Schools can achieve for all our students. <strong>We've been very pleased</strong> with our work with DMG.</p></blockquote>
+            </div>
+            <figcaption class="dx-q-attr">
+              <span class="dx-q-name"><cite>Mark Sullivan</cite><span class="rule" aria-hidden="true"></span></span>
+              <span class="dx-q-role">Superintendent, Birmingham City Schools (AL)</span>
+              <span class="dx-q-logo"><img src="assets/img/logos/birmingham-city-schools.png" alt="Birmingham City Schools logo" width="920" height="180" loading="lazy"></span>
+            </figcaption>
+          </figure>
+
+          <div class="dx-q-controls">
+            <button class="t-arrow" id="v2-prev" aria-label="Previous testimonial"><span class="material-symbols-rounded" aria-hidden="true">chevron_left</span></button>
+            <div class="t-dots" role="group" aria-label="Choose testimonial">
+              <button class="t-dot" data-v2goto="0" aria-current="true" aria-label="Show testimonial 1"></button>
+              <button class="t-dot" data-v2goto="1" aria-current="false" aria-label="Show testimonial 2"></button>
+            </div>
+            <button class="t-arrow" id="v2-next" aria-label="Next testimonial"><span class="material-symbols-rounded" aria-hidden="true">chevron_right</span></button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ COLOPHON CTA ============ -->
+    <section class="dx-sec dx-sec--dark dx-cta" id="contact" aria-labelledby="dx-cta-t">
+      <img class="cta-bg" src="assets/img/cta-background.jpg" alt="" width="1800" height="700" loading="lazy">
+      <span class="cta-tint" aria-hidden="true"></span>
+      <div class="dx-wrap dx-cta-inner">
+        <h2 id="dx-cta-t" class="dx-h2" data-reveal>Contact us to discuss how we can support you</h2>
+        <a class="btn btn--warm" href="#" data-reveal style="--stagger:1">Let's Connect</a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <span class="logo-standard footer-logo" role="img" aria-label="District Management Group"></span>
+          <address>
+            133 Federal Street, Boston MA 02110<br>
+            <a href="tel:1-877-362-3500">1-877-362-3500</a><br>
+            <a href="mailto:info@dmgroupK12.com">info@dmgroupK12.com</a>
+          </address>
+          <div class="footer-social">
+            <a href="#" aria-label="DMG on LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.24 8.31h4.52V23H.24V8.31zM8.34 8.31h4.33v2h.06c.6-1.14 2.08-2.34 4.28-2.34 4.58 0 5.43 3.01 5.43 6.93V23h-4.52v-7.13c0-1.7-.03-3.89-2.37-3.89-2.37 0-2.73 1.85-2.73 3.76V23H8.34V8.31z"/></svg></a>
+            <a href="#" aria-label="DMG on Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5.02 3.66 9.18 8.44 9.94v-7.03H7.9v-2.91h2.54V9.85c0-2.52 1.49-3.91 3.78-3.91 1.09 0 2.24.2 2.24.2v2.47h-1.26c-1.24 0-1.63.78-1.63 1.57v1.88h2.78l-.45 2.91h-2.33V22c4.78-.76 8.43-4.92 8.43-9.94z"/></svg></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>How we help</h4>
+          <ul>
+            <li><a href="#row-student-outcomes" data-open-row>Student Outcomes</a></li>
+            <li><a href="#row-strategic-planning" data-open-row>Strategic Planning and Budgeting</a></li>
+            <li><a href="#row-enrollment" data-open-row>Enrollment and Attendance</a></li>
+            <li><a href="#row-scheduling" data-open-row>Scheduling</a></li>
+            <li><a href="#">Custom Requests</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>DMCouncil</h4>
+          <ul>
+            <li><a href="#">Membership Overview</a></li>
+            <li><a href="#">Finance Leadership Council</a></li>
+            <li><a href="#">Special Education Leadership Council</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>PD + Events</h4>
+          <ul>
+            <li><a href="#">Academic ROI Institute</a></li>
+            <li><a href="#">Secondary Scheduling Institute</a></li>
+            <li><a href="#">Elementary Scheduling and Design Institute</a></li>
+            <li><a href="#">DMG Summit</a></li>
+            <li><a href="#">DMG Calendar (incl. DMS CC, RTs)</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Resources</h4>
+          <ul>
+            <li><a href="#">Resource Library</a></li>
+            <li><a href="#">DMJournal</a></li>
+            <li><a href="#testimonials-section">Success Stories</a></li>
+          </ul>
+        </div>
+      </div>
+      <p class="footer-legal">© 2026 District Management Group. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+  <script src="v2.js"></script>
+</body>
+</html>

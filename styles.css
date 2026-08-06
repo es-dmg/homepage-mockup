@@ -30,6 +30,7 @@
   --open-row-wash:        rgba(255, 255, 255, 0.045); /* lifts an open accordion row off the blue field */
   --hero-shade-0:         rgba(18, 35, 58, 0);
   --mask-opaque:          #000;   /* mask stops only; never painted */
+  --light-blue-halo:      rgba(45, 185, 225, 0.22);
   --cta-tint:             rgba(26, 81, 142, 0.86);
   --cta-shade:            rgba(18, 35, 58, 0.45);
   --preview-opacity:      0.78;
@@ -1577,4 +1578,43 @@ blockquote.t-quote {
 
 @media (prefers-reduced-motion: reduce) {
   .value-orb, .value-orb .orb-spin { animation: none; }
+}
+
+/* ==========================================================================
+   Version switcher (shared by v1 and v2)
+   Sits under the logo INSIDE the nav's existing height: logo 2.5rem + 4px + a
+   0.75rem line is well under --nav-h, so the bar does not grow.
+   ========================================================================== */
+.nav-brand { display: flex; flex-direction: column; align-items: flex-start; gap: var(--sp-xs); flex-shrink: 0; }
+.version-switch {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-xs);
+  font-size: var(--fs-label);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  line-height: 1;
+}
+.version-switch a {
+  color: var(--dmg-sky-blue);
+  text-decoration: none;
+  padding-bottom: var(--sp-xs);
+  background-image: linear-gradient(var(--dmg-light-blue), var(--dmg-light-blue));
+  background-repeat: no-repeat;
+  background-size: 0% var(--rule-w);
+  background-position: left bottom;
+  transition: background-size var(--t-fast) var(--ease-out), color var(--t-fast) var(--ease-out);
+}
+.version-switch a:hover { color: var(--dmg-white); background-size: 100% var(--rule-w); }
+.version-switch a[aria-current="page"] { color: var(--dmg-white); background-size: 100% var(--rule-w); }
+.version-switch span { color: var(--dmg-sky-blue); opacity: 0.5; }
+/* once the nav goes white the switcher has to invert too */
+.site-nav.is-scrolled .version-switch a { color: var(--text-muted); }
+.site-nav.is-scrolled .version-switch a:hover,
+.site-nav.is-scrolled .version-switch a[aria-current="page"] { color: var(--dmg-dark-blue); }
+.site-nav.is-scrolled .version-switch span { color: var(--text-muted); }
+@media (max-width: 80em) {
+  .site-nav.menu-open .version-switch a { color: var(--text-muted); }
+  .site-nav.menu-open .version-switch a[aria-current="page"] { color: var(--dmg-dark-blue); }
 }

@@ -20,12 +20,20 @@
   <!-- ================= NAV ================= -->
   <header class="site-nav" id="site-nav">
     <div class="container nav-inner">
-      <a class="nav-logo" href="#top" aria-label="District Management Group home">
-        <!-- one asset, two colorways: the white PNG is used directly over the hero,
-             and re-tinted to Dark Blue via a mask once the nav goes white -->
-        <img class="logo-reversed" src="assets/brand/dmg-logo-white.png" alt="District Management Group" width="1844" height="333">
-        <span class="logo-standard" role="img" aria-label="District Management Group"></span>
-      </a>
+      <div class="nav-brand">
+        <a class="nav-logo" href="#top" aria-label="District Management Group home">
+          <!-- one asset, two colorways: the white PNG is used directly over the hero,
+               and re-tinted to Dark Blue via a mask once the nav goes white -->
+          <img class="logo-reversed" src="assets/brand/dmg-logo-white.png" alt="District Management Group" width="1844" height="333">
+          <span class="logo-standard" role="img" aria-label="District Management Group"></span>
+        </a>
+        <!-- version switcher. Sized to fit inside the nav's existing height. -->
+        <nav class="version-switch" aria-label="Design version">
+          <a href="index.html" aria-current="page">v1</a>
+          <span aria-hidden="true">/</span>
+          <a href="v2.html">v2</a>
+        </nav>
+      </div>
 
       <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Menu">
         <span class="material-symbols-rounded" aria-hidden="true">menu</span>

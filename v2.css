@@ -1,0 +1,430 @@
+/* ==========================================================================
+   DMG homepage — VERSION 2: "The Dossier"
+   A different organising principle from v1, not a rearrangement of it.
+   v1 is a stack of full-width colour bands with centred rhythm and one big
+   statement per screen. v2 is a bound document: a fixed margin spine, numbered
+   chapters, hairline rules, multi-column text, hanging numerals, figure tables
+   and margin notes. Colour is used sparingly so structure carries the gravitas.
+
+   Loaded AFTER styles.css, which supplies every token plus the shared nav,
+   footer, buttons, links, .mark emphasis and the v1 logo marquee (reused here
+   unchanged, by request). Nothing below restyles the nav or footer.
+   No hex or raw px outside :root, same rule as v1.
+   ========================================================================== */
+
+:root {
+  --dx-measure: 68rem;
+  --dx-h1: clamp(2.75rem, 6.2vw, 5.75rem);
+  --dx-h2: clamp(1.75rem, 2.9vw, 2.75rem);
+  --dx-fig: clamp(2.25rem, 4.6vw, 4.25rem);
+  --dx-quote: clamp(1.4rem, 2.3vw, 2.05rem);
+  --dx-rule: rgba(18, 35, 58, 0.14);
+  --dx-rule-rev: rgba(255, 255, 255, 0.2);
+  --dx-drop: clamp(2.5rem, 4vw, 3.5rem);
+}
+
+/* ==========================================================================
+   Page frame: content sits in a measure with a left margin for the spine
+   ========================================================================== */
+
+.dx { background: var(--dmg-white); }
+.dx-wrap {
+  max-width: var(--dx-measure);
+  margin-inline: auto;
+  padding-inline: var(--pad-x);
+}
+.dx-sec { position: relative; padding-block: clamp(var(--sp-3xl), 7vw, var(--sp-5xl)); }
+.dx-sec--flush { padding-bottom: 0; }
+.dx-sec--tint { background: var(--dmg-pale-blue); }
+.dx-sec--dark { background: var(--dmg-dark-blue); color: var(--dmg-white); }
+
+@media (min-width: 78em) {
+}
+
+.dx-h2 {
+  font-size: var(--dx-h2);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  margin-bottom: var(--sp-lg);
+}
+.dx-sub { color: var(--text-muted); max-width: 54ch; margin-bottom: var(--sp-2xl); }
+
+/* ==========================================================================
+   01 MASTHEAD — two-column head, then a letterbox video plate
+   ========================================================================== */
+
+.dx-mast {
+  position: relative;
+  overflow: hidden;
+  background: var(--dmg-dark-blue);
+  color: var(--dmg-white);
+  min-height: 72vh;
+  display: flex;
+  align-items: center;
+  padding-top: calc(var(--nav-h) + var(--sp-3xl));
+  padding-bottom: clamp(var(--sp-3xl), 6vw, var(--sp-4xl));
+}
+.dx-mast .dx-wrap { position: relative; width: 100%; }
+.dx-mast-media, .dx-mast-media video, .dx-mast-tint { position: absolute; inset: 0; width: 100%; height: 100%; }
+.dx-mast-media video { object-fit: cover; opacity: 0; transition: opacity 700ms var(--ease-out); }
+.dx-mast-media video.is-playing { opacity: 1; }
+/* same measured tint as v1: white type clears 4.5:1 over the brightest frame */
+.dx-mast-tint { background: linear-gradient(to top right, var(--hero-shade) 0%, var(--hero-shade-0) 60%), var(--hero-tint); }
+.dx-mast-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: clamp(var(--sp-xl), 4vw, var(--sp-3xl));
+  align-items: end;
+  padding-bottom: var(--sp-2xl);
+  border-bottom: var(--rule-w) solid var(--dmg-light-blue);
+}
+.dx-h1 {
+  font-size: var(--dx-h1);
+  font-weight: 800;
+  line-height: 0.94;
+  letter-spacing: -0.03em;
+  color: var(--dmg-white);
+}
+.js .dx-h1 { opacity: 0; transform: translateY(var(--rise-sm)); transition: opacity var(--t-slow) var(--ease-out), transform var(--t-slow) var(--ease-out); }
+.js .dx-mast.is-on .dx-h1 { opacity: 1; transform: none; }
+.dx-mast-side { display: grid; gap: var(--sp-lg); }
+.dx-lede { font-size: var(--fs-h4); font-weight: 600; line-height: 1.45; color: var(--dmg-pale-blue); max-width: 34ch; }
+
+/* an inline run-in list, the way a contents line reads in print */
+.dx-runin { font-size: var(--fs-small); line-height: 1.9; }
+.dx-runin span {
+  font-size: var(--fs-label);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--dmg-sky-blue);
+  margin-right: var(--sp-sm);
+}
+.dx-runin a {
+  color: var(--dmg-pale-blue);
+  font-weight: 700;
+  text-decoration: none;
+  padding-bottom: var(--sp-xs);
+  background-image: linear-gradient(var(--dmg-light-blue), var(--dmg-light-blue));
+  background-repeat: no-repeat;
+  background-size: 0% var(--rule-w);
+  background-position: left bottom;
+  transition: background-size var(--t-fast) var(--ease-out);
+}
+.dx-runin a:hover, .dx-runin a:focus-visible { background-size: 100% var(--rule-w); }
+.dx-runin i { font-style: normal; color: var(--dx-rule-rev); margin: 0 var(--sp-xs); }
+.dx-mast-ctas { display: flex; flex-wrap: wrap; gap: var(--sp-md); }
+
+/* a squared outline button, distinct from v1's ghost pill */
+.btn--line {
+  background: transparent;
+  color: var(--dmg-white);
+  border: var(--border-btn) solid var(--text-on-dark-soft);
+  border-radius: 0;
+}
+.btn--line:hover { background: var(--ghost-hover-bg); border-color: var(--dmg-white); }
+.dx-mast .btn--warm { border-radius: 0; }
+
+@media (max-width: 56em) {
+  .dx-mast-grid { grid-template-columns: 1fr; align-items: start; }
+}
+
+/* ==========================================================================
+   02 FIGURES — a report table, not a row of big numbers
+   ========================================================================== */
+
+.dx-figs { border-top: var(--hairline) solid var(--dx-rule); }
+.dx-fig {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: baseline;
+  gap: var(--sp-lg);
+  padding-block: clamp(var(--sp-md), 1.8vw, var(--sp-lg));
+  border-bottom: var(--hairline) solid var(--dx-rule);
+}
+.dx-fig dt {
+  font-size: var(--fs-body);
+  font-weight: 600;
+  color: var(--dmg-ink);
+  letter-spacing: 0.01em;
+}
+.dx-fig dd {
+  font-size: var(--dx-fig);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--dmg-dark-blue);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+/* the rule under a figure fills in as its number lands */
+.dx-fig { position: relative; }
+.dx-fig::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: calc(-1 * var(--hairline));
+  height: var(--rule-w);
+  background: var(--dmg-light-blue);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 900ms var(--ease-out);
+}
+.dx-fig.is-done::after { transform: scaleX(1); }
+
+/* ==========================================================================
+   03 PARTNERS — v1's marquee, untouched. Only the heading is restated in the
+   dossier voice; the white ground and tinted logos come from styles.css.
+   ========================================================================== */
+
+.dx-sec--flush .logo-marquee { border-top: none; padding-top: 0; }
+.dx-sec--flush .logo-marquee h2 {
+  font-size: var(--fs-label);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  text-align: left;
+  max-width: var(--dx-measure);
+  margin-inline: auto;
+  padding-inline: var(--pad-x);
+  margin-bottom: var(--sp-xl);
+}
+@media (min-width: 78em) {
+}
+
+/* ==========================================================================
+   04 APPROACH — two columns with a hairline gutter and a margin note
+   ========================================================================== */
+
+.dx-appr {
+  display: grid;
+  grid-template-columns: 1.5fr minmax(0, 0.9fr);
+  gap: clamp(var(--sp-xl), 4vw, var(--sp-3xl));
+  align-items: start;
+  padding-top: var(--sp-lg);
+  border-top: var(--hairline) solid var(--dx-rule);
+}
+.dx-appr-text { display: grid; gap: var(--sp-xl); }
+/* an oversized opening letter, the clearest editorial signal on the page */
+.dx-drop { color: var(--dmg-ink); }
+.dx-drop::first-letter {
+  float: left;
+  font-size: var(--dx-drop);
+  font-weight: 800;
+  line-height: 0.82;
+  margin: var(--sp-xs) var(--sp-sm) 0 0;
+  color: var(--dmg-light-blue);
+}
+.dx-sec [data-reveal].is-visible .mark { background-size: 100% var(--rule-w); }
+.dx-sec [data-reveal].is-visible .mark--circle ellipse { stroke-dashoffset: 0; }
+
+.dx-portrait { margin: 0; }
+.dx-portrait img { width: 100%; height: auto; aspect-ratio: 3 / 4; object-fit: cover; object-position: 50% 22%; }
+.dx-portrait figcaption {
+  margin-top: var(--sp-sm);
+  padding-top: var(--sp-sm);
+  border-top: var(--hairline) solid var(--dx-rule);
+  font-size: var(--fs-small);
+  color: var(--text-muted);
+}
+@media (max-width: 62em) {
+  .dx-appr { grid-template-columns: 1fr; }
+  .dx-portrait { max-width: 60%; }
+}
+
+/* ==========================================================================
+   05 WHAT WE DO — five articles, all visible. No accordion, no tabs: the
+   editorial hierarchy does the work that progressive disclosure did in v1.
+   ========================================================================== */
+
+.dx-art {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1.5fr) minmax(0, 1fr);
+  gap: clamp(var(--sp-lg), 3vw, var(--sp-2xl));
+  align-items: start;
+  padding-block: clamp(var(--sp-xl), 3vw, var(--sp-2xl));
+  border-top: var(--hairline) solid var(--dx-rule-rev);
+}
+.dx-art:last-of-type { border-bottom: var(--hairline) solid var(--dx-rule-rev); }
+.dx-art-i {
+  display: grid;
+  place-items: center;
+  width: var(--sp-3xl);
+  height: var(--sp-3xl);
+  border: var(--border-btn) solid var(--dmg-light-blue);
+  color: var(--dmg-light-blue);
+  transition: background-color var(--t-fast) var(--ease-out), color var(--t-fast) var(--ease-out);
+}
+.dx-art-i .material-symbols-rounded { font-size: var(--fs-h3); }
+.dx-art:hover .dx-art-i { background: var(--dmg-light-blue); color: var(--dmg-dark-blue); }
+.dx-art h3 { font-size: var(--fs-h3); font-weight: 800; line-height: 1.1; }
+.dx-art-lede { margin-top: var(--sp-sm); font-size: var(--fs-body); line-height: 1.5; color: var(--dmg-white); max-width: 42ch; }
+.dx-art-links { margin-top: var(--sp-md); font-size: var(--fs-small); line-height: 1.9; }
+.dx-art-links a {
+  color: var(--dmg-light-blue-bright);
+  font-weight: 700;
+  text-decoration: none;
+  padding-bottom: var(--sp-xs);
+  background-image: linear-gradient(var(--dmg-light-blue), var(--dmg-light-blue));
+  background-repeat: no-repeat;
+  background-size: 0% var(--hairline);
+  background-position: left bottom;
+  transition: background-size var(--t-fast) var(--ease-out), color var(--t-fast) var(--ease-out);
+}
+.dx-art-links a:hover, .dx-art-links a:focus-visible { background-size: 100% var(--rule-w); color: var(--dmg-white); }
+.dx-art-links i { font-style: normal; color: var(--dx-rule-rev); margin: 0 var(--sp-xs); }
+
+/* the proof point is a margin note, not a card */
+.dx-proof { border-left: var(--rule-w) solid var(--dmg-light-blue); padding-left: var(--sp-lg); }
+.dx-proof-k {
+  display: block;
+  font-size: var(--fs-label);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--dmg-sky-blue);
+}
+.dx-proof-fig {
+  display: inline-flex;
+  align-items: baseline;
+  margin-top: var(--sp-sm);
+  font-size: var(--dx-fig);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--dmg-white);
+  font-variant-numeric: tabular-nums;
+}
+.dx-proof-fig .material-symbols-rounded { font-size: 0.5em; font-variation-settings: 'FILL' 0, 'wght' 700, 'GRAD' 0, 'opsz' 24; align-self: center; color: var(--dmg-light-blue); }
+.dx-proof-u { display: block; font-size: var(--fs-small); font-weight: 700; color: var(--dmg-sky-blue); }
+.dx-proof-d { display: block; margin-top: var(--sp-sm); font-size: var(--fs-small); font-weight: 700; color: var(--dmg-white); }
+.dx-proof p { margin-top: var(--sp-sm); font-size: var(--fs-small); color: var(--text-on-dark-soft); }
+.dx-proof-n { font-size: var(--fs-label); letter-spacing: 0.02em; }
+.dx-proof--nostat .dx-proof-d { font-size: var(--fs-h4); font-weight: 800; margin-top: var(--sp-md); }
+.dx-more {
+  display: inline-block;
+  margin-top: var(--sp-md);
+  font-size: var(--fs-small);
+  font-weight: 700;
+  color: var(--dmg-light-blue-bright);
+  text-decoration: none;
+  border-bottom: var(--border-btn) solid var(--dmg-light-blue);
+  padding-bottom: var(--sp-xs);
+  transition: color var(--t-fast) var(--ease-out);
+}
+.dx-more:hover { color: var(--dmg-white); }
+
+@media (max-width: 62em) {
+  .dx-art { grid-template-columns: auto 1fr; }
+  .dx-proof { grid-column: 1 / -1; }
+}
+
+/* ==========================================================================
+   06 VALUES — hanging roman numerals in two columns, hairline separated
+   ========================================================================== */
+
+.dx-vals {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: clamp(var(--sp-xl), 4vw, var(--sp-3xl));
+  border-top: var(--hairline) solid var(--dx-rule);
+}
+.dx-vals li {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--sp-md);
+  align-items: start;
+  padding-block: clamp(var(--sp-lg), 2.4vw, var(--sp-xl));
+  border-bottom: var(--hairline) solid var(--dx-rule);
+}
+.dx-val-m {
+  width: var(--sp-lg);
+  height: var(--rule-w);
+  margin-top: calc(var(--fs-h4) * 0.6);
+  background: var(--dmg-light-blue);
+}
+.dx-vals h3 { font-size: var(--fs-h4); font-weight: 800; color: var(--dmg-dark-blue); letter-spacing: 0.01em; }
+.dx-vals p { margin-top: var(--sp-xs); font-size: var(--fs-small); color: var(--dmg-ink); line-height: 1.55; max-width: 34ch; }
+.dx-vals-cta { margin-top: var(--sp-xl); }
+@media (max-width: 56em) { .dx-vals { grid-template-columns: 1fr; } }
+
+/* ==========================================================================
+   07 TESTIMONIALS — photo left, quote right, as in v1
+   ========================================================================== */
+
+.dx-stage { position: relative; padding-top: var(--sp-lg); border-top: var(--hairline) solid var(--dx-rule); }
+.dx-q { display: none; grid-template-columns: minmax(0, 2fr) minmax(0, 3fr); grid-template-rows: auto auto; column-gap: clamp(var(--sp-xl), 4vw, var(--sp-3xl)); }
+.dx-q.is-active { display: grid; }
+.dx-q-photo { grid-column: 1; grid-row: 1 / 3; position: relative; align-self: end; aspect-ratio: 1 / 1; }
+.dx-q-photo::before {
+  content: "";
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 62%;
+  background: var(--dmg-light-blue);
+  opacity: 0.16;
+}
+.dx-q-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; object-position: bottom center; }
+.dx-q-body { grid-column: 2; grid-row: 1; }
+.dx-q-body blockquote { font-size: var(--dx-quote); font-weight: 400; line-height: 1.34; color: var(--dmg-ink); quotes: none; }
+.dx-q-body blockquote p::before { content: "\201C"; color: var(--dmg-orange); font-weight: 800; }
+.dx-q-body blockquote p::after { content: "\201D"; color: var(--dmg-orange); font-weight: 800; }
+.dx-q-body blockquote strong { font-weight: 700; color: var(--dmg-dark-blue); }
+.dx-q-attr { grid-column: 2; grid-row: 2; margin-top: var(--sp-lg); }
+.dx-q-name { display: inline-block; font-size: var(--fs-h4); font-weight: 800; color: var(--dmg-ink); font-style: normal; }
+.dx-q-name cite { font-style: normal; }
+.dx-q-name .rule { width: 100%; margin-top: var(--sp-xs); }
+.dx-q-role { display: block; font-size: var(--fs-small); color: var(--text-muted); margin-top: var(--sp-sm); }
+.dx-q-logo { display: block; margin-top: var(--sp-sm); }
+.dx-q-logo img {
+  width: var(--t-logo-w);
+  height: var(--t-logo-h);
+  max-width: none;
+  object-fit: contain;
+  object-position: left bottom;
+  mix-blend-mode: multiply;
+  filter: grayscale(1);
+  opacity: 0.85;
+  transition: filter var(--t-fast) var(--ease-out), opacity var(--t-fast) var(--ease-out);
+}
+.dx-q-logo:hover img { filter: none; opacity: 1; }
+.dx-q-controls { position: relative; z-index: 2; display: flex; align-items: center; gap: var(--sp-md); margin-top: var(--sp-xl); }
+.dx-q.is-leaving .dx-q-body, .dx-q.is-leaving .dx-q-attr { opacity: 0; transition: opacity var(--t-med) var(--ease-out); }
+.dx-q.is-leaving .dx-q-photo img { opacity: 0; transition: opacity var(--t-med) var(--ease-out); }
+@media (max-width: 62em) {
+  .dx-q.is-active { grid-template-columns: 1fr; }
+  .dx-q-photo { grid-row: auto; max-width: 62%; margin-inline: auto; }
+  .dx-q-body, .dx-q-attr { grid-column: 1; }
+}
+
+/* ==========================================================================
+   COLOPHON CTA
+   ========================================================================== */
+
+.dx-cta { position: relative; overflow: hidden; }
+.dx-cta-inner { position: relative; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--sp-xl); }
+.dx-cta .dx-h2 { max-width: 26ch; margin-bottom: 0; }
+.dx-cta .btn--warm { border-radius: 0; }
+
+/* ==========================================================================
+   Reduced motion
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .js .dx-h1 { opacity: 1; transform: none; }
+  .dx-fig::after, .dx-fig.is-done::after { transform: scaleX(1); }
+}
+
+/* target flash when the masthead contents jumps you to an article */
+.dx-art.is-target { background: var(--open-row-wash); }
+
+/* the partners label, now that the numbered chapter head is gone */
+.dx-eyebrow {
+  font-size: var(--fs-label);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: var(--sp-xl);
+}

@@ -58,14 +58,14 @@
   /* ------------------------------------------------------------------
      Hero: video fade-up, then orchestrated entrance
   ------------------------------------------------------------------ */
-  var hero = document.querySelector('.hero');
-  var video = hero.querySelector('video');
+  var hero = document.querySelector(".hero");
+  var video = hero ? hero.querySelector("video") : null;
 
-  if (reducedMotion) {
+  if (video && reducedMotion) {
     video.pause();
     video.removeAttribute('autoplay');
-  } else {
-    video.addEventListener('canplay', function () {
+  } else if (video) {
+    video.addEventListener("canplay", function () {
       video.classList.add('is-playing');
     });
     // if the file is missing, the dark-blue ground + poster hold the layout
@@ -74,18 +74,18 @@
     });
   }
 
-  requestAnimationFrame(function () {
+  if (hero) {
     requestAnimationFrame(function () {
-      hero.classList.add('is-on');
+      requestAnimationFrame(function () { hero.classList.add("is-on"); });
     });
-  });
+  }
 
   /* ------------------------------------------------------------------
      The measuring rule under the H1. It used to size itself to a rotating
      phrase; the rotator is gone, so it now measures the expertise line.
   ------------------------------------------------------------------ */
   var heroRule = document.getElementById("hero-rule");
-  var expertise = hero.querySelector(".hero-expertise");
+  var expertise = hero ? hero.querySelector(".hero-expertise") : null;
 
   function measureRule() {
     if (!heroRule || !expertise) return;
@@ -240,8 +240,8 @@
   /* ------------------------------------------------------------------
      Testimonials: arrows, dots, keyboard; quote crossfade + photo scale
   ------------------------------------------------------------------ */
-  var stage = document.getElementById('testimonials');
-  var slides = stage.querySelectorAll('.testimonial');
+  var stage = document.getElementById("testimonials") || document.createElement("div");
+  var slides = stage.querySelectorAll(".testimonial");
   var dots = stage.querySelectorAll('.t-dot');
   var current = 0;
   var swapping = false;
@@ -277,8 +277,10 @@
     }, 400);
   }
 
-  document.getElementById('t-prev').addEventListener('click', function () { advance(current - 1); });
-  document.getElementById('t-next').addEventListener('click', function () { advance(current + 1); });
+  var tPrev = document.getElementById("t-prev");
+  var tNext = document.getElementById("t-next");
+  if (tPrev) tPrev.addEventListener("click", function () { advance(current - 1); });
+  if (tNext) tNext.addEventListener("click", function () { advance(current + 1); });
   dots.forEach(function (dot) {
     dot.addEventListener('click', function () {
       advance(parseInt(dot.getAttribute('data-goto'), 10));

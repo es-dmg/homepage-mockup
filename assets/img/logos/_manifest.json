@@ -1,0 +1,212 @@
+﻿[
+    {
+        "slug":  "atlanta-public-schools",
+        "name":  "Atlanta Public Schools",
+        "width":  459
+    },
+    {
+        "slug":  "barrington-220-community-unit-school-district",
+        "name":  "Barrington 220 Community Unit School District",
+        "width":  410
+    },
+    {
+        "slug":  "beaverton-school-district",
+        "name":  "Beaverton School District",
+        "width":  786
+    },
+    {
+        "slug":  "bibb-county-school-district",
+        "name":  "Bibb County School District",
+        "width":  420
+    },
+    {
+        "slug":  "birmingham-city-schools",
+        "name":  "Birmingham City Schools",
+        "width":  920
+    },
+    {
+        "slug":  "boston-public-schools",
+        "name":  "Boston Public Schools",
+        "width":  344
+    },
+    {
+        "slug":  "boulder-valley-school-district",
+        "name":  "Boulder Valley School District",
+        "width":  750
+    },
+    {
+        "slug":  "chelmsford-public-schools",
+        "name":  "Chelmsford Public Schools",
+        "width":  268
+    },
+    {
+        "slug":  "fairfax-county-public-schools",
+        "name":  "Fairfax County Public Schools",
+        "width":  270
+    },
+    {
+        "slug":  "farmington-public-schools",
+        "name":  "Farmington Public Schools",
+        "width":  591
+    },
+    {
+        "slug":  "fort-worth-independent-school-district",
+        "name":  "Fort Worth Independent School District",
+        "width":  734
+    },
+    {
+        "slug":  "fresno-unified-school-district",
+        "name":  "Fresno Unified School District",
+        "width":  345
+    },
+    {
+        "slug":  "grand-island-public-schools",
+        "name":  "Grand Island Public Schools",
+        "width":  320
+    },
+    {
+        "slug":  "gwinnett-county-public-schools",
+        "name":  "Gwinnett County Public Schools",
+        "width":  261
+    },
+    {
+        "slug":  "indian-prairie-school-district-204",
+        "name":  "Indian Prairie School District 204",
+        "width":  432
+    },
+    {
+        "slug":  "iowa-city-community-school-district",
+        "name":  "Iowa City Community School District",
+        "width":  322
+    },
+    {
+        "slug":  "killeen-independent-school-district",
+        "name":  "Killeen Independent School District",
+        "width":  333
+    },
+    {
+        "slug":  "kyrene-school-district",
+        "name":  "Kyrene School District",
+        "width":  652
+    },
+    {
+        "slug":  "lc",
+        "name":  "LC",
+        "width":  192
+    },
+    {
+        "slug":  "los-angeles-unified-school-district",
+        "name":  "Los Angeles Unified School District",
+        "width":  178
+    },
+    {
+        "slug":  "millcreek-township-school-district",
+        "name":  "Millcreek Township School District",
+        "width":  250
+    },
+    {
+        "slug":  "mounds-view-public-schools",
+        "name":  "Mounds View Public Schools",
+        "width":  668
+    },
+    {
+        "slug":  "nebraska-department-of-education",
+        "name":  "Nebraska Department of Education",
+        "width":  180
+    },
+    {
+        "slug":  "newport-news-public-schools",
+        "name":  "Newport News Public Schools",
+        "width":  162
+    },
+    {
+        "slug":  "nf",
+        "name":  "NF",
+        "width":  180
+    },
+    {
+        "slug":  "port-chester-public-schools",
+        "name":  "Port Chester Public Schools",
+        "width":  748
+    },
+    {
+        "slug":  "providence-schools",
+        "name":  "Providence Schools",
+        "width":  423
+    },
+    {
+        "slug":  "ride-rhode-island-department-of-education",
+        "name":  "RIDE Rhode Island Department of Education",
+        "width":  638
+    },
+    {
+        "slug":  "rockford-public-schools",
+        "name":  "Rockford Public Schools",
+        "width":  700
+    },
+    {
+        "slug":  "san-bernardino-city-unified-school-district",
+        "name":  "San Bernardino City Unified School District",
+        "width":  180
+    },
+    {
+        "slug":  "saratoga-springs-city-school-district",
+        "name":  "Saratoga Springs City School District",
+        "width":  400
+    },
+    {
+        "slug":  "school-district-of-lancaster",
+        "name":  "School District of Lancaster",
+        "width":  272
+    },
+    {
+        "slug":  "school-district-u-46",
+        "name":  "School District U-46",
+        "width":  182
+    },
+    {
+        "slug":  "seattle-public-schools",
+        "name":  "Seattle Public Schools",
+        "width":  483
+    },
+    {
+        "slug":  "sioux-falls-school-district",
+        "name":  "Sioux Falls School District",
+        "width":  180
+    },
+    {
+        "slug":  "south-san-antonio-independent-school-district",
+        "name":  "South San Antonio Independent School District",
+        "width":  177
+    },
+    {
+        "slug":  "the-school-district-of-philadelphia",
+        "name":  "The School District of Philadelphia",
+        "width":  177
+    },
+    {
+        "slug":  "utica",
+        "name":  "Utica",
+        "width":  207
+    },
+    {
+        "slug":  "wake-county-public-school-system",
+        "name":  "Wake County Public School System",
+        "width":  818
+    },
+    {
+        "slug":  "webster-parish-schools",
+        "name":  "Webster Parish Schools",
+        "width":  180
+    },
+    {
+        "slug":  "wilmette-public-schools-district-39",
+        "name":  "Wilmette Public Schools District 39",
+        "width":  213
+    },
+    {
+        "slug":  "wilson-school-district",
+        "name":  "Wilson School District",
+        "width":  150
+    }
+]

@@ -129,74 +129,40 @@
     </div>
   </header>
 
-
   <main id="main" class="dx">
 
-    <!-- ============ 01 MASTHEAD ============ -->
-    <section class="dx-sec dx-mast" id="top" aria-label="Introduction">
-      <div class="dx-mast-media" aria-hidden="true">
+    <!-- ============ 01 MASTHEAD — hard split: solid blue / duotoned video ============ -->
+    <section class="dx-mast" id="top" aria-label="Introduction">
+      <div class="dx-mast-media dx-duo" aria-hidden="true">
         <video autoplay muted loop playsinline preload="metadata" poster="assets/video/hero-poster.jpg">
           <source src="assets/video/hero.mp4" type="video/mp4">
         </video>
         <span class="dx-mast-tint"></span>
       </div>
-      <div class="dx-wrap">
-
-        <div class="dx-mast-grid">
-          <h1 class="dx-h1">Supporting<br>K&#8209;12 districts</h1>
-          <div class="dx-mast-side">
-            <p class="dx-lede">through leveraging management techniques and education best practices.</p>
-            <p class="dx-runin">
-              <span>Inside</span>
-              <a href="#dx-05" data-jump="0">Student Outcomes</a><i>/</i><a href="#dx-05" data-jump="1">Strategic Planning and Budgeting</a><i>/</i><a href="#dx-05" data-jump="2">Enrollment and Attendance</a><i>/</i><a href="#dx-05" data-jump="3">Scheduling</a><i>/</i><a href="#dx-05" data-jump="4">Special Education</a>
-            </p>
-            <div class="dx-mast-ctas">
-              <a class="btn btn--warm" href="#contact">Contact Us</a>
-              <a class="btn btn--line" href="#dx-05">See How We Help</a>
-            </div>
+      <div class="dx-mast-body">
+        <h1 class="dx-h1">Supporting K&#8209;12 districts</h1>
+        <div class="dx-mast-copy">
+          <p class="dx-lede">through leveraging management techniques and education best practices.</p>
+          <span class="dx-toc-label" id="dx-toc-label">Jump to</span>
+          <ol class="dx-toc" aria-labelledby="dx-toc-label">
+            <li><a href="#row-student-outcomes" data-jump>Student Outcomes<span class="material-symbols-rounded dx-toc-arrow" aria-hidden="true">arrow_downward</span></a></li>
+            <li><a href="#row-strategic-planning" data-jump>Strategic Planning and Budgeting<span class="material-symbols-rounded dx-toc-arrow" aria-hidden="true">arrow_downward</span></a></li>
+            <li><a href="#row-enrollment" data-jump>Enrollment and Attendance<span class="material-symbols-rounded dx-toc-arrow" aria-hidden="true">arrow_downward</span></a></li>
+            <li><a href="#row-scheduling" data-jump>Scheduling<span class="material-symbols-rounded dx-toc-arrow" aria-hidden="true">arrow_downward</span></a></li>
+            <li><a href="#row-special-education" data-jump>Special Education<span class="material-symbols-rounded dx-toc-arrow" aria-hidden="true">arrow_downward</span></a></li>
+          </ol>
+          <div class="dx-mast-ctas">
+            <a class="btn btn--warm" href="#contact">Contact Us</a>
+            <a class="btn btn--ghost" href="#dx-05">See How We Help</a>
           </div>
         </div>
       </div>
-
     </section>
 
-    <!-- ============ 02 FIGURES TABLE ============ -->
-    <section class="dx-sec" id="dx-02" aria-labelledby="dx-02-t">
-      <div class="dx-wrap">
-        <h2 id="dx-02-t" class="dx-h2" data-reveal>The record, in figures</h2>
-
-        <dl class="dx-figs">
-          <div class="stat dx-fig" data-reveal style="--stagger:0">
-            <dt>Years in practice</dt>
-            <dd><span class="count" data-target="22">22</span></dd>
-          </div>
-          <div class="stat dx-fig" data-reveal style="--stagger:1">
-            <dt>States</dt>
-            <dd><span class="count" data-target="34">34</span></dd>
-          </div>
-          <div class="stat dx-fig" data-reveal style="--stagger:2">
-            <dt>Districts supported</dt>
-            <dd><span class="count" data-target="700" data-suffix="+">700+</span></dd>
-          </div>
-          <div class="stat dx-fig" data-reveal style="--stagger:3">
-            <dt>School and district leaders</dt>
-            <dd><span class="count" data-target="1000" data-format="comma" data-suffix="s">1,000s</span></dd>
-          </div>
-          <div class="stat dx-fig" data-reveal style="--stagger:4">
-            <dt>Students supported</dt>
-            <dd><span class="count" data-target="1000000" data-format="comma" data-suffix="s">1,000,000s</span></dd>
-          </div>
-        </dl>
-      </div>
-    </section>
-
-    <!-- ============ 03 PARTNERS (v1 treatment, unchanged) ============ -->
+    <!-- ============ 03 PARTNERS (shared v1 marquee treatment) ============ -->
     <section class="dx-sec dx-sec--flush" id="dx-03">
       <div class="dx-wrap"><h2 class="dx-eyebrow" id="marquee-title">Districts we've partnered with</h2></div>
 
-    <!-- ================= DISTRICT LOGO MARQUEE =================
-         Treatment toggle: add class "marquee--tinted" to this section for the
-         normalized dark-blue version (Bain-like). Remove it for full color. -->
     <section class="logo-marquee marquee--tinted" id="logo-marquee" aria-labelledby="marquee-title">
       
       <div class="marquee">
@@ -292,155 +258,200 @@
     </section>
     </section>
 
-    <!-- ============ 04 APPROACH ============ -->
-    <section class="dx-sec" id="dx-04" aria-labelledby="dx-04-t">
+    <!-- ============ 02 THE RECORD, IN FIGURES — stepped ledger ============ -->
+    <section class="dx-sec dx-ledger" id="dx-02" aria-labelledby="dx-02-t">
       <div class="dx-wrap">
-        <h2 id="dx-04-t" class="dx-h2" data-reveal>A multidisciplinary approach</h2>
+        <h2 id="dx-02-t" class="dx-h2" data-reveal>The record, in figures</h2>
 
-        <div class="dx-appr" data-reveal>
-          <div class="dx-appr-text">
-          <p class="dx-drop">At DMG, we leverage a multi-pronged approach that includes consulting, professional development, coaching, software solutions, and a membership program to tackle <span class="mark" style="--mark-i:0">system-level challenges</span> across public school districts. Our approach is informed by management principles, research-based best practices, and insights gathered from working with <span class="mark mark--circle" style="--mark-i:1">hundreds of districts<svg viewBox="0 0 200 60" preserveAspectRatio="none" aria-hidden="true"><ellipse cx="100" cy="30" rx="95" ry="25" pathLength="100"/></svg></span> across the country.</p>
+        <dl class="dx-figs">
+          <div class="stat dx-fig" data-reveal style="--stagger:0">
+            <dt>Years in practice</dt>
+            <dd><span class="count" data-target="22">22</span></dd>
           </div>
-          <figure class="dx-portrait">
-            <img src="assets/img/approach-summit.jpg" alt="A DMG Summit speaker presenting data to district leaders" width="820" height="1100" loading="lazy">
-            <figcaption>DMG Summit &mdash; district leaders reviewing results together</figcaption>
-          </figure>
+          <div class="stat dx-fig" data-reveal style="--stagger:1">
+            <dt>States</dt>
+            <dd><span class="count" data-target="34">34</span></dd>
+          </div>
+          <div class="stat dx-fig" data-reveal style="--stagger:2">
+            <dt>Districts supported</dt>
+            <dd><span class="count" data-target="700" data-suffix="+">700+</span></dd>
+          </div>
+          <div class="stat dx-fig" data-reveal style="--stagger:3">
+            <dt>School and district leaders</dt>
+            <dd><span class="count" data-target="1000" data-format="comma" data-suffix="s">1,000s</span></dd>
+          </div>
+          <div class="stat dx-fig" data-reveal style="--stagger:4">
+            <dt>Students supported</dt>
+            <dd><span class="count" data-target="1000000" data-format="comma" data-suffix="s">1,000,000s</span></dd>
+          </div>
+        </dl>
       </div>
     </section>
 
-    <!-- ============ 05 WHAT WE DO — five articles, nothing hidden ============ -->
-    <section class="dx-sec dx-sec--dark" id="dx-05" aria-labelledby="dx-05-t">
-      <div class="dx-wrap">
-        <h2 id="dx-05-t" class="dx-h2" data-reveal>How we help</h2>
-
-        <article class="dx-art" id="dx-a0" data-reveal>
-          <span class="dx-art-i"><span class="material-symbols-rounded" aria-hidden="true">school</span></span>
-          <div class="dx-art-body">
-            <h3>Student Outcomes</h3>
-            <p class="dx-art-lede">Raise student achievement in <span class="mark" style="--mark-i:0">8 to 10 weeks</span> through performance coaching.</p>
-            <p class="dx-art-links"><a href="#">Literacy Improvement</a><i>/</i><a href="#">Math Improvement</a><i>/</i><a href="#">Turnaround School Support</a></p>
+    <!-- ============ 04 APPROACH — split: duotoned Summit photo / copy ============ -->
+    <section class="dx-appr2" id="dx-04" aria-labelledby="dx-04-t">
+      <div class="dx-split">
+        <figure class="dx-split-media">
+          <div class="dx-duo dx-split-duo">
+            <img src="assets/img/approach-summit.jpg" alt="A DMG Summit speaker presenting data to district leaders" width="820" height="1100" loading="lazy">
+            <!-- full-colour twin, revealed on hover: same file, so no extra download -->
+            <img class="dx-color" src="assets/img/approach-summit.jpg" alt="" aria-hidden="true" width="820" height="1100" loading="lazy">
           </div>
-          <aside class="dx-proof">
+        </figure>
+        <div class="dx-split-body">
+          <h2 id="dx-04-t" class="dx-h2" data-reveal>A multidisciplinary approach</h2>
+          <p class="dx-appr-copy" data-reveal>At DMG, we leverage a multi-pronged approach that includes consulting, professional development, coaching, software solutions, and a membership program to tackle <span class="mark" style="--mark-i:0">system-level challenges</span> across public school districts. Our approach is informed by management principles, research-based best practices, and insights gathered from working with <span class="mark mark--circle" style="--mark-i:1">hundreds of districts<svg viewBox="0 0 200 60" preserveAspectRatio="none" aria-hidden="true"><ellipse cx="100" cy="30" rx="95" ry="25" pathLength="100"/></svg></span> across the country.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 05 HOW WE HELP — five chapter spreads ============ -->
+    <section class="dx-hwh" id="dx-05" aria-labelledby="dx-05-t">
+      <header class="dx-wrap dx-hwh-head">
+        <h2 id="dx-05-t" class="dx-h2" data-reveal>How we help</h2>
+      </header>
+
+      <article class="dx-ch dx-ch--dark" id="row-student-outcomes">
+        <div class="dx-ch-body" data-reveal>
+          <h3>Student Outcomes</h3>
+          <p class="dx-ch-lede">Raise student achievement in <span class="mark" style="--mark-i:0">8 to 10 weeks</span> through performance coaching.</p>
+          <p class="dx-ch-links"><a href="#">Literacy Improvement</a><i>/</i><a href="#">Math Improvement</a><i>/</i><a href="#">Turnaround School Support</a></p>
+          <aside class="dx-proof stat">
             <span class="dx-proof-k">Success story</span>
             <span class="dx-proof-fig"><span class="material-symbols-rounded" aria-hidden="true">arrow_upward</span><span class="count" data-target="43" data-suffix="%" aria-hidden="true">43%</span><span class="visually-hidden">Up 43 percent</span></span>
             <span class="dx-proof-d">Huntsville City Schools (AL)</span>
             <p>In ACAP math proficiency in one year through DMG's Breakthrough Results program.</p>
             <p class="dx-proof-n">ACAP: Alabama Comprehensive Assessment Program</p>
-            <a class="dx-more" href="#">Read More</a>
+            <a class="dx-more link" href="#">Read More</a>
           </aside>
-        </article>
+        </div>
+        <figure class="dx-ch-media dx-duo">
+          <img src="assets/img/focus/student-outcomes.jpg" alt="Illustration of four students climbing a rising arrow, with a gauge and a growing bar chart beneath them" width="1536" height="1024" loading="lazy">
+        </figure>
+      </article>
 
-        <article class="dx-art" id="dx-a1" data-reveal>
-          <span class="dx-art-i"><span class="material-symbols-rounded" aria-hidden="true">query_stats</span></span>
-          <div class="dx-art-body">
-            <h3>Strategic Planning and Budgeting</h3>
-            <p class="dx-art-lede">Shape the direction of your district, and know which programs work, for whom, and <span class="mark mark--circle" style="--mark-i:0">at what cost<svg viewBox="0 0 200 60" preserveAspectRatio="none" aria-hidden="true"><ellipse cx="100" cy="30" rx="95" ry="25" pathLength="100"/></svg></span>.</p>
-            <p class="dx-art-links"><a href="#">Prioritizing Resources and Initiatives for Strategic Management (PRISM)</a><i>/</i><a href="#">Academic ROI Institute</a><i>/</i><a href="#">Strategic Planning and Budgeting</a></p>
-          </div>
-          <aside class="dx-proof">
+      <article class="dx-ch dx-ch--flip dx-ch--tint" id="row-strategic-planning">
+        <div class="dx-ch-body" data-reveal>
+          <h3>Strategic Planning and Budgeting</h3>
+          <p class="dx-ch-lede">Shape the direction of your district, and know which programs work, for whom, and <span class="mark mark--circle" style="--mark-i:0">at what cost<svg viewBox="0 0 200 60" preserveAspectRatio="none" aria-hidden="true"><ellipse cx="100" cy="30" rx="95" ry="25" pathLength="100"/></svg></span>.</p>
+          <p class="dx-ch-links"><a href="#">Prioritizing Resources and Initiatives for Strategic Management (PRISM)</a><i>/</i><a href="#">Academic ROI Institute</a><i>/</i><a href="#">Strategic Planning and Budgeting</a></p>
+          <aside class="dx-proof stat">
             <span class="dx-proof-k">Success story</span>
             <span class="dx-proof-fig"><span class="count" data-target="73000" data-format="comma">73,000</span></span>
             <span class="dx-proof-u">students</span>
             <span class="dx-proof-d">Fresno Unified School District (CA)</span>
             <p>California's third-largest district used PRISM to align resources to priorities.</p>
-            <a class="dx-more" href="#">Read More</a>
+            <a class="dx-more link" href="#">Read More</a>
           </aside>
-        </article>
+        </div>
+        <figure class="dx-ch-media dx-duo">
+          <img src="assets/img/focus/strategic-planning-and-budgeting.jpg" alt="Illustration of a district leadership team reviewing a target, growth charts, and a budget on a large planning board" width="1536" height="1024" loading="lazy">
+        </figure>
+      </article>
 
-        <article class="dx-art" id="dx-a2" data-reveal>
-          <span class="dx-art-i"><span class="material-symbols-rounded" aria-hidden="true">event_available</span></span>
-          <div class="dx-art-body">
-            <h3>Enrollment and Attendance</h3>
-            <p class="dx-art-lede"><span class="mark" style="--mark-i:0">Proactively reverse</span> chronic absenteeism and plan for enrollment shifts.</p>
-            <p class="dx-art-links"><a href="#">Decreasing Absenteeism</a><i>/</i><a href="#">Strategic Enrollment Planning</a></p>
-          </div>
-          <aside class="dx-proof">
+      <article class="dx-ch dx-ch--dark" id="row-enrollment">
+        <div class="dx-ch-body" data-reveal>
+          <h3>Enrollment and Attendance</h3>
+          <p class="dx-ch-lede"><span class="mark" style="--mark-i:0">Proactively reverse</span> chronic absenteeism and plan for enrollment shifts.</p>
+          <p class="dx-ch-links"><a href="#">Decreasing Absenteeism</a><i>/</i><a href="#">Strategic Enrollment Planning</a></p>
+          <aside class="dx-proof stat">
             <span class="dx-proof-k">Success story</span>
             <span class="dx-proof-fig"><span class="material-symbols-rounded" aria-hidden="true">arrow_downward</span><span class="count" data-target="56" data-suffix="%" aria-hidden="true">56%</span><span class="visually-hidden">Down 56 percent</span></span>
             <span class="dx-proof-d">Bibb County (GA)</span>
             <p>Chronic absenteeism in a targeted 10-week intervention.</p>
-            <a class="dx-more" href="#">Read More</a>
+            <a class="dx-more link" href="#">Read More</a>
           </aside>
-        </article>
+        </div>
+        <figure class="dx-ch-media dx-duo">
+          <img src="assets/img/focus/enrollment-and-attendance.jpg" alt="Illustration of students walking a path toward a school building, framed by a checked-off calendar and an attendance checklist" width="1536" height="1024" loading="lazy">
+        </figure>
+      </article>
 
-        <article class="dx-art" id="dx-a3" data-reveal>
-          <span class="dx-art-i"><span class="material-symbols-rounded" aria-hidden="true">calendar_month</span></span>
-          <div class="dx-art-body">
-            <h3>Scheduling</h3>
-            <p class="dx-art-lede">Build schedules that <span class="mark" style="--mark-i:0">protect instruction</span>, prove individualized education program (IEP) compliance, and make better use of staff.</p>
-            <p class="dx-art-links"><a href="#">DMSchedules Software</a><i>/</i><a href="#">Secondary Scheduling Institute</a><i>/</i><a href="#">Elementary Scheduling and Design Institute</a></p>
-          </div>
+      <article class="dx-ch dx-ch--flip dx-ch--tint" id="row-scheduling">
+        <div class="dx-ch-body" data-reveal>
+          <h3>Scheduling</h3>
+          <p class="dx-ch-lede">Build schedules that <span class="mark" style="--mark-i:0">protect instruction</span>, prove individualized education program (IEP) compliance, and make better use of staff.</p>
+          <p class="dx-ch-links"><a href="#">DMSchedules Software</a><i>/</i><a href="#">Secondary Scheduling Institute</a><i>/</i><a href="#">Elementary Scheduling and Design Institute</a></p>
           <aside class="dx-proof dx-proof--nostat">
             <span class="dx-proof-k">Success story</span>
             <span class="dx-proof-d">New Fairfield (CT)</span>
             <p>Maximized support-staff time and improved student performance with DMSchedules.</p>
-            <a class="dx-more" href="#">Read More</a>
+            <a class="dx-more link" href="#">Read More</a>
           </aside>
-        </article>
+        </div>
+        <figure class="dx-ch-media dx-duo">
+          <img src="assets/img/focus/scheduling.jpg" alt="Illustration of a clock surrounded by staff moving schedule blocks into place" width="1536" height="1024" loading="lazy">
+        </figure>
+      </article>
 
-        <article class="dx-art" id="dx-a4" data-reveal>
-          <span class="dx-art-i"><span class="material-symbols-rounded" aria-hidden="true">volunteer_activism</span></span>
-          <div class="dx-art-body">
-            <h3>Special Education</h3>
-            <p class="dx-art-lede">Review special education <span class="mark" style="--mark-i:0">cost, compliance, and service delivery</span>.</p>
-            <p class="dx-art-links"><a href="#">Special Education and Multi-Tiered System of Supports (MTSS) Reviews</a></p>
-          </div>
+      <article class="dx-ch dx-ch--dark" id="row-special-education">
+        <div class="dx-ch-body" data-reveal>
+          <h3>Special Education</h3>
+          <p class="dx-ch-lede">Review special education <span class="mark" style="--mark-i:0">cost, compliance, and service delivery</span>.</p>
+          <p class="dx-ch-links"><a href="#">Special Education and Multi-Tiered System of Supports (MTSS) Reviews</a></p>
           <aside class="dx-proof dx-proof--nostat">
             <span class="dx-proof-k">Success story</span>
             <span class="dx-proof-d">Littleton Elementary School District (AZ)</span>
             <p>Protected Tier 1 instruction and expanded special education capacity with DMSchedules Student Services.</p>
-            <a class="dx-more" href="#">Read More</a>
+            <a class="dx-more link" href="#">Read More</a>
           </aside>
-        </article>
-      </div>
+        </div>
+        <figure class="dx-ch-media dx-duo">
+          <img src="assets/img/focus/special-education.jpg" alt="Illustration of open hands holding a classroom of students learning together at a shared table" width="1536" height="1024" loading="lazy">
+        </figure>
+      </article>
     </section>
 
-    <!-- ============ 06 VALUES — hanging numerals, two columns ============ -->
-    <section class="dx-sec" id="dx-06" aria-labelledby="dx-06-t">
+    <!-- ============ 06 OUR VALUES — staggered column, aggressive negative space ============ -->
+    <section class="dx-vals2" id="dx-06" aria-labelledby="dx-06-t">
       <div class="dx-wrap">
         <h2 id="dx-06-t" class="dx-h2" data-reveal>Our values</h2>
         <p class="dx-sub" data-reveal style="--stagger:1">Grounded in a goal to bring about lasting improvement in public education.</p>
 
         <ol class="dx-vals">
-          <li data-reveal style="--stagger:0"><span class="dx-val-m" aria-hidden="true"></span><h3>Partnership</h3><p>We learn your district's history, context, and data before we recommend anything.</p></li>
-          <li data-reveal style="--stagger:1"><span class="dx-val-m" aria-hidden="true"></span><h3>Impact</h3><p>Measurable, sustainable results, plus support through implementation, not a report on a shelf.</p></li>
-          <li data-reveal style="--stagger:2"><span class="dx-val-m" aria-hidden="true"></span><h3>Collaboration</h3><p>We know more together, drawing on 700+ districts and proven practice from both sectors.</p></li>
-          <li data-reveal style="--stagger:3"><span class="dx-val-m" aria-hidden="true"></span><h3>Systems Thinking</h3><p>Whole-system solutions aligned to your priorities, because isolated fixes rarely hold.</p></li>
+          <li data-reveal style="--stagger:0"><h3>Partnership</h3><p>We learn your district's history, context, and data before we recommend anything.</p></li>
+          <li data-reveal style="--stagger:1"><h3>Impact</h3><p>Measurable, sustainable results, plus support through implementation, not a report on a shelf.</p></li>
+          <li data-reveal style="--stagger:2"><h3>Collaboration</h3><p>We know more together, drawing on 700+ districts and proven practice from both sectors.</p></li>
+          <li data-reveal style="--stagger:3"><h3>Systems Thinking</h3><p>Whole-system solutions aligned to your priorities, because isolated fixes rarely hold.</p></li>
         </ol>
         <p class="dx-vals-cta" data-reveal><a class="link" href="#">Learn More</a></p>
       </div>
     </section>
 
-    <!-- ============ 07 TESTIMONIALS — photo left, quote right (as v1) ============ -->
-    <section class="dx-sec dx-sec--tint" id="dx-07" aria-labelledby="dx-07-t">
+    <!-- ============ 07 TESTIMONIALS ============ -->
+    <section class="dx-sec dx-test" id="testimonials-section" aria-labelledby="dx-07-t">
       <div class="dx-wrap">
         <h2 id="dx-07-t" class="dx-h2" data-reveal>Testimonials</h2>
 
         <div class="dx-stage" id="v2-stage">
           <figure class="dx-q is-active" data-index="0">
-            <div class="dx-q-photo">
+            <div class="dx-q-face">
               <img src="assets/img/headshots/erik-gundersen.png" alt="Erik Gundersen, Superintendent of Suffern Central School District" width="900" height="900">
             </div>
             <div class="dx-q-body">
               <blockquote><p>DMG <strong>truly understands what matters most to a district</strong> and adapts their work to address each district's unique needs. As a result, we've worked with DMG on <strong>several different focus areas</strong>, including our strategic plan and our strategic enrollment plan.</p></blockquote>
             </div>
             <figcaption class="dx-q-attr">
-              <span class="dx-q-name"><cite>Erik Gundersen</cite><span class="rule" aria-hidden="true"></span></span>
-              <span class="dx-q-role">Superintendent, Suffern Central School District (NY)</span>
+              <span class="dx-q-who">
+                <span class="dx-q-name"><cite>Erik Gundersen</cite></span>
+                <span class="dx-q-role">Superintendent, Suffern Central School District (NY)</span>
+              </span>
               <span class="dx-q-logo"><img src="assets/img/logos/suffern-central.webp" alt="Suffern Central School District logo" width="368" height="175" loading="lazy"></span>
             </figcaption>
           </figure>
 
           <figure class="dx-q" data-index="1">
-            <div class="dx-q-photo">
+            <div class="dx-q-face">
               <img src="assets/img/headshots/mark-sullivan.png" alt="Mark Sullivan, Superintendent of Birmingham City Schools" width="900" height="900" loading="lazy">
             </div>
             <div class="dx-q-body">
               <blockquote><p>We saw <strong>amazing gains in third-grade literacy and numeracy</strong> through the Breakthrough Results program. It created momentum and enthusiasm for what Birmingham City Schools can achieve for all our students. <strong>We've been very pleased</strong> with our work with DMG.</p></blockquote>
             </div>
             <figcaption class="dx-q-attr">
-              <span class="dx-q-name"><cite>Mark Sullivan</cite><span class="rule" aria-hidden="true"></span></span>
-              <span class="dx-q-role">Superintendent, Birmingham City Schools (AL)</span>
+              <span class="dx-q-who">
+                <span class="dx-q-name"><cite>Mark Sullivan</cite></span>
+                <span class="dx-q-role">Superintendent, Birmingham City Schools (AL)</span>
+              </span>
               <span class="dx-q-logo"><img src="assets/img/logos/birmingham-city-schools.png" alt="Birmingham City Schools logo" width="920" height="180" loading="lazy"></span>
             </figcaption>
           </figure>
@@ -457,10 +468,10 @@
       </div>
     </section>
 
-    <!-- ============ COLOPHON CTA ============ -->
-    <section class="dx-sec dx-sec--dark dx-cta" id="contact" aria-labelledby="dx-cta-t">
-      <img class="cta-bg" src="assets/img/cta-background.jpg" alt="" width="1800" height="700" loading="lazy">
-      <span class="cta-tint" aria-hidden="true"></span>
+    <!-- ============ 08 CLOSING CTA ============ -->
+    <section class="dx-cta2 dx-duo" id="contact" aria-labelledby="dx-cta-t">
+      <img src="assets/img/cta-background.jpg" alt="" width="1800" height="700" loading="lazy">
+      <span class="dx-cta-tint" aria-hidden="true"></span>
       <div class="dx-wrap dx-cta-inner">
         <h2 id="dx-cta-t" class="dx-h2" data-reveal>Contact us to discuss how we can support you</h2>
         <a class="btn btn--warm" href="#" data-reveal style="--stagger:1">Let's Connect</a>

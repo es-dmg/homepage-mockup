@@ -1,5 +1,5 @@
 /* ==========================================================================
-   DMG homepage — VERSION 2 ("The Dossier") behaviour
+   DMG homepage — VERSION 2 ("Five chapters, one blue") behaviour
    main.js runs first: shared nav, the .stat/.count count-ups and the scroll
    reveals all come from there. This file adds only what v2 introduces.
    Every animated behaviour checks prefers-reduced-motion.
@@ -40,17 +40,17 @@
   ------------------------------------------------------------------ */
 
   /* ------------------------------------------------------------------
-     Masthead contents links scroll to their article and flash its rule, so a
-     reader who clicks "Scheduling" can see which of the five they landed on.
+     Masthead contents links: the native anchor does the scrolling; this only
+     flashes the chapter's index numeral so a reader who clicks "Scheduling"
+     can see which of the five they landed on.
   ------------------------------------------------------------------ */
   document.querySelectorAll('[data-jump]').forEach(function (link) {
     link.addEventListener('click', function () {
-      var i = parseInt(link.getAttribute('data-jump'), 10);
-      var art = document.getElementById('dx-a' + i);
-      if (!art) return;
-      art.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'center' });
-      art.classList.add('is-target');
-      setTimeout(function () { art.classList.remove('is-target'); }, 1600);
+      var id = link.getAttribute('href').slice(1);
+      var ch = document.getElementById(id);
+      if (!ch) return;
+      ch.classList.add('is-target');
+      setTimeout(function () { ch.classList.remove('is-target'); }, 1600);
     });
   });
 

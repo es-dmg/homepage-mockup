@@ -1,430 +1,716 @@
 /* ==========================================================================
-   DMG homepage — VERSION 2: "The Dossier"
-   A different organising principle from v1, not a rearrangement of it.
-   v1 is a stack of full-width colour bands with centred rhythm and one big
-   statement per screen. v2 is a bound document: a fixed margin spine, numbered
-   chapters, hairline rules, multi-column text, hanging numerals, figure tables
-   and margin notes. Colour is used sparingly so structure carries the gravitas.
-
-   Loaded AFTER styles.css, which supplies every token plus the shared nav,
-   footer, buttons, links, .mark emphasis and the v1 logo marquee (reused here
-   unchanged, by request). Nothing below restyles the nav or footer.
-   No hex or raw px outside :root, same rule as v1.
+   DMG homepage — VERSION 2 "Five chapters, one blue"
+   A chaptered sequence of hard split-screen spreads. Every image on the page
+   is locked to a Dark Blue monotone (.dx-duo), so the five illustrations, the
+   Summit photo, the CTA background and the hero video read as one system.
+   styles.css carries the shared tokens, nav, footer, buttons and marquee;
+   everything here is v2-scoped (dx- prefix). No hex or px below :root.
    ========================================================================== */
 
 :root {
-  --dx-measure: 68rem;
-  --dx-h1: clamp(2.75rem, 6.2vw, 5.75rem);
-  --dx-h2: clamp(1.75rem, 2.9vw, 2.75rem);
-  --dx-fig: clamp(2.25rem, 4.6vw, 4.25rem);
-  --dx-quote: clamp(1.4rem, 2.3vw, 2.05rem);
-  --dx-rule: rgba(18, 35, 58, 0.14);
-  --dx-rule-rev: rgba(255, 255, 255, 0.2);
-  --dx-drop: clamp(2.5rem, 4vw, 3.5rem);
+  /* ---- v2 structure ---- */
+  --dx-wrap: 82rem;
+  --dx-pad: clamp(1.5rem, 5vw, 4.5rem);
+  --dx-sec-pad: clamp(3.5rem, 7vw, 6.5rem);
+  --dx-media-minh-sm: clamp(220px, 46vw, 340px);
+  --dx-marquee-h: 44px;        /* district logos, well below the shared 76px */
+
+  /* ---- v2 type (round 3: section H2s now outrank chapter titles, H1 holds
+     one line, figures compact enough for one screen) ---- */
+  --dx-fs-h1: clamp(2.5rem, 6vw, 5.5rem);
+  --dx-fs-lede: clamp(1.1rem, 1.5vw, 1.35rem);
+  --dx-fs-h2: clamp(2.1rem, 3.6vw, 3.4rem);      /* section headers, the top of the scale below the H1 */
+  --dx-fs-ch: clamp(1.9rem, 3.2vw, 3rem);        /* chapter titles, deliberately below the H2 */
+  --dx-fs-ch-lede: clamp(1.15rem, 1.6vw, 1.4rem);
+  --dx-fs-fig: clamp(2rem, 4.4vw, 4rem);         /* one size for all five figures */
+  --dx-fs-fig-label: clamp(1rem, 1.3vw, 1.2rem);
+  --dx-fs-stat: clamp(2.2rem, 4vw, 3.6rem);      /* chapter proof stat */
+  --dx-fs-links: clamp(1rem, 1.2vw, 1.15rem);
+  --dx-fs-val: clamp(1.6rem, 2.6vw, 2.4rem);
+  --dx-fs-quote: clamp(1.35rem, 2.2vw, 2.1rem);
+  --dx-fs-qmark: clamp(5rem, 9vw, 8rem);         /* the giant decorative quote glyph */
+  --dx-fs-cta: clamp(2rem, 3.8vw, 3.4rem);
+  --dx-fs-toc: clamp(1rem, 1.2vw, 1.2rem);
+  --dx-fs-cap: 0.9375rem;
+  --dx-face: clamp(13rem, 22vw, 19rem);          /* the large circular portrait disc */
+
+  /* ---- v2 color helpers (derived from brand tokens, documented) ---- */
+  --dx-tint-ink-06: rgba(18, 35, 58, 0.06);      /* hairline separations on white */
+  --dx-white-12: rgba(255, 255, 255, 0.12);      /* hairlines on dark blue */
 }
 
 /* ==========================================================================
-   Page frame: content sits in a measure with a left margin for the spine
+   Page scaffold
    ========================================================================== */
 
-.dx { background: var(--dmg-white); }
-.dx-wrap {
-  max-width: var(--dx-measure);
-  margin-inline: auto;
-  padding-inline: var(--pad-x);
-}
-.dx-sec { position: relative; padding-block: clamp(var(--sp-3xl), 7vw, var(--sp-5xl)); }
-.dx-sec--flush { padding-bottom: 0; }
-.dx-sec--tint { background: var(--dmg-pale-blue); }
-.dx-sec--dark { background: var(--dmg-dark-blue); color: var(--dmg-white); }
+/* Oversized numerals deliberately cross section edges; clip instead of scroll. */
+.dx { overflow-x: clip; }
 
-@media (min-width: 78em) {
+.dx-wrap {
+  width: 100%;
+  max-width: var(--dx-wrap);
+  margin-inline: auto;
+  padding-inline: var(--dx-pad);
 }
+
+.dx-sec { padding-block: var(--dx-sec-pad); }
 
 .dx-h2 {
-  font-size: var(--dx-h2);
+  font-size: var(--dx-fs-h2);
   font-weight: 800;
-  line-height: 1.1;
+  line-height: 1.05;
   letter-spacing: -0.01em;
-  margin-bottom: var(--sp-lg);
+  color: var(--dmg-ink);
+  margin-bottom: clamp(var(--sp-xl), 4vw, var(--sp-3xl));
 }
-.dx-sub { color: var(--text-muted); max-width: 54ch; margin-bottom: var(--sp-2xl); }
 
 /* ==========================================================================
-   01 MASTHEAD — two-column head, then a letterbox video plate
+   The duotone lock — one treatment for every image on the page.
+   Ground: Dark Blue. Image: grayscaled, blended in luminosity so it takes the
+   ground's hue. Screen layer: floors every shadow at Dark Blue, which is what
+   dissolves the illustrations' murky painted vignettes into the surrounding
+   blue field with no visible rectangle edge.
+   ========================================================================== */
+
+.dx-duo {
+  position: relative;
+  isolation: isolate;
+  background: var(--dmg-dark-blue);
+  overflow: hidden;
+}
+.dx-duo > img,
+.dx-duo > video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(1) contrast(1.05);
+  mix-blend-mode: luminosity;
+}
+.dx-duo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--dmg-dark-blue);
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   01 Masthead — the duotoned video runs the full hero behind the v1-measured
+   tint stack (worst case over pure white composites to 5.15:1 for white
+   type), so white copy is safe anywhere on it.
    ========================================================================== */
 
 .dx-mast {
   position: relative;
-  overflow: hidden;
-  background: var(--dmg-dark-blue);
-  color: var(--dmg-white);
-  min-height: 72vh;
+  min-height: max(60vh, 32rem);
   display: flex;
   align-items: center;
-  padding-top: calc(var(--nav-h) + var(--sp-3xl));
-  padding-bottom: clamp(var(--sp-3xl), 6vw, var(--sp-4xl));
-}
-.dx-mast .dx-wrap { position: relative; width: 100%; }
-.dx-mast-media, .dx-mast-media video, .dx-mast-tint { position: absolute; inset: 0; width: 100%; height: 100%; }
-.dx-mast-media video { object-fit: cover; opacity: 0; transition: opacity 700ms var(--ease-out); }
-.dx-mast-media video.is-playing { opacity: 1; }
-/* same measured tint as v1: white type clears 4.5:1 over the brightest frame */
-.dx-mast-tint { background: linear-gradient(to top right, var(--hero-shade) 0%, var(--hero-shade-0) 60%), var(--hero-tint); }
-.dx-mast-grid {
-  display: grid;
-  grid-template-columns: 1.15fr 1fr;
-  gap: clamp(var(--sp-xl), 4vw, var(--sp-3xl));
-  align-items: end;
-  padding-bottom: var(--sp-2xl);
-  border-bottom: var(--rule-w) solid var(--dmg-light-blue);
-}
-.dx-h1 {
-  font-size: var(--dx-h1);
-  font-weight: 800;
-  line-height: 0.94;
-  letter-spacing: -0.03em;
+  background: var(--dmg-dark-blue);
   color: var(--dmg-white);
+  overflow: hidden;
 }
-.js .dx-h1 { opacity: 0; transform: translateY(var(--rise-sm)); transition: opacity var(--t-slow) var(--ease-out), transform var(--t-slow) var(--ease-out); }
-.js .dx-mast.is-on .dx-h1 { opacity: 1; transform: none; }
-.dx-mast-side { display: grid; gap: var(--sp-lg); }
-.dx-lede { font-size: var(--fs-h4); font-weight: 600; line-height: 1.45; color: var(--dmg-pale-blue); max-width: 34ch; }
 
-/* an inline run-in list, the way a contents line reads in print */
-.dx-runin { font-size: var(--fs-small); line-height: 1.9; }
-.dx-runin span {
+.dx-mast-media {
+  position: absolute;
+  inset: 0;
+}
+.dx-mast-media video { opacity: 0; transition: opacity 600ms var(--ease-out); }
+.dx-mast-media video.is-playing { opacity: 1; }
+
+/* same tint stack v1 measured against the brightest video frames */
+.dx-mast-tint {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    linear-gradient(to top right, var(--hero-shade) 0%, var(--hero-shade-0) 60%),
+    var(--hero-tint);
+}
+
+.dx-mast-body {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  padding: calc(var(--nav-h) + clamp(var(--sp-xl), 6vh, var(--sp-4xl))) var(--dx-pad) clamp(var(--sp-2xl), 7vh, var(--sp-4xl));
+}
+
+.dx-h1 {
+  font-size: var(--dx-fs-h1);
+  font-weight: 800;
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  color: var(--dmg-white);
+  white-space: nowrap;   /* three stacked lines, each held to one line */
+}
+
+.dx-mast-copy {
+  max-width: 40rem;
+  margin-top: clamp(var(--sp-lg), 3vh, var(--sp-xl));
+}
+
+/* white, not soft-white: the copy sits over video + tint everywhere now, and
+   soft-white only measures 3.82:1 over the tint's worst case */
+.dx-lede {
+  font-size: var(--dx-fs-lede);
+  font-weight: 600;
+  line-height: 1.45;
+  color: var(--dmg-white);
+  max-width: 44ch;
+}
+
+/* jump links: the five chapters. No list markers (the shared reset covers ul
+   only, so the ol needs its own). The affordance is explicit: a "Jump to"
+   label, a down arrow per row, and a Light Blue rule that draws in on hover.
+   Label and hover color are Pale Blue, the v1-measured 4.82:1 over this tint
+   stack. */
+.dx-toc-label {
+  display: block;
+  margin-top: clamp(var(--sp-lg), 3vh, var(--sp-xl));
   font-size: var(--fs-label);
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--dmg-sky-blue);
-  margin-right: var(--sp-sm);
-}
-.dx-runin a {
   color: var(--dmg-pale-blue);
+}
+.dx-toc {
+  list-style: none;
+  margin: var(--sp-sm) 0 0;
+  padding: 0;
+  border-top: var(--hairline) solid var(--dx-white-12);
+}
+.dx-toc li { border-bottom: var(--hairline) solid var(--dx-white-12); }
+.dx-toc a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-md);
+  padding-block: clamp(var(--sp-xs), 1.1vh, var(--sp-sm));
+  font-size: var(--dx-fs-toc);
   font-weight: 700;
+  color: var(--dmg-white);
   text-decoration: none;
+  background-image: linear-gradient(var(--dmg-light-blue), var(--dmg-light-blue));
+  background-repeat: no-repeat;
+  background-size: 0% var(--rule-w);
+  background-position: left bottom;
+  transition: color var(--t-fast) var(--ease-out), background-size var(--t-fast) var(--ease-out);
+}
+.dx-toc-arrow {
+  font-size: 1.25em;
+  color: var(--dmg-light-blue);
+  transition: transform var(--t-fast) var(--ease-out);
+}
+.dx-toc a:hover, .dx-toc a:focus-visible {
+  color: var(--dmg-pale-blue);
+  background-size: 100% var(--rule-w);
+}
+.dx-toc a:hover .dx-toc-arrow, .dx-toc a:focus-visible .dx-toc-arrow { transform: translateY(var(--sp-xs)); }
+
+.dx-mast-ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-md);
+  margin-top: clamp(var(--sp-lg), 4vh, var(--sp-xl));
+}
+
+/* masthead entrance: video fades up, then the type rises. Gated on html.js. */
+.js .dx-mast .dx-h1,
+.js .dx-mast .dx-mast-copy {
+  opacity: 0;
+  transform: translateY(var(--rise-sm));
+  transition: opacity var(--t-slow) var(--ease-out), transform var(--t-slow) var(--ease-out);
+}
+.js .dx-mast.is-on .dx-h1,
+.js .dx-mast.is-on .dx-mast-copy { opacity: 1; transform: translateY(0); }
+.js .dx-mast.is-on .dx-mast-copy { transition-delay: 120ms; }
+
+/* narrow: the one-line H1 gives way to natural wrapping */
+@media (max-width: 56em) {
+  .dx-h1 { white-space: normal; }
+  .dx-mast-copy { max-width: 100%; }
+}
+
+/* ==========================================================================
+   02 The record, in figures — a full-bleed Dark Blue band, all five figures
+   on one line so the whole record reads at a glance
+   ========================================================================== */
+
+.dx-ledger {
+  background: var(--dmg-dark-blue);
+  padding-block: clamp(2.5rem, 5vw, 4rem);
+}
+.dx-ledger .dx-h2 { color: var(--dmg-white); margin-bottom: clamp(var(--sp-lg), 3vw, var(--sp-xl)); }
+
+.dx-figs {
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--sp-xl) clamp(var(--sp-lg), 3vw, var(--sp-2xl));
+}
+
+.dx-fig { display: flex; flex-direction: column; }
+.dx-fig dd {
+  margin: 0;
+  order: -1;
+  font-size: var(--dx-fs-fig);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: var(--dmg-white);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.dx-fig dt {
+  font-size: var(--dx-fs-fig-label);
+  font-weight: 600;
+  color: var(--text-on-dark-soft);
+  margin-top: var(--sp-xs);
+}
+
+/* ==========================================================================
+   03 Partners — the shared v1 marquee, held in a quiet white band
+   ========================================================================== */
+
+.dx-sec--flush { padding-block: var(--dx-sec-pad) 0; }
+
+.dx-eyebrow {
+  font-size: var(--dx-fs-cap);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: var(--sp-lg);
+}
+/* the shared .logo-marquee h2 centering does not apply: the title lives in the
+   dx-wrap above the marquee section on this page */
+
+/* v2 runs the shared marquee much smaller: overriding the shared token on this
+   page's scope changes nothing on v1, and the smaller render also hides how
+   soft the low-resolution source logos are */
+.dx .logo-marquee {
+  --marquee-logo-h: var(--dx-marquee-h);
+  padding-block: var(--sp-2xl);
+}
+
+/* ==========================================================================
+   04 A multidisciplinary approach — split: duotoned Summit photo left,
+   copy right on white
+   ========================================================================== */
+
+.dx-split {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.2fr);
+  min-height: 38vh;
+}
+
+/* Pale Blue text half against the Dark Blue photo half: one of the page's
+   colour-block seams */
+.dx-appr2 { background: var(--dmg-pale-blue); }
+
+/* The duotone box is a SQUARE at the column's width, cropped from the top of
+   the portrait source so the presenter stays in frame. A square container
+   (not the source's 820x1100 ratio) keeps the section from ballooning to the
+   photo's full height. */
+.dx-split-media {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: var(--dmg-dark-blue);
+}
+.dx-split-duo { width: 100%; aspect-ratio: 1 / 1; }
+.dx-split-duo img { object-position: top; }
+
+/* hover reveals the photo's original colour: a full-colour duplicate sits
+   above the duotone stack and fades in. This guarantees the exact original
+   colours, and opacity transitions smoothly where blend modes cannot. */
+.dx-split-duo .dx-color {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+  opacity: 0;
+  filter: none;
+  mix-blend-mode: normal;
+  transition: opacity var(--t-med) var(--ease-out);
+}
+.dx-split-duo:hover .dx-color { opacity: 1; }
+
+.dx-split-body {
+  align-self: center;
+  padding: clamp(var(--sp-xl), 4vw, var(--sp-3xl)) clamp(var(--sp-lg), 5vw, var(--sp-3xl));
+  max-width: 46rem;
+}
+.dx-appr-copy {
+  font-size: var(--dx-fs-ch-lede);
+  font-weight: 600;
+  line-height: 1.55;
+  color: var(--dmg-ink);
+}
+
+@media (max-width: 56em) {
+  .dx-split { grid-template-columns: 1fr; min-height: 0; }
+}
+
+/* ==========================================================================
+   05 How we help — five chapter spreads, split direction alternating,
+   each with its illustration dissolving into a Dark Blue field and a giant
+   outlined index numeral crossing the seam
+   ========================================================================== */
+
+.dx-hwh-head { padding-top: var(--dx-sec-pad); text-align: center; }
+.dx-hwh-head .dx-h2 { margin-bottom: clamp(var(--sp-xl), 4vw, var(--sp-2xl)); }
+
+/* No border between chapters. A border runs the article's FULL width, so on a
+   dark chapter the 1px strip was drawn over the Dark Blue ground across the
+   top of the light image half and read as a blue hairline. The alternating
+   grounds already separate the chapters. */
+.dx-ch {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1.08fr) minmax(0, 1fr);
+}
+.dx-ch--tint { background: var(--dmg-pale-blue); }
+.dx-ch--flip { grid-template-columns: minmax(0, 1fr) minmax(0, 1.08fr); }
+.dx-ch--flip .dx-ch-media { order: -1; }
+
+/* the dark chapter: the page's mid-sequence colour break. The h3 selector
+   carries both classes on purpose: at single-class specificity it ties with
+   the `.dx-ch h3` base rule further down and loses on cascade order. */
+.dx-ch--dark { background: var(--dmg-dark-blue); }
+.dx-ch.dx-ch--dark h3 { color: var(--dmg-white); }
+.dx-ch--dark .dx-ch-lede { color: var(--dmg-white); }
+.dx-ch--dark .dx-ch-links a { color: var(--dmg-light-blue-bright); }
+.dx-ch--dark .dx-proof { border-top-color: var(--dmg-light-blue); }
+.dx-ch--dark .dx-proof-k { color: var(--text-on-dark-soft); }
+.dx-ch--dark .dx-proof-fig, .dx-ch--dark .dx-proof-u, .dx-ch--dark .dx-proof-d { color: var(--dmg-white); }
+.dx-ch--dark .dx-proof p { color: var(--text-on-dark-soft); }
+.dx-ch--dark .dx-more { color: var(--dmg-light-blue-bright); }
+
+/* the media half keeps a floor so the illustration always reads large, but
+   the chapter no longer reserves most of a viewport */
+.dx-ch-media { margin: 0; min-height: clamp(300px, 30vw, 420px); }
+.dx-ch-media img { min-height: 100%; }
+
+.dx-ch-body {
+  align-self: center;
+  padding: clamp(var(--sp-lg), 3vw, var(--sp-2xl)) clamp(var(--sp-lg), 4.5vw, var(--sp-3xl));
+  max-width: 44rem;
+}
+
+.dx-ch h3 {
+  width: fit-content;
+  font-size: var(--dx-fs-ch);
+  font-weight: 800;
+  line-height: 1.02;
+  letter-spacing: -0.015em;
+  color: var(--dmg-ink);
   padding-bottom: var(--sp-xs);
   background-image: linear-gradient(var(--dmg-light-blue), var(--dmg-light-blue));
   background-repeat: no-repeat;
   background-size: 0% var(--rule-w);
   background-position: left bottom;
-  transition: background-size var(--t-fast) var(--ease-out);
-}
-.dx-runin a:hover, .dx-runin a:focus-visible { background-size: 100% var(--rule-w); }
-.dx-runin i { font-style: normal; color: var(--dx-rule-rev); margin: 0 var(--sp-xs); }
-.dx-mast-ctas { display: flex; flex-wrap: wrap; gap: var(--sp-md); }
-
-/* a squared outline button, distinct from v1's ghost pill */
-.btn--line {
-  background: transparent;
-  color: var(--dmg-white);
-  border: var(--border-btn) solid var(--text-on-dark-soft);
-  border-radius: 0;
-}
-.btn--line:hover { background: var(--ghost-hover-bg); border-color: var(--dmg-white); }
-.dx-mast .btn--warm { border-radius: 0; }
-
-@media (max-width: 56em) {
-  .dx-mast-grid { grid-template-columns: 1fr; align-items: start; }
+  transition: background-size var(--t-med) var(--ease-out);
 }
 
-/* ==========================================================================
-   02 FIGURES — a report table, not a row of big numbers
-   ========================================================================== */
-
-.dx-figs { border-top: var(--hairline) solid var(--dx-rule); }
-.dx-fig {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  align-items: baseline;
-  gap: var(--sp-lg);
-  padding-block: clamp(var(--sp-md), 1.8vw, var(--sp-lg));
-  border-bottom: var(--hairline) solid var(--dx-rule);
-}
-.dx-fig dt {
-  font-size: var(--fs-body);
+.dx-ch-lede {
+  font-size: var(--dx-fs-ch-lede);
   font-weight: 600;
+  line-height: 1.5;
   color: var(--dmg-ink);
-  letter-spacing: 0.01em;
+  margin-top: var(--sp-md);
+  max-width: 46ch;
 }
-.dx-fig dd {
-  font-size: var(--dx-fig);
-  font-weight: 800;
-  line-height: 1;
-  letter-spacing: -0.02em;
+
+.dx-ch-links {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: var(--sp-sm);
+  row-gap: var(--sp-xs);
+  margin-top: var(--sp-md);
+  font-size: var(--dx-fs-links);
+}
+.dx-ch-links a {
   color: var(--dmg-dark-blue);
-  font-variant-numeric: tabular-nums;
-  white-space: nowrap;
-}
-/* the rule under a figure fills in as its number lands */
-.dx-fig { position: relative; }
-.dx-fig::after {
-  content: "";
-  position: absolute;
-  left: 0; right: 0; bottom: calc(-1 * var(--hairline));
-  height: var(--rule-w);
-  background: var(--dmg-light-blue);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 900ms var(--ease-out);
-}
-.dx-fig.is-done::after { transform: scaleX(1); }
-
-/* ==========================================================================
-   03 PARTNERS — v1's marquee, untouched. Only the heading is restated in the
-   dossier voice; the white ground and tinted logos come from styles.css.
-   ========================================================================== */
-
-.dx-sec--flush .logo-marquee { border-top: none; padding-top: 0; }
-.dx-sec--flush .logo-marquee h2 {
-  font-size: var(--fs-label);
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--text-muted);
-  text-align: left;
-  max-width: var(--dx-measure);
-  margin-inline: auto;
-  padding-inline: var(--pad-x);
-  margin-bottom: var(--sp-xl);
-}
-@media (min-width: 78em) {
-}
-
-/* ==========================================================================
-   04 APPROACH — two columns with a hairline gutter and a margin note
-   ========================================================================== */
-
-.dx-appr {
-  display: grid;
-  grid-template-columns: 1.5fr minmax(0, 0.9fr);
-  gap: clamp(var(--sp-xl), 4vw, var(--sp-3xl));
-  align-items: start;
-  padding-top: var(--sp-lg);
-  border-top: var(--hairline) solid var(--dx-rule);
-}
-.dx-appr-text { display: grid; gap: var(--sp-xl); }
-/* an oversized opening letter, the clearest editorial signal on the page */
-.dx-drop { color: var(--dmg-ink); }
-.dx-drop::first-letter {
-  float: left;
-  font-size: var(--dx-drop);
-  font-weight: 800;
-  line-height: 0.82;
-  margin: var(--sp-xs) var(--sp-sm) 0 0;
-  color: var(--dmg-light-blue);
-}
-.dx-sec [data-reveal].is-visible .mark { background-size: 100% var(--rule-w); }
-.dx-sec [data-reveal].is-visible .mark--circle ellipse { stroke-dashoffset: 0; }
-
-.dx-portrait { margin: 0; }
-.dx-portrait img { width: 100%; height: auto; aspect-ratio: 3 / 4; object-fit: cover; object-position: 50% 22%; }
-.dx-portrait figcaption {
-  margin-top: var(--sp-sm);
-  padding-top: var(--sp-sm);
-  border-top: var(--hairline) solid var(--dx-rule);
-  font-size: var(--fs-small);
-  color: var(--text-muted);
-}
-@media (max-width: 62em) {
-  .dx-appr { grid-template-columns: 1fr; }
-  .dx-portrait { max-width: 60%; }
-}
-
-/* ==========================================================================
-   05 WHAT WE DO — five articles, all visible. No accordion, no tabs: the
-   editorial hierarchy does the work that progressive disclosure did in v1.
-   ========================================================================== */
-
-.dx-art {
-  display: grid;
-  grid-template-columns: auto minmax(0, 1.5fr) minmax(0, 1fr);
-  gap: clamp(var(--sp-lg), 3vw, var(--sp-2xl));
-  align-items: start;
-  padding-block: clamp(var(--sp-xl), 3vw, var(--sp-2xl));
-  border-top: var(--hairline) solid var(--dx-rule-rev);
-}
-.dx-art:last-of-type { border-bottom: var(--hairline) solid var(--dx-rule-rev); }
-.dx-art-i {
-  display: grid;
-  place-items: center;
-  width: var(--sp-3xl);
-  height: var(--sp-3xl);
-  border: var(--border-btn) solid var(--dmg-light-blue);
-  color: var(--dmg-light-blue);
-  transition: background-color var(--t-fast) var(--ease-out), color var(--t-fast) var(--ease-out);
-}
-.dx-art-i .material-symbols-rounded { font-size: var(--fs-h3); }
-.dx-art:hover .dx-art-i { background: var(--dmg-light-blue); color: var(--dmg-dark-blue); }
-.dx-art h3 { font-size: var(--fs-h3); font-weight: 800; line-height: 1.1; }
-.dx-art-lede { margin-top: var(--sp-sm); font-size: var(--fs-body); line-height: 1.5; color: var(--dmg-white); max-width: 42ch; }
-.dx-art-links { margin-top: var(--sp-md); font-size: var(--fs-small); line-height: 1.9; }
-.dx-art-links a {
-  color: var(--dmg-light-blue-bright);
   font-weight: 700;
   text-decoration: none;
-  padding-bottom: var(--sp-xs);
   background-image: linear-gradient(var(--dmg-light-blue), var(--dmg-light-blue));
   background-repeat: no-repeat;
   background-size: 0% var(--hairline);
   background-position: left bottom;
-  transition: background-size var(--t-fast) var(--ease-out), color var(--t-fast) var(--ease-out);
+  padding-bottom: var(--sp-xs);
+  transition: background-size var(--t-fast) var(--ease-out);
 }
-.dx-art-links a:hover, .dx-art-links a:focus-visible { background-size: 100% var(--rule-w); color: var(--dmg-white); }
-.dx-art-links i { font-style: normal; color: var(--dx-rule-rev); margin: 0 var(--sp-xs); }
+.dx-ch-links a:hover, .dx-ch-links a:focus-visible { background-size: 100% var(--rule-w); }
+.dx-ch-links i { font-style: normal; color: var(--dmg-sky-blue); }
 
-/* the proof point is a margin note, not a card */
-.dx-proof { border-left: var(--rule-w) solid var(--dmg-light-blue); padding-left: var(--sp-lg); }
+/* the proof point: the number is the co-star of the chapter */
+.dx-proof {
+  margin-top: clamp(var(--sp-lg), 2.5vw, var(--sp-xl));
+  padding-top: var(--sp-md);
+  border-top: var(--rule-w) solid var(--dmg-light-blue);
+  max-width: 34rem;
+}
 .dx-proof-k {
   display: block;
   font-size: var(--fs-label);
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--dmg-sky-blue);
+  color: var(--text-muted);
 }
 .dx-proof-fig {
-  display: inline-flex;
+  display: flex;
   align-items: baseline;
+  gap: var(--sp-xs);
   margin-top: var(--sp-sm);
-  font-size: var(--dx-fig);
+  font-size: var(--dx-fs-stat);
   font-weight: 800;
   line-height: 1;
   letter-spacing: -0.02em;
-  color: var(--dmg-white);
+  color: var(--dmg-dark-blue);
   font-variant-numeric: tabular-nums;
 }
-.dx-proof-fig .material-symbols-rounded { font-size: 0.5em; font-variation-settings: 'FILL' 0, 'wght' 700, 'GRAD' 0, 'opsz' 24; align-self: center; color: var(--dmg-light-blue); }
-.dx-proof-u { display: block; font-size: var(--fs-small); font-weight: 700; color: var(--dmg-sky-blue); }
-.dx-proof-d { display: block; margin-top: var(--sp-sm); font-size: var(--fs-small); font-weight: 700; color: var(--dmg-white); }
-.dx-proof p { margin-top: var(--sp-sm); font-size: var(--fs-small); color: var(--text-on-dark-soft); }
-.dx-proof-n { font-size: var(--fs-label); letter-spacing: 0.02em; }
-.dx-proof--nostat .dx-proof-d { font-size: var(--fs-h4); font-weight: 800; margin-top: var(--sp-md); }
-.dx-more {
-  display: inline-block;
-  margin-top: var(--sp-md);
-  font-size: var(--fs-small);
-  font-weight: 700;
-  color: var(--dmg-light-blue-bright);
-  text-decoration: none;
-  border-bottom: var(--border-btn) solid var(--dmg-light-blue);
-  padding-bottom: var(--sp-xs);
-  transition: color var(--t-fast) var(--ease-out);
+.dx-proof-fig .material-symbols-rounded {
+  font-size: 0.55em;
+  align-self: center;
+  color: var(--dmg-light-blue);
+  font-variation-settings: 'FILL' 0, 'wght' 700, 'GRAD' 0, 'opsz' 48;
 }
-.dx-more:hover { color: var(--dmg-white); }
+.dx-proof-u {
+  display: block;
+  font-size: var(--dx-fs-fig-label);
+  font-weight: 700;
+  color: var(--dmg-dark-blue);
+}
+.dx-proof-d {
+  display: block;
+  margin-top: var(--sp-md);
+  font-weight: 800;
+  color: var(--dmg-ink);
+}
+/* chapters with no cleared stat lead with the district name instead */
+.dx-proof--nostat .dx-proof-d {
+  margin-top: var(--sp-sm);
+  font-size: var(--dx-fs-ch-lede);
+  line-height: 1.2;
+}
+.dx-proof p { color: var(--text-muted); margin-top: var(--sp-xs); }
+.dx-proof-n { font-size: var(--dx-fs-cap); }
+.dx-more { display: inline-block; margin-top: var(--sp-md); }
 
-@media (max-width: 62em) {
-  .dx-art { grid-template-columns: auto 1fr; }
-  .dx-proof { grid-column: 1 / -1; }
+/* contents-link flash: a Light Blue rule draws under the chapter title so the
+   reader can see which of the five they landed on */
+.dx-ch.is-target h3 { background-size: 100% var(--rule-w); }
+
+@media (max-width: 56em) {
+  .dx-ch, .dx-ch--flip { grid-template-columns: 1fr; min-height: 0; }
+  .dx-ch-media { order: -1; }
+  .dx-ch-media img { min-height: var(--dx-media-minh-sm); height: var(--dx-media-minh-sm); }
+  .dx-ch-body { max-width: 100%; }
 }
 
 /* ==========================================================================
-   06 VALUES — hanging roman numerals in two columns, hairline separated
+   06 Our values — the counterweight: near-empty white, a staggered column
    ========================================================================== */
 
+.dx-vals2 { padding-block: clamp(var(--sp-3xl), 8vw, var(--sp-4xl)); }
+
+.dx-sub {
+  font-size: var(--dx-fs-lede);
+  font-weight: 600;
+  color: var(--text-muted);
+  max-width: 44ch;
+  margin-top: calc(-1 * var(--sp-lg));
+  margin-bottom: clamp(var(--sp-2xl), 6vw, var(--sp-4xl));
+}
+
+/* an ol: the shared reset covers ul only, so kill the markers and box here */
 .dx-vals {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  column-gap: clamp(var(--sp-xl), 4vw, var(--sp-3xl));
-  border-top: var(--hairline) solid var(--dx-rule);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(var(--sp-lg), 3.5vw, var(--sp-2xl));
 }
 .dx-vals li {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: var(--sp-md);
-  align-items: start;
-  padding-block: clamp(var(--sp-lg), 2.4vw, var(--sp-xl));
-  border-bottom: var(--hairline) solid var(--dx-rule);
+  max-width: 36rem;
+  border-left: var(--rule-w) solid var(--dmg-light-blue);
+  padding-left: clamp(var(--sp-lg), 2.5vw, var(--sp-xl));
 }
-.dx-val-m {
-  width: var(--sp-lg);
-  height: var(--rule-w);
-  margin-top: calc(var(--fs-h4) * 0.6);
-  background: var(--dmg-light-blue);
+.dx-vals li:nth-child(2) { margin-left: clamp(0rem, 14%, 14rem); }
+.dx-vals li:nth-child(3) { margin-left: clamp(0rem, 28%, 28rem); }
+.dx-vals li:nth-child(4) { margin-left: clamp(0rem, 42%, 42rem); }
+.dx-vals h3 {
+  font-size: var(--dx-fs-val);
+  font-weight: 800;
+  line-height: 1.05;
+  color: var(--dmg-dark-blue);
 }
-.dx-vals h3 { font-size: var(--fs-h4); font-weight: 800; color: var(--dmg-dark-blue); letter-spacing: 0.01em; }
-.dx-vals p { margin-top: var(--sp-xs); font-size: var(--fs-small); color: var(--dmg-ink); line-height: 1.55; max-width: 34ch; }
-.dx-vals-cta { margin-top: var(--sp-xl); }
-@media (max-width: 56em) { .dx-vals { grid-template-columns: 1fr; } }
+.dx-vals p { margin-top: var(--sp-sm); color: var(--text-muted); max-width: 48ch; }
+.dx-vals-cta { margin-top: clamp(var(--sp-2xl), 6vw, var(--sp-3xl)); }
+
+@media (max-width: 44em) {
+  .dx-vals li:nth-child(2), .dx-vals li:nth-child(3), .dx-vals li:nth-child(4) { margin-left: 0; }
+}
 
 /* ==========================================================================
-   07 TESTIMONIALS — photo left, quote right, as in v1
+   07 Testimonials — the quote IS the section: display-scale type hanging off
+   a giant Light Blue quote glyph, with a byline strip beneath (circular
+   headshot chip, name, district logo) and the controls on the same strip
    ========================================================================== */
 
-.dx-stage { position: relative; padding-top: var(--sp-lg); border-top: var(--hairline) solid var(--dx-rule); }
-.dx-q { display: none; grid-template-columns: minmax(0, 2fr) minmax(0, 3fr); grid-template-rows: auto auto; column-gap: clamp(var(--sp-xl), 4vw, var(--sp-3xl)); }
-.dx-q.is-active { display: grid; }
-.dx-q-photo { grid-column: 1; grid-row: 1 / 3; position: relative; align-self: end; aspect-ratio: 1 / 1; }
-.dx-q-photo::before {
-  content: "";
-  position: absolute;
-  inset: auto 0 0 0;
-  height: 62%;
-  background: var(--dmg-light-blue);
-  opacity: 0.16;
+.dx-test { background: var(--dmg-pale-blue); overflow: hidden; }
+
+.dx-stage { position: relative; }
+
+.dx-q { display: none; }
+.dx-q.is-active {
+  display: grid;
+  grid-template-columns: minmax(0, 4fr) minmax(0, 8fr);
+  grid-template-areas:
+    "face quote"
+    "face attr";
+  align-items: center;
+  column-gap: clamp(var(--sp-xl), 5vw, var(--sp-4xl));
+  opacity: 1;
+  transition: opacity var(--t-med) var(--ease-out);
 }
-.dx-q-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; object-position: bottom center; }
-.dx-q-body { grid-column: 2; grid-row: 1; }
-.dx-q-body blockquote { font-size: var(--dx-quote); font-weight: 400; line-height: 1.34; color: var(--dmg-ink); quotes: none; }
-.dx-q-body blockquote p::before { content: "\201C"; color: var(--dmg-orange); font-weight: 800; }
-.dx-q-body blockquote p::after { content: "\201D"; color: var(--dmg-orange); font-weight: 800; }
-.dx-q-body blockquote strong { font-weight: 700; color: var(--dmg-dark-blue); }
-.dx-q-attr { grid-column: 2; grid-row: 2; margin-top: var(--sp-lg); }
-.dx-q-name { display: inline-block; font-size: var(--fs-h4); font-weight: 800; color: var(--dmg-ink); font-style: normal; }
-.dx-q-name cite { font-style: normal; }
-.dx-q-name .rule { width: 100%; margin-top: var(--sp-xs); }
-.dx-q-role { display: block; font-size: var(--fs-small); color: var(--text-muted); margin-top: var(--sp-sm); }
-.dx-q-logo { display: block; margin-top: var(--sp-sm); }
-.dx-q-logo img {
+.dx-q.is-leaving { opacity: 0; }
+
+/* the portrait: a large Light Blue disc with the cut-out figure filling it */
+.dx-q-face {
+  grid-area: face;
+  width: min(100%, var(--dx-face));
+  aspect-ratio: 1;
+  border-radius: 50%;
+  overflow: hidden;
+  background: var(--dmg-light-blue);
+  justify-self: center;
+}
+.dx-q-face img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
+
+/* the giant opening quote: decorative, Light Blue, hanging above the text.
+   Same status as v1's oversized orange marks: aria-free decoration, exempt
+   from the text contrast floor. */
+.dx-q-body { grid-area: quote; }
+.dx-q-body blockquote {
+  position: relative;
+  max-width: 46ch;
+  padding-top: clamp(var(--sp-xl), 5vw, var(--sp-3xl));
+}
+.dx-q-body blockquote::before {
+  content: "\201C";
+  position: absolute;
+  top: -0.06em;
+  left: -0.04em;
+  font-size: var(--dx-fs-qmark);
+  font-weight: 800;
+  line-height: 1;
+  color: var(--dmg-light-blue);
+  pointer-events: none;
+}
+.dx-q-body blockquote p {
+  position: relative;
+  font-size: var(--dx-fs-quote);
+  line-height: 1.4;
+  color: var(--dmg-ink);
+}
+.dx-q-body strong { font-weight: 800; }
+
+/* byline strip under the quote: name and role, district logo at the end */
+.dx-q-attr {
+  grid-area: attr;
+  align-self: start;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--sp-md) var(--sp-lg);
+  margin-top: clamp(var(--sp-lg), 3vw, var(--sp-xl));
+}
+.dx-q-name cite {
+  font-style: normal;
+  font-size: var(--fs-t-name);
+  font-weight: 800;
+  color: var(--dmg-ink);
+}
+.dx-q-role { display: block; margin-top: var(--sp-xs); font-size: var(--fs-small); color: var(--text-muted); }
+.dx-q-logo {
+  display: flex;
+  align-items: center;
   width: var(--t-logo-w);
   height: var(--t-logo-h);
-  max-width: none;
-  object-fit: contain;
-  object-position: left bottom;
-  mix-blend-mode: multiply;
-  filter: grayscale(1);
-  opacity: 0.85;
-  transition: filter var(--t-fast) var(--ease-out), opacity var(--t-fast) var(--ease-out);
+  margin-left: auto;
 }
-.dx-q-logo:hover img { filter: none; opacity: 1; }
-.dx-q-controls { position: relative; z-index: 2; display: flex; align-items: center; gap: var(--sp-md); margin-top: var(--sp-xl); }
-.dx-q.is-leaving .dx-q-body, .dx-q.is-leaving .dx-q-attr { opacity: 0; transition: opacity var(--t-med) var(--ease-out); }
-.dx-q.is-leaving .dx-q-photo img { opacity: 0; transition: opacity var(--t-med) var(--ease-out); }
-@media (max-width: 62em) {
-  .dx-q.is-active { grid-template-columns: 1fr; }
-  .dx-q-photo { grid-row: auto; max-width: 62%; margin-inline: auto; }
-  .dx-q-body, .dx-q-attr { grid-column: 1; }
+/* multiply lets an opaque white logo background disappear into the pale ground */
+.dx-q-logo img { max-height: 100%; width: auto; object-fit: contain; mix-blend-mode: multiply; }
+
+.dx-q-controls {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-md);
+  margin-top: clamp(var(--sp-lg), 3vw, var(--sp-xl));
+}
+
+@media (max-width: 44em) {
+  .dx-q.is-active {
+    grid-template-columns: 1fr;
+    grid-template-areas: "face" "quote" "attr";
+    row-gap: var(--sp-lg);
+  }
+  .dx-q-face { justify-self: start; width: min(60%, 12rem); }
+  .dx-q-logo { margin-left: 0; width: calc(var(--t-logo-w) * 0.8); }
 }
 
 /* ==========================================================================
-   COLOPHON CTA
+   08 Closing CTA — duotoned ground, v1-measured tint, one orange button
    ========================================================================== */
 
-.dx-cta { position: relative; overflow: hidden; }
-.dx-cta-inner { position: relative; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--sp-xl); }
-.dx-cta .dx-h2 { max-width: 26ch; margin-bottom: 0; }
-.dx-cta .btn--warm { border-radius: 0; }
+.dx-cta2 {
+  position: relative;
+  color: var(--dmg-white);
+  padding-block: clamp(var(--sp-4xl), 12vw, var(--sp-5xl));
+}
+.dx-cta2 > img { position: absolute; inset: 0; }
+.dx-cta-tint {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    linear-gradient(to top, var(--cta-shade), var(--hero-shade-0) 70%),
+    var(--cta-tint);
+}
+.dx-cta-inner { position: relative; z-index: 2; }
+.dx-cta-inner .dx-h2 {
+  color: var(--dmg-white);
+  font-size: var(--dx-fs-cta);
+  max-width: 18ch;
+  margin-bottom: var(--sp-xl);
+}
 
 /* ==========================================================================
-   Reduced motion
+   Emphasis marks (shared .mark visuals) draw on v2's own reveal trigger
+   ========================================================================== */
+
+.dx [data-reveal].is-visible .mark { background-size: 100% var(--rule-w); }
+.dx [data-reveal].is-visible .mark--circle ellipse { stroke-dashoffset: 0; }
+
+/* ==========================================================================
+   Reduced motion: neutralise every v2 animation outright
    ========================================================================== */
 
 @media (prefers-reduced-motion: reduce) {
-  .js .dx-h1 { opacity: 1; transform: none; }
-  .dx-fig::after, .dx-fig.is-done::after { transform: scaleX(1); }
-}
-
-/* target flash when the masthead contents jumps you to an article */
-.dx-art.is-target { background: var(--open-row-wash); }
-
-/* the partners label, now that the numbered chapter head is gone */
-.dx-eyebrow {
-  font-size: var(--fs-label);
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--text-muted);
-  margin-bottom: var(--sp-xl);
+  .dx-mast-media video { transition: none; }
+  .js .dx-mast .dx-h1,
+  .js .dx-mast .dx-mast-copy { opacity: 1; transform: none; transition: none; }
+  .dx-ch h3 { transition: none; }
+  .dx-split-duo .dx-color { transition: none; }
+  .dx-q.is-active { transition: none; }
+  .dx .mark { background-size: 100% var(--rule-w); }
+  .dx .mark--circle ellipse { stroke-dashoffset: 0; transition: none; }
 }

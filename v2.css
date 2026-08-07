@@ -31,6 +31,7 @@
   --dx-fs-qmark: clamp(5rem, 9vw, 8rem);         /* the giant decorative quote glyph */
   --dx-fs-cta: clamp(2rem, 3.8vw, 3.4rem);
   --dx-fs-toc: clamp(1rem, 1.2vw, 1.2rem);
+  --dx-toc-max: clamp(22rem, 78vw, 54rem);       /* tuned so the five jump links hold two lines */
   --dx-fs-cap: 0.9375rem;
   --dx-face: clamp(13rem, 22vw, 19rem);          /* the large circular portrait disc */
 
@@ -144,8 +145,9 @@
   white-space: nowrap;   /* three stacked lines, each held to one line */
 }
 
+/* no cap here: the lede holds its own 44ch measure and the jump-link row needs
+   to run wider than that to hold two lines */
 .dx-mast-copy {
-  max-width: 40rem;
   margin-top: clamp(var(--sp-lg), 3vh, var(--sp-xl));
 }
 
@@ -173,31 +175,35 @@
   text-transform: uppercase;
   color: var(--dmg-pale-blue);
 }
+/* One wrapping row rather than five stacked rows: --dx-toc-max is tuned so the
+   five labels resolve to exactly two lines on desktop. The per-row rules are
+   gone with the stack; the hover rule under each link is the affordance. */
 .dx-toc {
   list-style: none;
   margin: var(--sp-sm) 0 0;
   padding: 0;
-  border-top: var(--hairline) solid var(--dx-white-12);
-}
-.dx-toc li { border-bottom: var(--hairline) solid var(--dx-white-12); }
-.dx-toc a {
   display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-sm) clamp(var(--sp-lg), 2.5vw, var(--sp-xl));
+  max-width: var(--dx-toc-max);
+}
+.dx-toc a {
+  display: inline-flex;
   align-items: center;
-  justify-content: space-between;
-  gap: var(--sp-md);
-  padding-block: clamp(var(--sp-xs), 1.1vh, var(--sp-sm));
+  gap: var(--sp-xs);
+  padding-bottom: var(--sp-xs);
   font-size: var(--dx-fs-toc);
   font-weight: 700;
   color: var(--dmg-white);
   text-decoration: none;
   background-image: linear-gradient(var(--dmg-light-blue), var(--dmg-light-blue));
   background-repeat: no-repeat;
-  background-size: 0% var(--rule-w);
+  background-size: 100% var(--hairline);   /* resting underline: reads as a link */
   background-position: left bottom;
   transition: color var(--t-fast) var(--ease-out), background-size var(--t-fast) var(--ease-out);
 }
 .dx-toc-arrow {
-  font-size: 1.25em;
+  font-size: 1.1em;
   color: var(--dmg-light-blue);
   transition: transform var(--t-fast) var(--ease-out);
 }
@@ -228,7 +234,6 @@
 /* narrow: the one-line H1 gives way to natural wrapping */
 @media (max-width: 56em) {
   .dx-h1 { white-space: normal; }
-  .dx-mast-copy { max-width: 100%; }
 }
 
 /* ==========================================================================

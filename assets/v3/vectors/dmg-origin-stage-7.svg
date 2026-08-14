@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1200" width="1200" height="1200" role="img" aria-label="Stage 7 of 7 — the finished DMG mark">
+  <title>Stage 7 of 7 — the finished DMG mark</title>
+  <path id="tri" d="M -5.059 -110.549 A 6.878 6.878 0 0 1 5.059 -110.549 A 425.741 425.741 0 0 1 98.268 50.893 A 6.878 6.878 0 0 1 93.208 59.656 A 425.741 425.741 0 0 1 -93.208 59.656 A 6.878 6.878 0 0 1 -98.268 50.893 A 425.741 425.741 0 0 1 -5.059 -110.549 Z" transform="translate(600.0 600.0)" fill="#2DB9E1" opacity="1.0"/>
+  <g id="figures">
+    <path d="M 456.132 461.068 A 200.000 200.000 0 0 1 743.868 461.068" fill="none" stroke="#1A518E" stroke-width="43.000" stroke-linecap="round"/>
+    <circle cx="600.000" cy="400.000" r="47.000" fill="#1A518E"/>
+    <path d="M 792.252 544.873 A 200.000 200.000 0 0 1 648.384 794.059" fill="none" stroke="#1A518E" stroke-width="43.000" stroke-linecap="round"/>
+    <circle cx="773.205" cy="700.000" r="47.000" fill="#1A518E"/>
+    <path d="M 551.616 794.059 A 200.000 200.000 0 0 1 407.748 544.873" fill="none" stroke="#1A518E" stroke-width="43.000" stroke-linecap="round"/>
+    <circle cx="426.795" cy="700.000" r="47.000" fill="#1A518E"/>
+  </g>
+</svg>

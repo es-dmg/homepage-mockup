@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1200" width="1200" height="1200" role="img" aria-label="Stage 5 of 7 — three people appear on the circles">
+  <title>Stage 5 of 7 — three people appear on the circles</title>
+  <g id="circles" fill="none" stroke="#828282" stroke-width="2.5" opacity="0.3">
+    <circle id="c1" cx="600.000" cy="377.261" r="315.000"/>
+    <circle id="c2" cx="792.897" cy="711.369" r="315.000"/>
+    <circle id="c3" cx="407.103" cy="711.369" r="315.000"/>
+  </g>
+  <path id="tri" d="M -2.481 -135.718 A 4.000 4.000 0 0 1 2.481 -135.718 A 315.000 315.000 0 0 1 118.776 65.711 A 4.000 4.000 0 0 1 116.295 70.008 A 315.000 315.000 0 0 1 -116.295 70.008 A 4.000 4.000 0 0 1 -118.776 65.711 A 315.000 315.000 0 0 1 -2.481 -135.718 Z" transform="translate(600.0 600.0)" fill="#2DB9E1" opacity="1.0"/>
+  <g id="figures">
+    <path d="M 230.203 242.891 A 514.078 514.078 0 0 1 969.797 242.891" fill="none" stroke="#1A518E" stroke-width="68.670" stroke-linecap="round"/>
+    <circle cx="600.000" cy="85.922" r="68.040" fill="#1A518E"/>
+    <path d="M 1094.164 458.301 A 514.078 514.078 0 0 1 724.367 1098.808" fill="none" stroke="#1A518E" stroke-width="68.670" stroke-linecap="round"/>
+    <circle cx="1045.205" cy="857.039" r="68.040" fill="#1A518E"/>
+    <path d="M 475.633 1098.808 A 514.078 514.078 0 0 1 105.836 458.301" fill="none" stroke="#1A518E" stroke-width="68.670" stroke-linecap="round"/>
+    <circle cx="154.795" cy="857.039" r="68.040" fill="#1A518E"/>
+  </g>
+</svg>

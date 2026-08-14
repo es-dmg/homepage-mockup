@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1200" width="1200" height="1200" role="img" aria-label="Stage 1 of 7 — three circles">
+  <title>Stage 1 of 7 — three circles</title>
+  <g id="circles" fill="none" stroke="#828282" stroke-width="2.5" opacity="0.55">
+    <circle id="c1" cx="600.000" cy="377.261" r="315.000"/>
+    <circle id="c2" cx="792.897" cy="711.369" r="315.000"/>
+    <circle id="c3" cx="407.103" cy="711.369" r="315.000"/>
+  </g>
+</svg>

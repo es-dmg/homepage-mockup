@@ -1,0 +1,1620 @@
+/* ==========================================================================
+   DMG homepage prototype — styles.css
+   Every token lives in :root. No hex or px below that block.
+   ========================================================================== */
+
+:root {
+  /* ---- Brand color tokens (use exactly) ---- */
+  --dmg-dark-blue:   #1A518E;  /* primary. carries white text */
+  --dmg-light-blue:  #2DB9E1;  /* accent only. never a text-bearing fill */
+  --dmg-pale-blue:   #F0F5FA;  /* background tint */
+  --dmg-light-gray:  #F5F5F5;  /* background tint */
+  --dmg-gray:        #828282;
+  --dmg-orange:      #F56E1E;  /* accent only, use sparingly */
+  --dmg-yellow:      #FFC332;  /* accent only, unused on this page */
+  --dmg-green:       #0FAF91;
+  --dmg-sky-blue:    #7FB4E1;
+  --dmg-dark-green:  #115855;
+  --dmg-dark-purple: #583F6C;
+  --dmg-ink:         #12233A;  /* derived near-black for body text on light */
+
+  /* ---- Derived tokens (documented in README) ---- */
+  --dmg-white:            #FFFFFF;
+  --dmg-dark-blue-deep:   #143F70;  /* button hover darken */
+  --dmg-orange-deep:      #DE5F12;  /* button hover darken */
+  --dmg-light-blue-bright:#9BE0F5;  /* small light-blue text on SOLID dark blue: 5.18:1 */
+  --text-muted:           rgba(18, 35, 58, 0.72);  /* 5.92:1 on white */
+  --rule-on-dark:         rgba(255, 255, 255, 0.22);
+  --text-on-dark-soft:    rgba(255, 255, 255, 0.78);
+  --ghost-hover-bg:       rgba(255, 255, 255, 0.08);
+  --open-row-wash:        rgba(255, 255, 255, 0.045); /* lifts an open accordion row off the blue field */
+  --hero-shade-0:         rgba(18, 35, 58, 0);
+  --mask-opaque:          #000;   /* mask stops only; never painted */
+  --light-blue-halo:      rgba(45, 185, 225, 0.22);
+  --cta-tint:             rgba(26, 81, 142, 0.86);
+  --cta-shade:            rgba(18, 35, 58, 0.45);
+  --preview-opacity:      0.78;
+  /* 0.82 / 0.60, not the brief's 0.72: measured against the brightest video
+     frame, 0.72 gave white type only 4.21:1. This measures 5.29:1. */
+  --hero-tint:            rgba(26, 81, 142, 0.82);
+  --hero-shade:           rgba(18, 35, 58, 0.60);
+  --shadow-nav:  0 1px 10px rgba(18, 35, 58, 0.10);
+  --shadow-card: 0 10px 34px rgba(18, 35, 58, 0.12);
+
+  /* ---- Spacing (4px base) ---- */
+  --sp-xs: 4px;
+  --sp-sm: 8px;
+  --sp-md: 16px;
+  --sp-lg: 24px;
+  --sp-xl: 32px;
+  --sp-2xl: 48px;
+  --sp-3xl: 64px;
+  --sp-4xl: 96px;
+  --sp-5xl: 144px;
+  --orb-size: clamp(6.5rem, 9vw, 8.5rem);
+  --orb-icon: clamp(2rem, 2.8vw, 2.6rem);
+
+  /* ---- Type ---- */
+  --ff: 'Nunito Sans', 'Segoe UI', system-ui, sans-serif;
+  --fs-hero:  clamp(2.5rem, 6.4vw, 6rem);
+  --fs-hero-wrap: clamp(2.5rem, 8vw, 3.5rem);  /* narrow screens, H1 allowed to wrap */
+  --fs-h2:    clamp(2.25rem, 4vw, 3.5rem);
+  --fs-h3:    clamp(1.5rem, 2.3vw, 2.1rem);
+  --fs-h3-up: clamp(1.75rem, 2.7vw, 2.45rem);   /* open accordion row title step-up */
+  --fs-h4:    1.1875rem;
+  --fs-body:  1.1875rem;
+  --fs-blurb: clamp(1.4rem, 2.1vw, 1.8rem);  /* accordion blurb, now the focal point */
+  --fs-small: 0.9375rem;
+  --fs-preview: 1.0625rem;
+  --fs-label: 0.75rem;
+  --fs-stat:  clamp(2.25rem, 4.9vw, 4rem);
+  --fs-quote: clamp(1.6rem, 2.75vw, 2.4rem);
+  --fs-nav: clamp(0.9375rem, 1.12vw, 1.125rem);  /* nav bar labels */
+  --fs-quicklink: clamp(1.0625rem, 1.4vw, 1.35rem);  /* hero jump links */
+  /* tuned so the five links plus the label wrap to exactly two lines on desktop */
+  --quicklinks-max: clamp(22rem, 55vw, 49rem);
+  --fs-hwh-link: clamp(1.125rem, 1.5vw, 1.45rem); /* accordion program links */
+  --fs-value-title: clamp(1.5rem, 2.15vw, 1.95rem);
+  --fs-t-name: clamp(1.35rem, 1.85vw, 1.75rem);      /* testimonial name, outranks the role line */
+  --fs-stat-label: clamp(1.1875rem, 1.55vw, 1.45rem); /* states / districts / years operating */
+  --fs-expertise-lg: clamp(1.5rem, 3.2vw, 2.6rem); /* the line under the H1 */
+  --fs-marquee-title: clamp(1.25rem, 1.8vw, 1.7rem);
+  --fs-quotemark: clamp(4rem, 9vw, 8rem);
+
+  /* ---- Structure ---- */
+  --container: 75rem;
+  --pad-x: clamp(1.5rem, 5vw, 4rem);
+  --nav-h: 5.5rem;
+  --hero-min-h: 88vh;
+  --hero-max-h: 900px;
+  --radius-sm: 10px;
+  --radius-lg: 32px;
+  --hairline: 1px;
+  --rule-w: 3px;
+  --tick-h: 9px;
+  --border-btn: 2px;
+  --focus-w: 3px;
+  --logo-h: 2.5rem;
+  --logo-ratio: 1844 / 333;      /* the supplied single-line wordmark */
+  --logo-h-footer: 3rem;
+  /* testimonial district logo: a FIXED box, so a very wide logo (Birmingham is
+     920x180) and a squarer one (Suffern is 368x175) occupy the same footprint
+     instead of one rendering enormous */
+  --t-logo-w: clamp(150px, 14vw, 190px);
+  --t-logo-h: clamp(56px, 5vw, 68px);
+  /* backdrop disc: larger than the headshot and offset up-and-right so it reads
+     as a section graphic. Keep shift-x small enough that it stays out of the
+     quote column. */
+  /* Aligns the VISIBLE top of the opening quote mark with the visible bottom of
+     the "Testimonials" glyphs. Box edges are not enough: the mark's line-height of
+     0.5 lets its glyph overflow ~0.382em above its own box, and the heading's
+     descenders sit ~0.167em below its box. Both terms are derived from the live
+     font sizes so this holds as the type scales. */
+  --t-heading-lead: var(--sp-lg);
+  /* Returns the headshot and disc to exactly where they sat before the text was
+     raised, so the artwork stays put while the words move. Deliberately stored as
+     a NEGATIVE length used directly as `bottom`: wrapping it in
+     `calc(-1 * var(...))` produces a nested calc that Chrome drops as invalid. */
+  /* Photo bottom lands on the visible bottom of the CLOSING quote mark. That mark
+     is absolutely placed at the quote block's bottom minus --sp-lg, and its ink ends
+     about 0.57em down from its box top, hence the two terms. */
+  --t-photo-offset: 0px;
+  --t-disc-scale: 175%;    /* disc ends up slightly wider than the headshot */
+  --t-disc-shift-x: 3%;    /* positive = right. keeps the solid disc off the quote text */
+  --t-disc-shift-y: -8%;   /* negative = up */
+  /* raises the person so the image centre meets the disc centre. Derived from
+     the two values above, not measured: 0.359 = 1.015 - 0.375 * 1.75 */
+  --t-img-rise: -52.8%;
+  --marquee-logo-h: 76px;
+  --marquee-duration: 160s;   /* slower drift; raise this number to slow it further */
+  --approach-photo-h: clamp(360px, 40vw, 560px);      /* portrait source, height-capped */
+  --approach-photo-h-sm: clamp(280px, 60vw, 420px);
+
+  /* ---- Motion ---- */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-std: cubic-bezier(0.4, 0, 0.2, 1);
+  --t-fast: 300ms;
+  --t-med: 400ms;
+  --t-slow: 500ms;
+  --t-panel: 320ms;
+  --t-mark: 520ms;
+  --rise: 16px;
+  --rise-sm: 12px;
+  --rise-xs: 8px;
+  --lift: 1px;
+  --lift-card: 2px;
+}
+
+/* ==========================================================================
+   Base
+   ========================================================================== */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; scroll-padding-top: calc(var(--nav-h) + var(--sp-lg)); }
+
+body {
+  margin: 0;
+  font-family: var(--ff);
+  font-size: var(--fs-body);
+  line-height: 1.6;
+  color: var(--dmg-ink);
+  background: var(--dmg-white);
+  -webkit-font-smoothing: antialiased;
+}
+
+img, video, svg { max-width: 100%; display: block; }
+
+h1, h2, h3, h4, p, ul, figure, blockquote { margin: 0; }
+ul { padding: 0; list-style: none; }
+
+a { color: inherit; }
+
+.container {
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--pad-x);
+}
+
+.section { padding-block: clamp(var(--sp-3xl), 9vw, var(--sp-5xl)); }
+
+.body-copy { max-width: 62ch; }
+
+.eyebrow {
+  display: block;
+  font-size: var(--fs-label);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+h2 {
+  font-size: var(--fs-h2);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+}
+
+h3 { font-size: var(--fs-h3); font-weight: 700; line-height: 1.15; }
+h4 { font-size: var(--fs-h4); font-weight: 600; }
+
+.material-symbols-rounded {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  user-select: none;
+}
+
+/* No border-radius here: the outline already follows each element's own radius,
+   and overriding it would square off the round testimonial dots and arrows. */
+:focus-visible {
+  outline: var(--focus-w) solid var(--dmg-light-blue);
+  outline-offset: var(--sp-xs);
+}
+
+.skip-link {
+  position: absolute;
+  left: var(--sp-md);
+  top: calc(-1 * var(--sp-5xl));
+  z-index: 100;
+  background: var(--dmg-dark-blue);
+  color: var(--dmg-white);
+  padding: var(--sp-sm) var(--sp-md);
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  font-weight: 700;
+}
+.skip-link:focus { top: var(--sp-md); }
+
+.visually-hidden {
+  position: absolute;
+  width: var(--hairline);
+  height: var(--hairline);
+  margin: calc(-1 * var(--hairline));
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+.nowrap { white-space: nowrap; }
+
+/* Section-scale arc texture, same language as the hero. Decorative only. */
+.section-arcs {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   Measuring rule — the signature motif
+   ========================================================================== */
+
+.rule {
+  display: block;
+  position: relative;
+  height: var(--rule-w);
+  background: var(--dmg-light-blue);
+}
+/* dimension-line end ticks; add class="no-ticks" to <html> to strip them */
+.rule::before, .rule::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  width: var(--rule-w);
+  height: var(--tick-h);
+  background: var(--dmg-light-blue);
+}
+.rule::before { left: 0; }
+.rule::after { right: 0; }
+.no-ticks .rule::before, .no-ticks .rule::after { display: none; }
+
+/* ==========================================================================
+   Buttons
+   ========================================================================== */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-sm);
+  padding: var(--sp-md) var(--sp-xl);
+  border: none;
+  border-radius: var(--radius-sm);
+  font-family: var(--ff);
+  font-size: var(--fs-body);
+  font-weight: 700;
+  line-height: 1.2;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color var(--t-fast) var(--ease-out),
+              color var(--t-fast) var(--ease-out),
+              border-color var(--t-fast) var(--ease-out),
+              transform var(--t-fast) var(--ease-out);
+}
+.btn:hover { transform: translateY(calc(-1 * var(--lift))); }
+
+.btn--primary { background: var(--dmg-dark-blue); color: var(--dmg-white); }
+.btn--primary:hover { background: var(--dmg-dark-blue-deep); }
+
+/* ink label, not white: white on this orange fails 4.5:1. ink measures 5.37:1 */
+.btn--warm { background: var(--dmg-orange); color: var(--dmg-ink); }
+.btn--warm:hover { background: var(--dmg-orange-deep); }
+
+.btn--ghost {
+  background: transparent;
+  color: var(--dmg-white);
+  border: var(--border-btn) solid var(--text-on-dark-soft);
+}
+.btn--ghost:hover { border-color: var(--dmg-white); background: var(--ghost-hover-bg); }
+
+/* Text links: Light Blue rule draws in from the left */
+.link {
+  color: var(--dmg-dark-blue);
+  font-weight: 700;
+  text-decoration: none;
+  background-image: linear-gradient(var(--dmg-light-blue), var(--dmg-light-blue));
+  background-repeat: no-repeat;
+  background-size: 0% var(--hairline);
+  background-position: left bottom;
+  transition: background-size var(--t-fast) var(--ease-out);
+  padding-bottom: var(--sp-xs);
+}
+.link:hover, .link:focus-visible { background-size: 100% var(--rule-w); }
+
+/* ==========================================================================
+   Logo — one white PNG, re-tinted to Dark Blue via a mask where needed
+   ========================================================================== */
+
+.logo-standard {
+  display: none;
+  height: var(--logo-h);
+  aspect-ratio: var(--logo-ratio);
+  background-color: var(--dmg-dark-blue);
+  -webkit-mask: url('assets/brand/dmg-logo-white.png') left center / contain no-repeat;
+  mask: url('assets/brand/dmg-logo-white.png') left center / contain no-repeat;
+}
+
+/* ==========================================================================
+   Nav
+   ========================================================================== */
+
+.site-nav {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 50;
+  transition: background-color var(--t-fast) var(--ease-out),
+              box-shadow var(--t-fast) var(--ease-out);
+}
+.site-nav .nav-inner {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-lg);
+  min-height: var(--nav-h);
+}
+.nav-logo { display: inline-flex; align-items: center; flex-shrink: 0; }
+.nav-logo img.logo-reversed { height: var(--logo-h); width: auto; max-width: none; }
+
+.nav-menu {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-xs);
+  margin-left: auto;
+}
+.nav-item { position: relative; }
+.nav-item > a,
+.nav-item > button {
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-xs);
+  /* tighter horizontal padding buys ~110px across seven items, which is what
+     keeps the desktop row fitting now that the labels are larger */
+  padding: var(--sp-sm) var(--sp-sm);
+  background: none;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-family: var(--ff);
+  font-size: var(--fs-nav);
+  font-weight: 700;
+  color: var(--dmg-white);
+  text-decoration: none;
+  cursor: pointer;
+  transition: color var(--t-fast) var(--ease-out), background-color var(--t-fast) var(--ease-out);
+}
+.nav-item > button .material-symbols-rounded {
+  font-size: var(--fs-body);
+  transition: transform var(--t-fast) var(--ease-out);
+}
+.nav-item:hover > button .material-symbols-rounded,
+.nav-item:focus-within > button .material-symbols-rounded { transform: rotate(180deg); }
+
+.dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 17rem;
+  padding: var(--sp-sm);
+  background: var(--dmg-white);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-card);
+  opacity: 0;
+  transform: translateY(var(--rise-xs));
+  visibility: hidden;
+  transition: opacity var(--t-fast) var(--ease-out),
+              transform var(--t-fast) var(--ease-out),
+              visibility var(--t-fast);
+}
+.nav-item:hover > .dropdown,
+.nav-item:focus-within > .dropdown,
+.nav-item.open > .dropdown {
+  opacity: 1;
+  transform: translateY(0);
+  visibility: visible;
+}
+.dropdown a {
+  display: block;
+  padding: var(--sp-sm) var(--sp-md);
+  border-radius: var(--sp-xs);
+  font-size: var(--fs-small);
+  font-weight: 600;
+  color: var(--dmg-ink);
+  text-decoration: none;
+  transition: background-color var(--t-fast) var(--ease-out), color var(--t-fast) var(--ease-out);
+}
+.dropdown a:hover { background: var(--dmg-pale-blue); color: var(--dmg-dark-blue); }
+
+/* the right-hand menus open leftward so they cannot run off the viewport edge */
+.nav-item:nth-last-child(-n+3) > .dropdown { left: auto; right: 0; }
+
+.nav-cta { margin-left: var(--sp-sm); padding: var(--sp-sm) var(--sp-lg); font-size: var(--fs-nav); }
+
+/* scrolled: white ground, Dark Blue logo, ink links */
+.site-nav.is-scrolled { background: var(--dmg-white); box-shadow: var(--shadow-nav); }
+.site-nav.is-scrolled .nav-item > a,
+.site-nav.is-scrolled .nav-item > button { color: var(--dmg-ink); }
+.site-nav.is-scrolled .nav-item > a:hover,
+.site-nav.is-scrolled .nav-item > button:hover { color: var(--dmg-dark-blue); }
+.site-nav.is-scrolled .nav-cta { color: var(--dmg-white); }
+.site-nav.is-scrolled .logo-reversed { display: none; }
+.site-nav.is-scrolled .logo-standard { display: block; }
+
+.nav-toggle {
+  display: none;
+  margin-left: auto;
+  background: none;
+  border: none;
+  color: var(--dmg-white);
+  cursor: pointer;
+  padding: var(--sp-sm);
+  border-radius: var(--radius-sm);
+}
+.site-nav.is-scrolled .nav-toggle, .site-nav.menu-open .nav-toggle { color: var(--dmg-ink); }
+
+/* 76em, not 68em: with the larger nav type the desktop row no longer fits below
+   about 1200px, so the hamburger has to take over earlier than it used to */
+@media (max-width: 80em) {
+  .nav-toggle { display: inline-flex; }
+  .nav-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    background: var(--dmg-white);
+    box-shadow: var(--shadow-card);
+    padding: var(--sp-md) var(--pad-x) var(--sp-lg);
+    max-height: 80vh;
+    overflow: auto;
+  }
+  .site-nav.menu-open { background: var(--dmg-white); box-shadow: var(--shadow-nav); }
+  .site-nav.menu-open .nav-menu { display: flex; }
+  .site-nav.menu-open .logo-reversed { display: none; }
+  .site-nav.menu-open .logo-standard { display: block; }
+  /* full-size tap targets again once the menu is a stacked panel */
+  .nav-item > a, .nav-item > button { color: var(--dmg-ink); width: 100%; justify-content: space-between; padding: var(--sp-md) var(--sp-sm); }
+  .dropdown {
+    position: static;
+    box-shadow: none;
+    padding: 0 0 var(--sp-sm) var(--sp-md);
+    min-width: 0;
+    display: none;
+    opacity: 1;
+    transform: none;
+    visibility: visible;
+    transition: none;
+  }
+  .nav-item:hover > .dropdown, .nav-item:focus-within > .dropdown { display: none; }
+  .nav-item.open > .dropdown { display: block; }
+  .nav-cta { margin: var(--sp-md) var(--sp-sm) 0; justify-content: center; color: var(--dmg-white); }
+}
+
+/* ==========================================================================
+   Hero
+   ========================================================================== */
+
+.hero {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: var(--hero-min-h);
+  /* max-height is a cap, but the hero must never clip its own content: the
+     image cluster row can push the content past 900px on short windows */
+  max-height: max(var(--hero-max-h), fit-content);
+  padding-block: calc(var(--nav-h) + var(--sp-xl)) var(--sp-4xl);
+  background: var(--dmg-dark-blue); /* fallback ground: no flash if video/poster missing */
+  color: var(--dmg-white);
+  overflow: hidden;
+}
+
+.hero-media, .hero-media video, .hero-tint, .hero-arcs {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.hero-media video { object-fit: cover; opacity: 0; transition: opacity 600ms var(--ease-out); }
+.hero-media video.is-playing { opacity: 1; }
+
+.hero-tint {
+  background:
+    linear-gradient(to top right, var(--hero-shade) 0%, var(--hero-shade-0) 60%),
+    var(--hero-tint);
+}
+.hero-arcs { pointer-events: none; }
+
+.hero-content { position: relative; width: 100%; }
+
+.hero h1 {
+  font-size: var(--fs-hero);
+  font-weight: 800;
+  line-height: 0.98;
+  letter-spacing: -0.02em;
+  white-space: nowrap;   /* one line, per direction */
+}
+
+
+.hero-rule { width: 0; margin-top: var(--sp-sm); transition: width var(--t-med) var(--ease-out); }
+
+/* Pale Blue, not Light Blue: measured. Light Blue tinted toward white tops out
+   at 4.12:1 over the brightest video frame. Pale Blue measures 4.82:1 and stays
+   in the blue family. Light Blue still arrives here as the hover rule. */
+.hero-quicklinks {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--sp-sm) var(--sp-lg);
+  margin-top: var(--sp-xl);
+  max-width: var(--quicklinks-max);
+}
+/* "Jump to" plus the down arrows are the affordance: these look and behave like
+   in-page jump links, not like decoration */
+.ql-label {
+  font-size: var(--fs-label);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--dmg-sky-blue);
+}
+.hero-quicklinks a {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-xs);
+  color: var(--dmg-pale-blue);
+  font-size: var(--fs-quicklink);
+  font-weight: 700;
+  text-decoration: none;
+  background-image: linear-gradient(var(--dmg-light-blue), var(--dmg-light-blue));
+  background-repeat: no-repeat;
+  background-size: 100% var(--hairline);   /* resting underline: reads as a link */
+  background-position: left bottom;
+  padding-bottom: var(--sp-xs);
+  transition: background-size var(--t-fast) var(--ease-out), color var(--t-fast) var(--ease-out);
+}
+.hero-quicklinks a:hover, .hero-quicklinks a:focus-visible { background-size: 100% var(--rule-w); color: var(--dmg-white); }
+.ql-arrow {
+  font-size: 1.1em;
+  color: var(--dmg-light-blue);
+  transition: transform var(--t-fast) var(--ease-out);
+}
+.hero-quicklinks a:hover .ql-arrow, .hero-quicklinks a:focus-visible .ql-arrow { transform: translateY(var(--sp-xs)); }
+
+.hero-ctas { display: flex; flex-wrap: wrap; gap: var(--sp-md); margin-top: var(--sp-2xl); }
+
+@media (min-width: 72em) {
+  .hero-ctas { width: fit-content; }
+}
+
+/* hero load sequence (gated on html.js so no-JS never blanks the page) */
+.js .hero h1,
+.js .hero .hero-expertise,
+.js .hero .hero-rule,
+.js .hero .hero-quicklinks,
+.js .hero .hero-ctas {
+  opacity: 0;
+  transform: translateY(var(--rise-sm));
+  transition: opacity var(--t-slow) var(--ease-out), transform var(--t-slow) var(--ease-out);
+}
+.js .hero.is-on h1,
+.js .hero.is-on .hero-expertise,
+.js .hero.is-on .hero-rule,
+.js .hero.is-on .hero-quicklinks,
+.js .hero.is-on .hero-ctas { opacity: 1; transform: translateY(0); }
+.js .hero.is-on .hero-expertise   { transition-delay: 90ms; }
+.js .hero.is-on .hero-rule        { transition-delay: 180ms; }
+.js .hero.is-on .hero-quicklinks  { transition-delay: 270ms; }
+.js .hero.is-on .hero-ctas        { transition-delay: 360ms; }
+
+/* Narrow screens: "Supporting K-12 districts" cannot hold one line. */
+@media (max-width: 44em) {
+  .hero h1 { white-space: normal; font-size: var(--fs-hero-wrap); }
+}
+
+/* ==========================================================================
+   Scroll reveals
+   ========================================================================== */
+
+.js [data-reveal] {
+  opacity: 0;
+  transform: translateY(var(--rise));
+  transition: opacity var(--t-slow) var(--ease-out), transform var(--t-slow) var(--ease-out);
+  transition-delay: calc(var(--stagger, 0) * 60ms);
+}
+.js [data-reveal].is-visible { opacity: 1; transform: translateY(0); }
+
+/* ==========================================================================
+   Stat bar
+   ========================================================================== */
+
+.stats { background: var(--dmg-white); padding-block: var(--sp-4xl); }
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: var(--sp-xl) var(--sp-2xl);
+}
+.stats-grid > .stat:nth-child(-n+3) { grid-column: span 2; }
+.stats-grid > .stat:nth-child(n+4) { grid-column: span 3; }
+.stat { display: flex; flex-direction: column; align-items: flex-start; gap: var(--sp-sm); }
+.stat-figure {
+  font-size: var(--fs-stat);
+  font-weight: 800;
+  line-height: 1;
+  color: var(--dmg-dark-blue);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+}
+.stat-rule {
+  width: 100%;
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path 700ms var(--ease-out);
+}
+.stat.is-done .stat-rule { clip-path: inset(0 0 0 0); }
+
+.stat-label { font-size: var(--fs-stat-label); font-weight: 600; color: var(--text-muted); line-height: 1.3; }
+
+@media (max-width: 62em) {
+  .stats { padding-block: var(--sp-3xl); }
+  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  .stats-grid > .stat:nth-child(-n+3), .stats-grid > .stat:nth-child(n+4) { grid-column: span 1; }
+  .stats-grid .stat:last-child { grid-column: 1 / -1; }
+}
+@media (max-width: 30em) {
+  .stats-grid { grid-template-columns: 1fr; }
+  .stats-grid > .stat { grid-column: 1 / -1; }
+}
+
+/* ==========================================================================
+   District logo marquee
+   ========================================================================== */
+
+.logo-marquee {
+  background: var(--dmg-white);
+  border-top: var(--hairline) solid var(--dmg-pale-blue);
+  padding-block: var(--sp-3xl);
+}
+.logo-marquee h2 {
+  font-size: var(--fs-marquee-title);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--dmg-ink);
+  text-align: center;
+  margin-bottom: var(--sp-xl);
+}
+
+.marquee { overflow: hidden; display: flex; }
+.marquee-track {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-4xl);
+  padding-left: var(--sp-4xl);
+  flex-shrink: 0;
+  animation: marquee-scroll var(--marquee-duration) linear infinite;
+}
+.marquee:hover .marquee-track,
+.marquee:focus-within .marquee-track { animation-play-state: paused; }
+@keyframes marquee-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-100%); }
+}
+
+/* flex-shrink:0 / max-width:none are load-bearing: as flex items these would
+   otherwise shrink to zero width inside the track */
+.mlogo { display: inline-flex; position: relative; flex-shrink: 0; }
+.mlogo img {
+  height: var(--marquee-logo-h);
+  width: auto;
+  max-width: none;
+  flex-shrink: 0;
+  transition: opacity var(--t-fast) var(--ease-out), filter var(--t-fast) var(--ease-out);
+}
+
+/* Treatment B: every logo normalized to one Dark Blue tint, full colour on hover.
+   A Dark Blue ground plus the grayscaled logo in `lighten` mode: white logo
+   background stays white (invisible against the white page) while the dark marks
+   take the blue.
+   This produced a faint blue square around every logo until the source files
+   were flattened onto opaque white. The cause was semi-transparent pixels in
+   the logo backgrounds letting the Dark Blue ground bleed through. If you swap
+   in new logos and the box returns, the new file has a transparent or
+   semi-transparent background: flatten it onto white and it goes away.
+   Toggle by adding/removing .marquee--tinted on .logo-marquee */
+.marquee--tinted .mlogo {
+  background: var(--dmg-dark-blue);
+  isolation: isolate;
+  opacity: 0.72;
+  transition: opacity var(--t-fast) var(--ease-out);
+}
+.marquee--tinted .mlogo img {
+  filter: grayscale(1) contrast(1.08);
+  mix-blend-mode: lighten;
+}
+.marquee--tinted .mlogo:hover, .marquee--tinted .mlogo:focus-within { opacity: 1; background: transparent; }
+.marquee--tinted .mlogo:hover img, .marquee--tinted .mlogo:focus-within img {
+  filter: none;
+  mix-blend-mode: normal;
+}
+
+/* soft edges so logos enter and leave instead of being chopped off */
+.marquee {
+  -webkit-mask: linear-gradient(to right, transparent, var(--mask-opaque) var(--sp-4xl), var(--mask-opaque) calc(100% - var(--sp-4xl)), transparent);
+  mask: linear-gradient(to right, transparent, var(--mask-opaque) var(--sp-4xl), var(--mask-opaque) calc(100% - var(--sp-4xl)), transparent);
+}
+
+/* ==========================================================================
+   A multidisciplinary approach
+   ========================================================================== */
+
+.approach { background: var(--dmg-pale-blue); overflow: hidden; }
+.approach-grid {
+  display: grid;
+  grid-template-columns: 7fr 5fr;
+  gap: clamp(var(--sp-xl), 5vw, var(--sp-4xl));
+  align-items: center;
+}
+.approach-copy h2 { color: var(--dmg-ink); margin-bottom: var(--sp-lg); }
+.approach-copy p { color: var(--dmg-ink); }
+
+/* photo bleeds to the right page edge; rounded on the leading side only.
+   The supplied Summit photo is portrait, so the container is height-capped and
+   crops with object-fit rather than forcing a landscape ratio. */
+.approach-photo {
+  margin-right: calc(-1 * var(--pad-x));
+  border-radius: var(--radius-lg) 0 0 var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+}
+.approach-photo img {
+  width: 100%;
+  height: var(--approach-photo-h);
+  object-fit: cover;
+  object-position: 50% 30%;
+}
+
+@media (max-width: 62em) {
+  .approach-grid { grid-template-columns: 1fr; }
+  .approach-photo { order: -1; margin-inline: calc(-1 * var(--pad-x)) 0; border-radius: 0 var(--radius-lg) var(--radius-lg) 0; }
+  .approach-photo img { height: var(--approach-photo-h-sm); }
+}
+
+/* ==========================================================================
+   How we help — accordion on dark blue
+   ========================================================================== */
+
+.howwehelp { position: relative; background: var(--dmg-dark-blue); color: var(--dmg-white); overflow: hidden; }
+.howwehelp .container { position: relative; }
+.howwehelp h2 { margin-bottom: var(--sp-2xl); }
+
+.hwh-row {
+  border-top: var(--hairline) solid var(--rule-on-dark);
+  position: relative;
+  transition: background-color var(--t-panel) var(--ease-std);
+}
+.hwh-row:last-child { border-bottom: var(--hairline) solid var(--rule-on-dark); }
+/* an open row lifts off the flat blue field */
+.hwh-row.open { background: var(--open-row-wash); }
+
+.hwh-row .row-rule {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: var(--rule-w);
+  background: var(--dmg-light-blue);
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform var(--t-slow) var(--ease-out);
+}
+.hwh-row.open .row-rule { transform: scaleY(1); }
+
+.hwh-toggle {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-lg);
+  width: 100%;
+  padding: var(--sp-xl) var(--sp-md);
+  background: none;
+  border: none;
+  color: var(--dmg-white);
+  font-family: var(--ff);
+  text-align: left;
+  cursor: pointer;
+}
+.hwh-toggle .row-icon { font-size: var(--fs-h3); color: var(--dmg-light-blue); flex-shrink: 0; }
+.hwh-title-group { display: flex; flex-direction: column; gap: var(--sp-xs); min-width: 0; }
+.hwh-title {
+  font-size: var(--fs-h3);
+  font-weight: 700;
+  line-height: 1.15;
+  transition: font-size var(--t-panel) var(--ease-std);
+}
+.hwh-row.open .hwh-title { font-size: var(--fs-h3-up); font-weight: 800; }
+/* white + opacity 0.78 = 5.29:1. Do not also alpha the color: that double-dims
+   to 3.84:1 and fails. Opacity is the animated property here. */
+.hwh-preview {
+  font-size: var(--fs-preview);
+  color: var(--dmg-white);
+  opacity: var(--preview-opacity);
+  transition: opacity var(--t-panel) var(--ease-std);
+}
+.hwh-row.open .hwh-preview { opacity: 0; height: 0; overflow: hidden; }
+.hwh-chevron {
+  margin-left: auto;
+  flex-shrink: 0;
+  color: var(--dmg-light-blue-bright);
+  transition: transform var(--t-panel) var(--ease-std);
+}
+.hwh-row.open .hwh-chevron { transform: rotate(180deg); }
+
+.hwh-panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows var(--t-panel) var(--ease-std);
+}
+.hwh-row.open .hwh-panel { grid-template-rows: 1fr; }
+.hwh-panel-inner { overflow: hidden; min-height: 0; }
+
+/* no photo column: the review asked for the reader's attention on the blurb */
+.hwh-panel-grid {
+  display: grid;
+  grid-template-columns: 7fr 5fr;
+  gap: clamp(var(--sp-xl), 4vw, var(--sp-3xl));
+  padding: 0 var(--sp-md) var(--sp-xl) calc(var(--sp-md) + var(--sp-lg));
+  align-items: start;
+}
+
+/* the blurb is now the focal point of an open row */
+.hwh-blurb {
+  font-size: var(--fs-blurb);
+  font-weight: 600;
+  line-height: 1.35;
+  color: var(--dmg-white);
+  max-width: 34ch;
+}
+
+/* Animated emphasis on key phrases. Underline draws left to right; one phrase
+   per row gets a drawn ellipse instead. Both are Light Blue, both fire only
+   when the row opens, staggered. Same family as the measuring rule. */
+.mark {
+  position: relative;
+  white-space: nowrap;
+  background-image: linear-gradient(var(--dmg-light-blue), var(--dmg-light-blue));
+  background-repeat: no-repeat;
+  background-position: left 88%;
+  background-size: 0% var(--rule-w);
+  transition: background-size var(--t-mark) var(--ease-out);
+  transition-delay: calc(var(--mark-i, 0) * 140ms);
+}
+.hwh-row.open .mark { background-size: 100% var(--rule-w); }
+
+.mark--circle { background-image: none; padding-inline: var(--sp-sm); }
+.mark--circle svg {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 100%;
+  height: 1.9em;
+  transform: translateY(-50%);
+  overflow: visible;
+  pointer-events: none;
+}
+.mark--circle ellipse {
+  fill: none;
+  stroke: var(--dmg-light-blue);
+  stroke-width: 2.5;
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+  transition: stroke-dashoffset 720ms var(--ease-out);
+  transition-delay: calc(var(--mark-i, 0) * 140ms);
+}
+.hwh-row.open .mark--circle ellipse { stroke-dashoffset: 0; }
+
+.hwh-links { margin-top: var(--sp-xl); display: flex; flex-direction: column; gap: var(--sp-md); align-items: flex-start; }
+.hwh-links a {
+  color: var(--dmg-light-blue-bright);
+  font-weight: 700;
+  font-size: var(--fs-hwh-link);
+  line-height: 1.25;
+  text-decoration: none;
+  background-image: linear-gradient(var(--dmg-light-blue), var(--dmg-light-blue));
+  background-repeat: no-repeat;
+  background-size: 0% var(--hairline);
+  background-position: left bottom;
+  padding-bottom: var(--sp-xs);
+  transition: background-size var(--t-fast) var(--ease-out), color var(--t-fast) var(--ease-out);
+}
+.hwh-links a:hover, .hwh-links a:focus-visible { background-size: 100% var(--rule-w); color: var(--dmg-white); }
+
+/* success-story card: a lifted pale-blue artifact on the dark field */
+.hwh-card {
+  background: var(--dmg-pale-blue);
+  color: var(--dmg-dark-blue);
+  border-radius: var(--radius-sm);
+  padding: var(--sp-lg);
+  box-shadow: var(--shadow-card);
+}
+.hwh-card .eyebrow { color: var(--dmg-ink); opacity: 0.65; margin-bottom: var(--sp-sm); }
+.hwh-card-district { font-weight: 700; color: var(--dmg-ink); font-size: var(--fs-body); display: block; }
+.hwh-card-stat {
+  display: inline-flex;
+  align-items: baseline;
+  font-size: var(--fs-stat);
+  font-weight: 800;
+  line-height: 1;
+  color: var(--dmg-dark-blue);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+  margin-top: var(--sp-md);
+}
+.hwh-card-stat .material-symbols-rounded {
+  font-size: 0.55em;
+  font-variation-settings: 'FILL' 0, 'wght' 700, 'GRAD' 0, 'opsz' 24;
+  align-self: center;
+}
+.hwh-card-statlabel { font-weight: 700; color: var(--dmg-ink); margin-top: var(--sp-xs); display: block; }
+.hwh-card .rule { width: 40%; margin-top: var(--sp-sm); }
+.hwh-card-context { font-size: var(--fs-small); color: var(--text-muted); margin-top: var(--sp-md); }
+.hwh-card-footnote { font-size: var(--fs-label); color: var(--text-muted); margin-top: var(--sp-sm); letter-spacing: 0.02em; }
+.hwh-card .link { display: inline-block; margin-top: var(--sp-md); font-size: var(--fs-small); }
+
+/* stat-less variant: district leads, outcome sentence carries the card */
+.hwh-card--nostat .hwh-card-district { font-size: var(--fs-h3); font-weight: 800; line-height: 1.15; color: var(--dmg-dark-blue); }
+.hwh-card--nostat .hwh-card-context { font-size: var(--fs-body); color: var(--dmg-ink); }
+
+@media (max-width: 56em) {
+  .hwh-panel-grid { grid-template-columns: 1fr; padding-left: var(--sp-md); }
+  .hwh-blurb { max-width: none; }
+  /* nowrap on marked phrases can overflow a narrow column */
+  .mark { white-space: normal; }
+}
+
+/* ==========================================================================
+   Our values
+   ========================================================================== */
+
+.values { background: var(--dmg-white); }
+.values h2 { margin-bottom: var(--sp-sm); }
+.values-sub { color: var(--text-muted); max-width: 62ch; margin-bottom: var(--sp-2xl); }
+
+/* Not four identical boxes. Each value is a numbered column separated by a
+   hairline, with an oversized ghosted numeral, an icon in a Light Blue disc, and
+   a stepped vertical offset so the row reads as a composition rather than a grid
+   of cards. The Light Blue top rule is the only fill. */
+.values-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  margin-top: var(--sp-2xl);
+}
+.value-tile {
+  position: relative;
+  padding: var(--sp-xl) clamp(var(--sp-md), 2vw, var(--sp-xl)) var(--sp-2xl);
+  border-top: var(--rule-w) solid var(--dmg-light-blue);
+  transition: transform var(--t-fast) var(--ease-out), background-color var(--t-fast) var(--ease-out);
+}
+/* hairline separators between columns, not around them */
+.value-tile + .value-tile::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: var(--sp-xl);
+  bottom: var(--sp-2xl);
+  width: var(--hairline);
+  background: var(--dmg-light-gray);
+}
+/* stepped rhythm: even columns sit lower */
+.value-tile:nth-child(even) { transform: translateY(var(--sp-lg)); }
+.value-tile:hover { background: var(--dmg-pale-blue); }
+.value-tile:nth-child(odd):hover { transform: translateY(calc(-1 * var(--lift-card))); }
+.value-tile:nth-child(even):hover { transform: translateY(calc(var(--sp-lg) - var(--lift-card))); }
+
+
+.value-tile h3 {
+  color: var(--dmg-dark-blue);
+  font-size: var(--fs-value-title);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  margin-top: var(--sp-md);
+}
+.value-tile p { font-size: var(--fs-small); color: var(--dmg-ink); margin-top: var(--sp-sm); line-height: 1.55; }
+.values-cta { margin-top: var(--sp-3xl); }
+
+@media (max-width: 64em) {
+  .values-grid { grid-template-columns: repeat(2, 1fr); row-gap: var(--sp-lg); }
+  .value-tile:nth-child(even), .value-tile:nth-child(even):hover { transform: none; }
+  .value-tile:nth-child(3)::after { display: none; }
+}
+@media (max-width: 40em) {
+  .values-grid { grid-template-columns: 1fr; }
+  .value-tile + .value-tile::after { display: none; }
+}
+
+/* ==========================================================================
+   Testimonials
+   ========================================================================== */
+
+/* overflow:hidden contains the oversized backdrop disc and its rings. Without it
+   the backdrop pushes the page into horizontal scroll at phone widths. */
+.partners { background: var(--dmg-pale-blue); overflow: hidden; }
+/* The backdrop disc is much taller than the quote and rides up past the top of
+   the photo cell, so it reaches this heading. position + z-index puts the words
+   in FRONT of the artwork rather than behind it, and the extra bottom margin
+   keeps the heading out of the middle of the disc.
+   Ink on Light Blue measures 6.88:1, so the heading stays legible where it
+   crosses the disc. */
+.partners h2 {
+  position: relative;
+  z-index: 3;
+  margin-bottom: var(--sp-2xl);
+}
+/* Two-column layout only. The text group (marks, quote, attribution) sits tight
+   under the heading, while the headshot and its disc stay lower down.
+   `--t-photo-drop` pushes the photo back down by exactly the amount the text was
+   raised, so moving the text up does not drag the artwork with it. The two are
+   deliberately decoupled: the photo's own anchor is still row 1's bottom edge. */
+@media (min-width: 56.01em) {
+  .partners h2 { margin-bottom: var(--t-heading-lead); }
+  /* two class selectors on purpose: this block sits ABOVE the base .t-photo rule
+     in the file, so equal specificity would lose the cascade to `bottom: 0` */
+  .testimonial .t-photo { bottom: var(--t-photo-offset); }
+}
+
+.testimonial-stage { position: relative; }
+/* Two columns, two rows. The quote occupies row 1 and the attribution row 2, so
+   ROW 1'S BOTTOM IS THE LAST LINE OF THE QUOTE. The photo cell holds an
+   absolutely positioned photo, which keeps the photo out of the row-height
+   calculation: row 1 is sized by the quote alone, and the photo's bottom lands
+   exactly on the quote's last line while the name, title and logo continue below
+   it. Bottom-aligning the whole column instead lined the photo up with the
+   bottom of the logo, which is not the same thing. */
+.testimonial {
+  display: none;
+  grid-template-columns: 2fr 3fr;
+  grid-template-rows: auto auto;
+  column-gap: clamp(var(--sp-xl), 4vw, var(--sp-3xl));
+}
+.testimonial.active { display: grid; }
+.t-photo-cell { grid-column: 1; grid-row: 1; position: relative; }
+.t-quote-wrap { grid-column: 2; grid-row: 1; }
+.t-attr { grid-column: 2; grid-row: 2; }
+
+/* Cut-out headshot on a Light Blue disc. No card, no shadow: the headshots have
+   real transparency, so a frame would fight the cut-out.
+   The box is 1:1 to match the source images and the backdrop's 400x400 viewBox,
+   so the disc lands behind the head and shoulders instead of floating above
+   them, which is what the 4:5 box was doing. */
+/* Fixed 1:1 frame. Both headshots are square with the subject filling the frame,
+   so a square box renders them at a consistent scale. Absolute so it does not
+   contribute to row 1's height. */
+/* Size is min(row height, column width). The row height comes from the quote,
+   whose height varies with the fluid quote font, while the column width does not
+   — so at some widths a width-driven square was TALLER than the quote and
+   overflowed upward, dragging the backdrop disc into the section heading.
+   Capping to the row height keeps the artwork below the heading at every width. */
+.t-photo {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  aspect-ratio: 1 / 1;   /* square, sized by the column. Never height-driven. */
+}
+
+/* The disc is deliberately larger than the headshot and offset up and to the
+   right, so it reads as a graphic element belonging to the whole section rather
+   than a halo pinned to one person's head. It stops short of the quote column so
+   it never sits behind the text. */
+.t-backdrop {
+  position: absolute;
+  /* max-width:none is load-bearing: the base svg rule caps svg at 100%, which
+     silently clamped the disc to the photo's width instead of oversizing it */
+  max-width: none;
+  width: var(--t-disc-scale);
+  height: var(--t-disc-scale);
+  /* centred on the photo then nudged, so growing the disc expands it evenly
+     instead of dragging it sideways off one anchored edge */
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) translate(var(--t-disc-shift-x), var(--t-disc-shift-y));
+  z-index: 0;
+  overflow: visible;
+  /* load-bearing: this box is much larger than the photo and, as a positioned
+     element with z-index 0, it paints over the statically positioned
+     prev/next/dot controls below it and swallowed their clicks entirely */
+  pointer-events: none;
+}
+.t-photo img {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: bottom center;
+  transform: translateY(var(--t-img-rise));
+  transition: opacity var(--t-slow) var(--ease-out), transform var(--t-slow) var(--ease-out);
+}
+
+/* rings rotate into place when the section is reached, and animate back out on
+   the way past, so returning to the section replays it */
+/* .js gate: without JS the observer never runs, so the rings must not start
+   hidden or they would never appear at all */
+.js .t-rings {
+  transform-box: fill-box;
+  transform-origin: center;
+  transform: rotate(-32deg);
+  opacity: 0;
+  transition: transform 900ms var(--ease-out), opacity 700ms var(--ease-out);
+}
+.js .partners.rings-in .t-rings { transform: rotate(0deg); opacity: 1; }
+
+.t-quote-wrap { position: relative; transition: opacity var(--t-med) var(--ease-out); }
+.testimonial.is-swapping .t-quote-wrap { opacity: 0; }
+.testimonial.is-swapping .t-photo img { opacity: 0; transform: translateY(var(--t-img-rise)) scale(0.985); }
+
+/* large orange quotation marks framing the quote. These replace the typographic
+   quotes inside the text, which is why .t-quote sets quotes: none. */
+.t-mark {
+  display: block;
+  font-size: var(--fs-quotemark);
+  font-weight: 800;
+  line-height: 0.6;
+  color: var(--dmg-orange);
+  user-select: none;
+}
+.t-mark--open { margin-bottom: var(--sp-sm); }
+/* The closing mark is taken OUT OF FLOW. In flow it added its own ~77px of
+   height between the quote and the attribution, which pushed the name, title and
+   logo a long way down the column. Absolute means the attribution sits directly
+   under the quote while the mark still reads at the lower right. */
+.t-quote-block { position: relative; }
+.t-mark--close {
+  position: absolute;
+  right: 0;
+  top: 100%;
+  margin-top: calc(-1 * var(--sp-lg));
+  pointer-events: none;
+}
+
+blockquote.t-quote {
+  font-size: var(--fs-quote);
+  font-weight: 400;
+  line-height: 1.3;
+  color: var(--dmg-ink);
+  quotes: none;
+}
+.t-quote p::before, .t-quote p::after { content: none; }
+.t-quote strong { font-weight: 700; color: var(--dmg-dark-blue); }
+
+/* the name outranks the title and district, not the other way round */
+.t-attr { margin-top: var(--sp-lg); }
+.t-name {
+  font-weight: 800;
+  font-size: var(--fs-t-name);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: var(--dmg-ink);
+  font-style: normal;
+  display: inline-block;
+}
+.t-name cite { font-style: normal; }
+.t-name .rule { width: 100%; margin-top: var(--sp-sm); }
+.t-role { display: block; font-weight: 400; font-size: var(--fs-small); color: var(--text-muted); margin-top: var(--sp-sm); }
+/* Fixed box + object-fit contain normalizes wildly different logo aspect ratios.
+   multiply drops the logos' white backgrounds into the Pale Blue ground, so no
+   white box shows without editing the files. */
+.t-logo { display: block; margin-top: var(--sp-sm); }
+.t-logo img {
+  width: var(--t-logo-w);
+  height: var(--t-logo-h);
+  max-width: none;
+  object-fit: contain;
+  /* bottom, not centre: a wide logo letterboxes inside the fixed box, and with
+     centre alignment its visible edge floated ~20px above the box bottom, so the
+     headshot looked misaligned against it */
+  object-position: left bottom;
+  mix-blend-mode: multiply;
+  filter: grayscale(1);
+  opacity: 0.85;
+  transition: filter var(--t-fast) var(--ease-out), opacity var(--t-fast) var(--ease-out);
+}
+.t-logo:hover img { filter: grayscale(0); opacity: 1; }
+
+/* position + z-index keeps the controls above the oversized backdrop disc */
+.t-controls {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: var(--sp-md);
+  margin-top: calc(-1 * var(--sp-2xl));   /* bottom-aligns the buttons with the logo */
+}
+.t-arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--sp-2xl);
+  height: var(--sp-2xl);
+  border-radius: 50%;
+  border: var(--border-btn) solid var(--dmg-dark-blue);
+  background: transparent;
+  color: var(--dmg-dark-blue);
+  cursor: pointer;
+  transition: background-color var(--t-fast) var(--ease-out), color var(--t-fast) var(--ease-out), transform var(--t-fast) var(--ease-out);
+}
+.t-arrow:hover { background: var(--dmg-dark-blue); color: var(--dmg-white); transform: translateY(calc(-1 * var(--lift))); }
+.t-dots { display: flex; gap: var(--sp-sm); }
+.t-dot {
+  width: var(--sp-md);
+  height: var(--sp-md);
+  padding: 0;
+  border-radius: 50%;
+  border: var(--border-btn) solid var(--dmg-dark-blue);
+  background: transparent;
+  cursor: pointer;
+  transition: background-color var(--t-fast) var(--ease-out);
+}
+.t-dot[aria-current="true"] { background: var(--dmg-light-blue); border-color: var(--dmg-light-blue); }
+
+/* fallback if a headshot file is ever missing */
+.monogram {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  background: var(--dmg-pale-blue);
+  color: var(--dmg-dark-blue);
+  font-size: var(--fs-stat);
+  font-weight: 800;
+}
+
+@media (max-width: 56em) {
+  /* single column: the photo returns to normal flow above the quote */
+  .testimonial { grid-template-columns: 1fr; grid-template-rows: auto auto auto; row-gap: var(--sp-xl); }
+  .t-photo-cell { grid-column: 1; grid-row: 1; position: static; max-width: 70%; margin-inline: auto; }
+  .t-photo { position: relative; bottom: auto; }
+  .t-quote-wrap { grid-column: 1; grid-row: 2; }
+  .t-attr { grid-column: 1; grid-row: 3; }
+}
+
+/* ==========================================================================
+   Closing CTA
+   ========================================================================== */
+
+.closing-cta {
+  position: relative;
+  background: var(--dmg-dark-blue);
+  color: var(--dmg-white);
+  overflow: hidden;
+  text-align: left;
+}
+/* background photo under a hard Dark Blue tint. Measured white-on-tint contrast
+   is recorded in the README; the tint is what keeps the type legible. */
+.cta-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 40%;
+}
+.cta-tint {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to top right, var(--cta-shade) 0%, var(--hero-shade-0) 70%),
+    var(--cta-tint);
+}
+.closing-cta .container {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--sp-xl);
+  justify-content: space-between;
+}
+.closing-cta h2 { max-width: 22ch; }
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+
+.site-footer { background: var(--dmg-white); border-top: var(--hairline) solid var(--dmg-light-gray); padding-block: var(--sp-3xl) var(--sp-xl); }
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+  gap: var(--sp-xl);
+}
+.footer-logo { display: block; height: var(--logo-h-footer); margin-bottom: var(--sp-md); }
+.footer-brand address { font-style: normal; font-size: var(--fs-small); color: var(--text-muted); line-height: 1.7; }
+.footer-brand a { color: var(--dmg-dark-blue); text-decoration: none; font-weight: 600; }
+.footer-brand a:hover { text-decoration: underline; }
+.footer-social { display: flex; gap: var(--sp-md); margin-top: var(--sp-md); }
+.footer-social a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--sp-xl);
+  height: var(--sp-xl);
+  border-radius: 50%;
+  background: var(--dmg-dark-blue);
+  color: var(--dmg-white);
+  transition: background-color var(--t-fast) var(--ease-out);
+}
+.footer-social a:hover { background: var(--dmg-light-blue); }
+.footer-social svg { width: var(--sp-md); height: var(--sp-md); fill: currentColor; }
+
+.footer-col h4 { font-size: var(--fs-label); font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); margin-bottom: var(--sp-md); }
+.footer-col ul { display: flex; flex-direction: column; gap: var(--sp-sm); }
+.footer-col a { font-size: var(--fs-small); font-weight: 600; color: var(--dmg-ink); text-decoration: none; }
+.footer-col a:hover { color: var(--dmg-dark-blue); text-decoration: underline; }
+
+.footer-legal {
+  margin-top: var(--sp-2xl);
+  padding-top: var(--sp-lg);
+  border-top: var(--hairline) solid var(--dmg-light-gray);
+  font-size: var(--fs-small);
+  color: var(--text-muted);
+}
+
+@media (max-width: 64em) { .footer-grid { grid-template-columns: 1fr 1fr; } .footer-brand { grid-column: 1 / -1; } }
+@media (max-width: 40em) { .footer-grid { grid-template-columns: 1fr; } }
+
+/* ==========================================================================
+   Reduced motion — full stop, not a damping
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0ms !important;
+  }
+  .marquee-track { animation: none; }
+  .marquee { overflow-x: auto; }
+  .marquee-track[aria-hidden="true"] { display: none; }
+  .js [data-reveal] { opacity: 1; transform: none; }
+  /* rings render at final position rather than rotating in */
+  .js .t-rings { transform: none; opacity: 1; }
+  /* video is paused in JS, not hidden: keep the still frame so the hero
+     composition survives. display:none would drop the poster too. */
+  .hero-media video { opacity: 1; }
+  .stat-rule { clip-path: none; }
+  /* emphasis marks render at final state rather than drawing */
+  .mark { background-size: 100% var(--rule-w); }
+  .mark--circle ellipse { stroke-dashoffset: 0; }
+}
+
+/* ==========================================================================
+   Round-5 additions
+   ========================================================================== */
+
+/* Hero expertise line, set to the H1's measure */
+.hero-expertise {
+  margin-top: var(--sp-lg);
+  max-width: 36ch;
+  font-size: var(--fs-expertise-lg);
+  font-weight: 600;
+  line-height: 1.15;
+  color: var(--dmg-white);
+}
+
+/* ---- Nav layer 2: opens to the side ---- */
+.nav-item .has-sub { position: relative; }
+.nav-item .has-sub > a { display: flex; align-items: center; justify-content: space-between; gap: var(--sp-md); }
+.sub-caret { font-size: var(--fs-body); color: var(--dmg-light-blue); flex-shrink: 0; }
+.dropdown--sub {
+  top: calc(-1 * var(--sp-sm));
+  left: 100%;
+  min-width: 19rem;
+}
+/* the right-hand menus open their children leftward instead */
+.nav-item:nth-last-child(-n+3) .dropdown--sub { left: auto; right: 100%; }
+.has-sub:hover > .dropdown--sub,
+.has-sub:focus-within > .dropdown--sub { opacity: 1; transform: translateY(0); visibility: visible; }
+.has-sub:hover > a, .has-sub:focus-within > a { background: var(--dmg-pale-blue); color: var(--dmg-dark-blue); }
+
+/* ---- Marquee: the centred logo grows and shows its true colour ---- */
+.mlogo { transition: transform var(--t-slow) var(--ease-out); }
+.marquee--tinted .mlogo.is-centered { opacity: 1; background: transparent; transform: scale(1.2); }
+.marquee--tinted .mlogo.is-centered img { filter: none; mix-blend-mode: normal; }
+
+/* ---- Values: floating cards with an arc accent ---- */
+.values-grid { gap: var(--sp-lg); }
+.value-tile {
+  overflow: hidden;
+  border-top: none;
+  border-radius: var(--radius-sm);
+  background: var(--dmg-white);
+  box-shadow: var(--shadow-card);
+  padding: var(--sp-xl) var(--sp-lg) var(--sp-2xl);
+}
+.value-tile + .value-tile::after { display: none; }
+/* light-blue arc in the corner; turns orange and swings on hover */
+.value-tile::before {
+  content: "";
+  position: absolute;
+  top: calc(-1 * var(--sp-3xl));
+  right: calc(-1 * var(--sp-3xl));
+  width: calc(var(--sp-5xl) - var(--sp-md));
+  height: calc(var(--sp-5xl) - var(--sp-md));
+  border: var(--border-btn) solid var(--dmg-light-blue);
+  border-radius: 50%;
+  background: none;
+  opacity: 0.35;
+  transition: transform var(--t-slow) var(--ease-out),
+              border-color var(--t-fast) var(--ease-out),
+              opacity var(--t-fast) var(--ease-out);
+}
+.value-tile:hover { background: var(--dmg-white); transform: translateY(calc(-1 * var(--sp-sm))); }
+.value-tile:nth-child(even):hover { transform: translateY(calc(var(--sp-lg) - var(--sp-sm))); }
+.value-tile:hover::before { border-color: var(--dmg-orange); opacity: 0.6; transform: scale(1.12) rotate(18deg); }
+.value-tile > * { position: relative; }
+
+/* ---- Approach: arc accent behind the photo ---- */
+.approach-photo { position: relative; }
+.approach-arcs {
+  position: absolute;
+  left: calc(-1 * var(--sp-3xl));
+  bottom: calc(-1 * var(--sp-3xl));
+  width: calc(var(--sp-5xl) * 2);
+  height: calc(var(--sp-5xl) * 2);
+  max-width: none;
+  z-index: 0;
+  pointer-events: none;
+}
+.approach-photo img { position: relative; z-index: 1; }
+
+/* ---- Accordion: clearer affordance, bigger chevron ---- */
+.hwh-row:hover { background: var(--open-row-wash); }
+.hwh-row:hover .hwh-title { color: var(--dmg-light-blue-bright); }
+.hwh-row:hover .hwh-chevron { transform: translateY(var(--sp-xs)); }
+.hwh-row.open:hover .hwh-chevron { transform: rotate(180deg) translateY(var(--sp-xs)); }
+.hwh-chevron { font-size: var(--fs-h3-up); }
+.hwh-toggle { transition: padding-left var(--t-fast) var(--ease-out); }
+.hwh-row:hover .hwh-toggle { padding-left: var(--sp-lg); }
+
+/* ==========================================================================
+   Round-6 additions
+   ========================================================================== */
+
+/* expertise line holds one line on desktop */
+
+/* the centred marquee logo scales its whole box; the extra block padding stops
+   .marquee's overflow:hidden from cropping the enlarged logo */
+.marquee { padding-block: var(--sp-lg); }
+.mlogo { transform-origin: center center; }
+
+/* approach copy: same Light Blue emphasis as the accordion, fired on reveal */
+.approach [data-reveal].is-visible .mark { background-size: 100% var(--rule-w); }
+.approach [data-reveal].is-visible .mark--circle ellipse { stroke-dashoffset: 0; }
+
+/* ---- Values: abstract floating cluster, no cards ---- */
+.values { position: relative; overflow: hidden; }
+.values-arcs {
+  position: absolute;
+  right: calc(-1 * var(--sp-5xl));
+  top: calc(-1 * var(--sp-4xl));
+  width: calc(var(--sp-5xl) * 3.5);
+  height: calc(var(--sp-5xl) * 3.5);
+  max-width: none;
+  pointer-events: none;
+  z-index: 0;
+}
+.values .container { position: relative; z-index: 1; }
+.values-grid { gap: var(--sp-2xl) var(--sp-xl); align-items: start; }
+.value-tile {
+  background: none;
+  box-shadow: none;
+  border: none;
+  border-radius: 0;
+  padding: 0;
+  overflow: visible;
+  text-align: center;
+}
+.value-tile::before, .value-tile::after { display: none; }
+/* staggered heights make the row read as a drift rather than a grid */
+.value-tile:nth-child(1) { margin-top: calc(var(--sp-2xl) + var(--sp-md)); }
+.value-tile:nth-child(2) { margin-top: 0; }
+.value-tile:nth-child(3) { margin-top: var(--sp-3xl); }
+.value-tile:nth-child(4) { margin-top: var(--sp-lg); }
+.value-tile:nth-child(even), .value-tile:nth-child(even):hover,
+.value-tile:hover, .value-tile:nth-child(odd):hover { transform: none; }
+
+/* the icon sits in a Light Blue disc with an orbiting ring */
+.value-orb {
+  position: relative;
+  display: block;
+  width: var(--orb-size);
+  height: var(--orb-size);
+  margin: 0 auto var(--sp-lg);
+}
+.value-orb svg { position: absolute; inset: 0; width: 100%; height: 100%; max-width: none; overflow: visible; }
+.value-orb .orb-disc { fill: var(--dmg-light-blue); opacity: 0.9; }
+.value-orb .orb-ring { fill: none; stroke: var(--dmg-light-blue); stroke-width: 2; opacity: 0.4; }
+.value-orb .orb-accent { fill: none; stroke: var(--dmg-orange); stroke-width: 3; opacity: 0.85; }
+.value-orb .material-symbols-rounded {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-size: var(--orb-icon);
+  color: var(--dmg-white);
+  z-index: 1;
+}
+.value-tile h3 { margin-top: 0; }
+.value-tile p { max-width: 30ch; margin-inline: auto; }
+
+/* slow, small bob. Each tile offset so the group never moves in unison. */
+@keyframes value-float { from { transform: translateY(0); } to { transform: translateY(calc(-1 * var(--sp-sm))); } }
+.value-orb { animation: value-float 7s var(--ease-std) infinite alternate; }
+.value-tile:nth-child(2) .value-orb { animation-duration: 8.5s; animation-delay: -1.5s; }
+.value-tile:nth-child(3) .value-orb { animation-duration: 6.5s; animation-delay: -3s; }
+.value-tile:nth-child(4) .value-orb { animation-duration: 9s; animation-delay: -0.8s; }
+/* the ring counter-rotates slowly; the orange arc is the only warm note here */
+@keyframes orb-spin { to { transform: rotate(360deg); } }
+.value-orb .orb-spin { transform-box: fill-box; transform-origin: center; animation: orb-spin 26s linear infinite; }
+.value-tile:nth-child(even) .value-orb .orb-spin { animation-direction: reverse; }
+.value-tile:hover .value-orb .orb-disc { opacity: 1; }
+.value-tile:hover .value-orb .orb-accent { opacity: 1; stroke-width: 4; }
+
+/* ---- Testimonial: closing mark inline at the end of the quote ---- */
+.t-quote-block { position: static; }
+.t-mark--close {
+  position: static;
+  display: inline-block;
+  margin: 0 0 0 var(--sp-xs);
+  line-height: 0;
+  vertical-align: -0.5em;   /* drops the ink onto the last line instead of the one above */
+  text-align: left;
+}
+/* photo spans both rows so its base sits level with the attribution */
+.t-photo-cell { grid-row: 1 / 3; }
+
+@media (prefers-reduced-motion: reduce) {
+  .value-orb, .value-orb .orb-spin { animation: none; }
+}
+
+/* ==========================================================================
+   Version switcher (shared by v1 and v2)
+   Sits under the logo INSIDE the nav's existing height: logo 2.5rem + 4px + a
+   0.75rem line is well under --nav-h, so the bar does not grow.
+   ========================================================================== */
+.nav-brand { display: flex; flex-direction: column; align-items: flex-start; gap: var(--sp-xs); flex-shrink: 0; }
+.version-switch {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-xs);
+  font-size: var(--fs-label);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  line-height: 1;
+}
+.version-switch a {
+  color: var(--dmg-sky-blue);
+  text-decoration: none;
+  padding-bottom: var(--sp-xs);
+  background-image: linear-gradient(var(--dmg-light-blue), var(--dmg-light-blue));
+  background-repeat: no-repeat;
+  background-size: 0% var(--rule-w);
+  background-position: left bottom;
+  transition: background-size var(--t-fast) var(--ease-out), color var(--t-fast) var(--ease-out);
+}
+.version-switch a:hover { color: var(--dmg-white); background-size: 100% var(--rule-w); }
+.version-switch a[aria-current="page"] { color: var(--dmg-white); background-size: 100% var(--rule-w); }
+.version-switch span { color: var(--dmg-sky-blue); opacity: 0.5; }
+/* once the nav goes white the switcher has to invert too */
+.site-nav.is-scrolled .version-switch a { color: var(--text-muted); }
+.site-nav.is-scrolled .version-switch a:hover,
+.site-nav.is-scrolled .version-switch a[aria-current="page"] { color: var(--dmg-dark-blue); }
+.site-nav.is-scrolled .version-switch span { color: var(--text-muted); }
+@media (max-width: 80em) {
+  .site-nav.menu-open .version-switch a { color: var(--text-muted); }
+  .site-nav.menu-open .version-switch a[aria-current="page"] { color: var(--dmg-dark-blue); }
+}

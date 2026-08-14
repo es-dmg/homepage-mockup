@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1200" width="1200" height="1200" role="img" aria-label="DMG logo origin: three-circle Venn diagram">
+  <title>DMG logo origin: three-circle Venn diagram</title>
+  <g id="circles" fill="none" stroke="#828282" stroke-width="2.5" opacity="0.55">
+    <circle cx="600.000" cy="377.261" r="315.000"/>
+    <circle cx="792.897" cy="711.369" r="315.000"/>
+    <circle cx="407.103" cy="711.369" r="315.000"/>
+  </g>
+  <g id="intersection">
+    <path d="M -2.481 -135.718 A 4.000 4.000 0 0 1 2.481 -135.718 A 315.000 315.000 0 0 1 118.776 65.711 A 4.000 4.000 0 0 1 116.295 70.008 A 315.000 315.000 0 0 1 -116.295 70.008 A 4.000 4.000 0 0 1 -118.776 65.711 A 315.000 315.000 0 0 1 -2.481 -135.718 Z" transform="translate(600.0 600.0)" fill="#2DB9E1"/>
+  </g>
+  <g id="labels" font-family="Nunito Sans, Nunito, Helvetica, Arial, sans-serif" text-anchor="middle">
+    <text x="600.00" y="232.36" font-size="34" font-weight="700" letter-spacing="1.6" fill="#1A518E">STUDENT</text>
+    <text x="600.00" y="272.36" font-size="34" font-weight="400" letter-spacing="1.6" fill="#1A518E">OUTCOMES</text>
+    <text x="918.38" y="783.82" font-size="34" font-weight="700" letter-spacing="1.6" fill="#1A518E">OPERATIONAL</text>
+    <text x="918.38" y="823.82" font-size="34" font-weight="400" letter-spacing="1.6" fill="#1A518E">EFFICIENCY</text>
+    <text x="281.62" y="783.82" font-size="34" font-weight="700" letter-spacing="1.6" fill="#1A518E">RESOURCE</text>
+    <text x="281.62" y="823.82" font-size="34" font-weight="400" letter-spacing="1.6" fill="#1A518E">ALLOCATION</text>
+  </g>
+</svg>

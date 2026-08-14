@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1200" width="1200" height="1200" role="img" aria-label="Stage 4 of 7 — labels clear">
+  <title>Stage 4 of 7 — labels clear</title>
+  <g id="circles" fill="none" stroke="#828282" stroke-width="2.5" opacity="0.35">
+    <circle id="c1" cx="600.000" cy="377.261" r="315.000"/>
+    <circle id="c2" cx="792.897" cy="711.369" r="315.000"/>
+    <circle id="c3" cx="407.103" cy="711.369" r="315.000"/>
+  </g>
+  <path id="tri" d="M -2.481 -135.718 A 4.000 4.000 0 0 1 2.481 -135.718 A 315.000 315.000 0 0 1 118.776 65.711 A 4.000 4.000 0 0 1 116.295 70.008 A 315.000 315.000 0 0 1 -116.295 70.008 A 4.000 4.000 0 0 1 -118.776 65.711 A 315.000 315.000 0 0 1 -2.481 -135.718 Z" transform="translate(600.0 600.0)" fill="#2DB9E1" opacity="1.0"/>
+</svg>

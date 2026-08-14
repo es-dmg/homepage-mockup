@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1200" width="1200" height="1200" role="img" aria-label="Stage 6 of 7 — collapsing inward">
+  <title>Stage 6 of 7 — collapsing inward</title>
+  <g id="circles" fill="none" stroke="#828282" stroke-width="2.5" opacity="0.12">
+    <circle id="c1" cx="600.000" cy="377.261" r="315.000"/>
+    <circle id="c2" cx="792.897" cy="711.369" r="315.000"/>
+    <circle id="c3" cx="407.103" cy="711.369" r="315.000"/>
+  </g>
+  <path id="tri" d="M -3.877 -122.030 A 5.583 5.583 0 0 1 3.877 -122.030 A 375.908 375.908 0 0 1 107.619 57.657 A 5.583 5.583 0 0 1 103.742 64.372 A 375.908 375.908 0 0 1 -103.742 64.372 A 5.583 5.583 0 0 1 -107.619 57.657 A 375.908 375.908 0 0 1 -3.877 -122.030 Z" transform="translate(600.0 600.0)" fill="#2DB9E1" opacity="1.0"/>
+  <g id="figures">
+    <path d="M 354.464 362.889 A 341.335 341.335 0 0 1 845.536 362.889" fill="none" stroke="#1A518E" stroke-width="54.551" stroke-linecap="round"/>
+    <circle cx="600.000" cy="258.665" r="56.468" fill="#1A518E"/>
+    <path d="M 928.112 505.915 A 341.335 341.335 0 0 1 682.576 931.196" fill="none" stroke="#1A518E" stroke-width="54.551" stroke-linecap="round"/>
+    <circle cx="895.605" cy="770.668" r="56.468" fill="#1A518E"/>
+    <path d="M 517.424 931.196 A 341.335 341.335 0 0 1 271.888 505.915" fill="none" stroke="#1A518E" stroke-width="54.551" stroke-linecap="round"/>
+    <circle cx="304.395" cy="770.668" r="56.468" fill="#1A518E"/>
+  </g>
+</svg>

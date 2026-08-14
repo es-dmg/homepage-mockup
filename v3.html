@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>District Management Group | Supporting K-12 districts</title>
+  <title>District Management Group | Supporting K-12 districts (v3)</title>
   <meta name="description" content="DMG partners with public school districts on student outcomes, strategic planning and budgeting, enrollment and attendance, scheduling, and special education.">
   <link rel="icon" type="image/svg+xml" href="assets/brand/dmg-logo-stacked.svg">
   <script>document.documentElement.classList.add('js');</script>
@@ -11,13 +11,16 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,400;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0&display=block" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+  <!-- V3 loads ONLY its own copies of the shared files. styles-v3.css and
+       main-v3.js started as byte-copies of styles.css and main.js; v3.css and
+       v3.js carry everything V3-specific. v1/v2 never load any of these. -->
+  <link rel="stylesheet" href="styles-v3.css">
+  <link rel="stylesheet" href="v3.css">
 </head>
 <body>
 
   <a class="skip-link" href="#main">Skip to content</a>
 
-  <!-- ================= NAV ================= -->
   <header class="site-nav" id="site-nav">
     <div class="container nav-inner">
       <div class="nav-brand">
@@ -29,11 +32,11 @@
         </a>
         <!-- version switcher. Sized to fit inside the nav's existing height. -->
         <nav class="version-switch" aria-label="Design version">
-          <a href="index.html" aria-current="page">v1</a>
+          <a href="index.html">v1</a>
           <span aria-hidden="true">/</span>
           <a href="v2.html">v2</a>
           <span aria-hidden="true">/</span>
-          <a href="v3.html">v3</a>
+          <a href="v3.html" aria-current="page">v3</a>
         </nav>
       </div>
 
@@ -129,37 +132,21 @@
     </div>
   </header>
 
-  <main id="main">
+  <main id="main" class="dx">
 
-    <!-- ================= HERO ================= -->
-    <section class="hero" id="top" aria-label="Introduction">
-      <div class="hero-media" aria-hidden="true">
-        <video autoplay muted loop playsinline preload="metadata" poster="assets/video/hero-poster.jpg">
-          <source src="assets/video/hero.mp4" type="video/mp4">
-        </video>
-        <div class="hero-tint"></div>
-        <!-- disciplined arc texture: faint light-blue concentric strokes, 6-10% opacity -->
-        <svg class="hero-arcs" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-          <g fill="none" stroke="var(--dmg-light-blue)" stroke-width="1.5">
-            <circle cx="1440" cy="0" r="260" opacity="0.10"/>
-            <circle cx="1440" cy="0" r="420" opacity="0.09"/>
-            <circle cx="1440" cy="0" r="580" opacity="0.08"/>
-            <circle cx="1440" cy="0" r="740" opacity="0.07"/>
-            <circle cx="1440" cy="0" r="900" opacity="0.06"/>
-            <circle cx="1440" cy="0" r="1060" opacity="0.06"/>
-          </g>
-        </svg>
-      </div>
-
+    <!-- ================= HERO — the logo origin animation, in-flow beside
+         the copy so it can never sit behind text. White filled circles carry
+         the three focus areas, the figures overlay their rims, the fills
+         dissolve to the line-only Venn while the phrases move into the hero
+         copy line, and everything resolves into the mark, which stays.
+         SMIL cannot be stopped from CSS, so v3.js pins the final frame under
+         prefers-reduced-motion and below 768px. ================= -->
+    <section class="hero v3-hero" id="top" aria-label="Introduction">
       <div class="container hero-content">
         <h1>Supporting K&#8209;12 districts</h1>
         <div class="hero-lower">
         <div class="hero-text">
-          <p class="hero-expertise">through leveraging management techniques and education best practices.</p>
-          <span class="rule hero-rule" id="hero-rule" aria-hidden="true"></span>
-
-          <!-- the real navigation into the accordion. The label and the down arrows are
-               the click affordance. The rotating phrase this used to sit under is gone. -->
+          <p class="hero-expertise">in stronger <span class="v3-ph">student outcomes</span>, <span class="v3-ph">operational efficiency</span>, and <span class="v3-ph">resource allocation</span>.</p>
           <nav class="hero-quicklinks" aria-label="How we help">
             <span class="ql-label" aria-hidden="true">Jump to</span>
             <a href="#row-student-outcomes" data-open-row>Student Outcomes<span class="material-symbols-rounded ql-arrow" aria-hidden="true">arrow_downward</span></a>
@@ -168,56 +155,123 @@
             <a href="#row-scheduling" data-open-row>Scheduling<span class="material-symbols-rounded ql-arrow" aria-hidden="true">arrow_downward</span></a>
             <a href="#row-special-education" data-open-row>Special Education<span class="material-symbols-rounded ql-arrow" aria-hidden="true">arrow_downward</span></a>
           </nav>
+        </div>
 
-          <div class="hero-ctas">
-            <a class="btn btn--warm" href="#contact">Contact Us</a>
-            <a class="btn btn--ghost" href="#how-we-help">See How We Help</a>
-          </div>
+        <div class="v3-origin-wrap" aria-hidden="true">
+          <svg class="v3-origin" id="v3-origin" viewBox="0 0 1200 1200" aria-hidden="true" focusable="false">
+            <!-- Sequence (~6.6s, plays once, then the mark rests in place):
+                 1. three solid white circles FLY IN, each carrying its focus
+                    area, and settle into the Venn positions
+                 2. the line-only Venn outline fades in over the fills, then
+                    the figures appear overlaid, each hugging its own rim
+                 3. the fills dissolve to the line-only Venn while the three
+                    phrases hand off to the hero copy line as travelling
+                    ghost text (timed in v3.js); the figures turn white
+                 4. everything resolves into the mark, which stays. -->
+            <!-- 1. white circles + labels fly in together -->
+            <g transform="translate(0 -1500)">
+              <animateTransform attributeName="transform" type="translate" from="0 -1500" to="0 0" begin="0.00s" dur="1.10s" fill="freeze" calcMode="spline" keyTimes="0;1" keySplines="0.4 0 0.2 1"/>
+              <circle cx="600.000" cy="377.261" r="315.000" fill="#FFFFFF" opacity="0.62">
+                <animate attributeName="opacity" from="0.62" to="0" begin="3.60s" dur="1.00s" fill="freeze"/>
+              </circle>
+              <g font-family="Nunito Sans, Nunito, Helvetica, Arial, sans-serif" text-anchor="middle" fill="#1A518E" transform="translate(0 0)">
+                                <animate attributeName="opacity" from="1" to="0" begin="3.60s" dur="0.50s" fill="freeze"/>
+                <text x="600.00" y="240.00" font-size="40" font-weight="700" letter-spacing="1.9">STUDENT</text>
+                <text x="600.00" y="292.00" font-size="40" font-weight="400" letter-spacing="1.9">OUTCOMES</text>
+              </g>
+            </g>
+            <g transform="translate(1500 900)">
+              <animateTransform attributeName="transform" type="translate" from="1500 900" to="0 0" begin="0.25s" dur="1.10s" fill="freeze" calcMode="spline" keyTimes="0;1" keySplines="0.4 0 0.2 1"/>
+              <circle cx="792.897" cy="711.369" r="315.000" fill="#FFFFFF" opacity="0.62">
+                <animate attributeName="opacity" from="0.62" to="0" begin="3.60s" dur="1.00s" fill="freeze"/>
+              </circle>
+              <g font-family="Nunito Sans, Nunito, Helvetica, Arial, sans-serif" text-anchor="middle" fill="#1A518E" transform="translate(0 0)">
+                                <animate attributeName="opacity" from="1" to="0" begin="3.90s" dur="0.50s" fill="freeze"/>
+                <text x="886.00" y="796.00" font-size="40" font-weight="700" letter-spacing="1.9">OPERATIONAL</text>
+                <text x="886.00" y="854.00" font-size="40" font-weight="400" letter-spacing="1.9">EFFICIENCY</text>
+              </g>
+            </g>
+            <g transform="translate(-1500 900)">
+              <animateTransform attributeName="transform" type="translate" from="-1500 900" to="0 0" begin="0.50s" dur="1.10s" fill="freeze" calcMode="spline" keyTimes="0;1" keySplines="0.4 0 0.2 1"/>
+              <circle cx="407.103" cy="711.369" r="315.000" fill="#FFFFFF" opacity="0.62">
+                <animate attributeName="opacity" from="0.62" to="0" begin="3.60s" dur="1.00s" fill="freeze"/>
+              </circle>
+              <g font-family="Nunito Sans, Nunito, Helvetica, Arial, sans-serif" text-anchor="middle" fill="#1A518E" transform="translate(0 0)">
+                                <animate attributeName="opacity" from="1" to="0" begin="4.20s" dur="0.50s" fill="freeze"/>
+                <text x="314.00" y="796.00" font-size="40" font-weight="700" letter-spacing="1.9">RESOURCE</text>
+                <text x="314.00" y="854.00" font-size="40" font-weight="400" letter-spacing="1.9">ALLOCATION</text>
+              </g>
+            </g>
+            <!-- 3. the line-only Venn the fills dissolve into -->
+            <g fill="none" stroke="#2DB9E1" stroke-width="7" opacity="0">
+              <animate attributeName="opacity" from="0" to="0.75" begin="1.90s" dur="0.80s" fill="freeze"/>
+              <animate attributeName="opacity" from="0.75" to="0" begin="5.80s" dur="1.20s" fill="freeze"/>
+              <circle cx="600.000" cy="377.261" r="315.000"/>
+              <circle cx="792.897" cy="711.369" r="315.000"/>
+              <circle cx="407.103" cy="711.369" r="315.000"/>
+            </g>
+            <!-- 4. the overlap fills Light Blue, then morphs to the flatter logo triangle -->
+            <path d="M -2.481 -135.718 A 4.000 4.000 0 0 1 2.481 -135.718 A 315.000 315.000 0 0 1 118.776 65.711 A 4.000 4.000 0 0 1 116.295 70.008 A 315.000 315.000 0 0 1 -116.295 70.008 A 4.000 4.000 0 0 1 -118.776 65.711 A 315.000 315.000 0 0 1 -2.481 -135.718 Z" transform="translate(600.0 600.0)" fill="#2DB9E1" opacity="0">
+              <animate attributeName="opacity" from="0" to="1" begin="4.80s" dur="0.60s" fill="freeze"/>
+              <animate attributeName="d" from="M -2.481 -135.718 A 4.000 4.000 0 0 1 2.481 -135.718 A 315.000 315.000 0 0 1 118.776 65.711 A 4.000 4.000 0 0 1 116.295 70.008 A 315.000 315.000 0 0 1 -116.295 70.008 A 4.000 4.000 0 0 1 -118.776 65.711 A 315.000 315.000 0 0 1 -2.481 -135.718 Z" to="M -4.300 -93.967 A 5.846 5.846 0 0 1 4.300 -93.967 A 361.880 361.880 0 0 1 83.528 43.259 A 5.846 5.846 0 0 1 79.227 50.708 A 361.880 361.880 0 0 1 -79.227 50.708 A 5.846 5.846 0 0 1 -83.528 43.259 A 361.880 361.880 0 0 1 -4.300 -93.967 Z" begin="5.40s" dur="1.60s" fill="freeze" calcMode="spline" keyTimes="0;1" keySplines="0.4 0 0.2 1"/>
+            </path>
+            <!-- 2. the figures, overlaid on their own rims. Light Blue while the
+                 fills are white (they straddle fill and dark ground), then white
+                 as the ground returns -->
+            <g opacity="0">
+              <animate attributeName="opacity" from="0" to="1" begin="2.60s" dur="0.70s" fill="freeze" calcMode="spline" keyTimes="0;1" keySplines="0.4 0 0.2 1"/>
+              <path d="M 373.410 158.440 A 315.000 315.000 0 0 1 826.590 158.440" fill="none" stroke="#2DB9E1" stroke-width="52.000" stroke-linecap="round">
+                <animate attributeName="stroke" from="#2DB9E1" to="#FFFFFF" begin="3.60s" dur="1.20s" fill="freeze"/>
+                <animate attributeName="d" from="M 373.410 158.440 A 315.000 315.000 0 0 1 826.590 158.440" to="M 477.712 481.908 A 170.000 170.000 0 0 1 722.288 481.908" begin="5.40s" dur="1.60s" fill="freeze" calcMode="spline" keyTimes="0;1" keySplines="0.4 0 0.2 1"/>
+                <animate attributeName="stroke-width" from="52.000" to="36.550" begin="5.40s" dur="1.60s" fill="freeze" calcMode="spline" keyTimes="0;1" keySplines="0.4 0 0.2 1"/>
+              </path>
+              <circle cx="600.000" cy="62.261" r="52.000" fill="#2DB9E1">
+                <animate attributeName="fill" from="#2DB9E1" to="#FFFFFF" begin="3.60s" dur="1.20s" fill="freeze"/>
+                <animate attributeName="cy" from="62.261" to="430.000" begin="5.40s" dur="1.60s" fill="freeze" calcMode="spline" keyTimes="0;1" keySplines="0.4 0 0.2 1"/>
+                <animate attributeName="r" from="52.000" to="39.950" begin="5.40s" dur="1.60s" fill="freeze" calcMode="spline" keyTimes="0;1" keySplines="0.4 0 0.2 1"/>
+              </circle>
+            </g>
+            <g opacity="0">
+              <animate attributeName="opacity" from="0" to="1" begin="2.80s" dur="0.70s" fill="freeze" calcMode="spline" keyTimes="0;1" keySplines="0.4 0 0.2 1"/>
+              <path d="M 1095.700 624.540 A 315.000 315.000 0 0 1 869.100 1017.010" fill="none" stroke="#2DB9E1" stroke-width="52.000" stroke-linecap="round">
+                <animate attributeName="stroke" from="#2DB9E1" to="#FFFFFF" begin="3.60s" dur="1.20s" fill="freeze"/>
+                <animate attributeName="d" from="M 1095.700 624.540 A 315.000 315.000 0 0 1 869.100 1017.010" to="M 763.414 553.142 A 170.000 170.000 0 0 1 641.126 764.950" begin="5.40s" dur="1.60s" fill="freeze" calcMode="spline" keyTimes="0;1" keySplines="0.4 0 0.2 1"/>
+                <animate attributeName="stroke-width" from="52.000" to="36.550" begin="5.40s" dur="1.60s" fill="freeze" calcMode="spline" keyTimes="0;1" keySplines="0.4 0 0.2 1"/>
+              </path>
+              <circle cx="1065.700" cy="868.870" r="52.000" fill="#2DB9E1">
+                <animate attributeName="fill" from="#2DB9E1" to="#FFFFFF" begin="3.60s" dur="1.20s" fill="freeze"/>
+                <animate attributeName="cx" from="1065.700" to="747.224" begin="5.40s" dur="1.60s" fill="freeze" calcMode="spline" keyTimes="0;1" keySplines="0.4 0 0.2 1"/>
+                <animate attributeName="cy" from="868.870" to="685.000" begin="5.40s" dur="1.60s" fill="freeze" calcMode="spline" keyTimes="0;1" keySplines="0.4 0 0.2 1"/>
+                <animate attributeName="r" from="52.000" to="39.950" begin="5.40s" dur="1.60s" fill="freeze" calcMode="spline" keyTimes="0;1" keySplines="0.4 0 0.2 1"/>
+              </circle>
+            </g>
+            <g opacity="0">
+              <animate attributeName="opacity" from="0" to="1" begin="3.00s" dur="0.70s" fill="freeze" calcMode="spline" keyTimes="0;1" keySplines="0.4 0 0.2 1"/>
+              <path d="M 330.900 1017.010 A 315.000 315.000 0 0 1 104.300 624.540" fill="none" stroke="#2DB9E1" stroke-width="52.000" stroke-linecap="round">
+                <animate attributeName="stroke" from="#2DB9E1" to="#FFFFFF" begin="3.60s" dur="1.20s" fill="freeze"/>
+                <animate attributeName="d" from="M 330.900 1017.010 A 315.000 315.000 0 0 1 104.300 624.540" to="M 558.874 764.950 A 170.000 170.000 0 0 1 436.586 553.142" begin="5.40s" dur="1.60s" fill="freeze" calcMode="spline" keyTimes="0;1" keySplines="0.4 0 0.2 1"/>
+                <animate attributeName="stroke-width" from="52.000" to="36.550" begin="5.40s" dur="1.60s" fill="freeze" calcMode="spline" keyTimes="0;1" keySplines="0.4 0 0.2 1"/>
+              </path>
+              <circle cx="134.300" cy="868.870" r="52.000" fill="#2DB9E1">
+                <animate attributeName="fill" from="#2DB9E1" to="#FFFFFF" begin="3.60s" dur="1.20s" fill="freeze"/>
+                <animate attributeName="cx" from="134.300" to="452.776" begin="5.40s" dur="1.60s" fill="freeze" calcMode="spline" keyTimes="0;1" keySplines="0.4 0 0.2 1"/>
+                <animate attributeName="cy" from="868.870" to="685.000" begin="5.40s" dur="1.60s" fill="freeze" calcMode="spline" keyTimes="0;1" keySplines="0.4 0 0.2 1"/>
+                <animate attributeName="r" from="52.000" to="39.950" begin="5.40s" dur="1.60s" fill="freeze" calcMode="spline" keyTimes="0;1" keySplines="0.4 0 0.2 1"/>
+              </circle>
+            </g>
+          </svg>
         </div>
 
         </div>
       </div>
     </section>
 
-    <!-- ================= STAT BAR ================= -->
-    <section class="stats" aria-label="DMG at a glance">
-      <div class="container">
-        <!-- row 1 is the three counted figures, row 2 the two spelled magnitudes -->
-        <ul class="stats-grid">
-          <li class="stat" data-reveal style="--stagger: 0;">
-            <span class="stat-figure"><span class="count" data-target="22">22</span></span>
-            <span class="rule stat-rule" aria-hidden="true"></span>
-            <span class="stat-label">years in practice</span>
-          </li>
-          <li class="stat" data-reveal style="--stagger: 1;">
-            <span class="stat-figure"><span class="count" data-target="34">34</span></span>
-            <span class="rule stat-rule" aria-hidden="true"></span>
-            <span class="stat-label">states</span>
-          </li>
-          <li class="stat" data-reveal style="--stagger: 2;">
-            <span class="stat-figure"><span class="count" data-target="700" data-suffix="+">700+</span></span>
-            <span class="rule stat-rule" aria-hidden="true"></span>
-            <span class="stat-label">districts</span>
-          </li>
-          <li class="stat stat--word" data-reveal style="--stagger: 3;">
-            <span class="stat-figure"><span class="count" data-target="1000" data-format="comma" data-suffix="s">1,000s</span></span>
-            <span class="rule stat-rule" aria-hidden="true"></span>
-            <span class="stat-label">school and district leaders</span>
-          </li>
-          <li class="stat stat--word" data-reveal style="--stagger: 4;">
-            <span class="stat-figure"><span class="count" data-target="1000000" data-format="comma" data-suffix="s">1,000,000s</span></span>
-            <span class="rule stat-rule" aria-hidden="true"></span>
-            <span class="stat-label">students supported</span>
-          </li>
-        </ul>
-      </div>
-    </section>
+    <!-- ============ 03 PARTNERS (shared v1 marquee treatment) ============ -->
+    <section class="dx-sec dx-sec--flush" id="dx-03">
+      <div class="dx-wrap"><h2 class="dx-eyebrow" id="marquee-title">Districts we've partnered with</h2></div>
 
-    <!-- ================= DISTRICT LOGO MARQUEE =================
-         Treatment toggle: add class "marquee--tinted" to this section for the
-         normalized dark-blue version (Bain-like). Remove it for full color. -->
     <section class="logo-marquee marquee--tinted" id="logo-marquee" aria-labelledby="marquee-title">
-      <h2 id="marquee-title">Districts we've partnered with</h2>
+      
       <div class="marquee">
         <ul class="marquee-track">
           <li class="mlogo"><img src="assets/img/logos/atlanta-public-schools.png" alt="Atlanta Public Schools" width="459" height="180" loading="lazy"></li>
@@ -309,18 +363,53 @@
         </ul>
       </div>
     </section>
+    </section>
 
-    <!-- ================= A MULTIDISCIPLINARY APPROACH ================= -->
+
+
+    <!-- ============ 02 THE RECORD, IN FIGURES — stepped ledger ============ -->
+    <section class="dx-sec dx-ledger" id="dx-02" aria-labelledby="dx-02-t">
+      <div class="dx-wrap">
+        <h2 id="dx-02-t" class="dx-h2" data-reveal>The record, in figures</h2>
+
+        <dl class="dx-figs">
+          <div class="stat dx-fig" data-reveal style="--stagger:0">
+            <dt>Years in practice</dt>
+            <dd><span class="count" data-target="22">22</span></dd>
+          </div>
+          <div class="stat dx-fig" data-reveal style="--stagger:1">
+            <dt>States</dt>
+            <dd><span class="count" data-target="34">34</span></dd>
+          </div>
+          <div class="stat dx-fig" data-reveal style="--stagger:2">
+            <dt>Districts supported</dt>
+            <dd><span class="count" data-target="700" data-suffix="+">700+</span></dd>
+          </div>
+          <div class="stat dx-fig" data-reveal style="--stagger:3">
+            <dt>School and district leaders</dt>
+            <dd><span class="count" data-target="1000" data-format="comma" data-suffix="s">1,000s</span></dd>
+          </div>
+          <div class="stat dx-fig" data-reveal style="--stagger:4">
+            <dt>Students supported</dt>
+            <dd><span class="count" data-target="1000000" data-format="comma" data-suffix="s">1,000,000s</span></dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+
+
+
+    <!-- ================= A MULTIDISCIPLINARY APPROACH — V1's layout, with the
+         underline and circle emphasis removed so it reads as a statement
+         section. The marks stay everywhere else. ================= -->
     <section class="approach section" aria-labelledby="approach-title">
       <div class="container">
         <div class="approach-grid">
           <div class="approach-copy" data-reveal>
             <h2 id="approach-title">A multidisciplinary approach</h2>
-            <p class="body-copy">At DMG, we leverage a multi-pronged approach that includes consulting, professional development, coaching, software solutions, and a membership program to tackle <span class="mark" style="--mark-i: 0">system-level challenges</span> across public school districts. Our approach is informed by management principles, research-based best practices, and insights gathered from working with <span class="mark mark--circle" style="--mark-i: 1">hundreds of districts<svg viewBox="0 0 200 60" preserveAspectRatio="none" aria-hidden="true"><ellipse cx="100" cy="30" rx="95" ry="25" pathLength="100"/></svg></span> across the country.</p>
+            <p class="body-copy">At DMG, we leverage a multi-pronged approach that includes consulting, professional development, coaching, software solutions, and a membership program to tackle system-level challenges across public school districts. Our approach is informed by management principles, research-based best practices, and insights gathered from working with hundreds of districts across the country.</p>
           </div>
           <div class="approach-photo" data-reveal style="--stagger: 1;">
-            <!-- same arc language as the testimonial backdrop, with one orange
-                 arc as the warm accent. Decorative. -->
             <svg class="approach-arcs" viewBox="0 0 400 400" aria-hidden="true">
               <g fill="none" stroke-width="2">
                 <circle cx="60" cy="340" r="120" stroke="var(--dmg-light-blue)" opacity="0.55" stroke-dasharray="150 60"/>
@@ -334,207 +423,104 @@
       </div>
     </section>
 
-    <!-- ================= HOW WE HELP ================= -->
-    <section class="howwehelp section" id="how-we-help" aria-labelledby="hwh-title">
-      <svg class="section-arcs" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-        <g fill="none" stroke="var(--dmg-light-blue)" stroke-width="1.5">
-          <circle cx="0" cy="900" r="300" opacity="0.10"/>
-          <circle cx="0" cy="900" r="460" opacity="0.08"/>
-          <circle cx="0" cy="900" r="620" opacity="0.07"/>
-          <circle cx="0" cy="900" r="780" opacity="0.06"/>
-          <circle cx="0" cy="900" r="940" opacity="0.05"/>
-        </g>
-      </svg>
-      <div class="container">
-        <h2 id="hwh-title" data-reveal>How we help</h2>
+    <!-- ============ 05 HOW WE HELP — five chapter spreads ============ -->
+    <section class="dx-hwh" id="dx-05" aria-labelledby="dx-05-t">
+      <header class="dx-wrap dx-hwh-head">
+        <h2 id="dx-05-t" class="dx-h2" data-reveal>How we help</h2>
+      </header>
 
-        <div class="hwh-rows">
-
-          <!-- Row 1: open on load -->
-          <div class="hwh-row" id="row-student-outcomes">
-            <span class="row-rule" aria-hidden="true"></span>
-            <h3 class="hwh-h3">
-              <button class="hwh-toggle" aria-expanded="false" aria-controls="panel-student-outcomes">
-                <span class="material-symbols-rounded row-icon" aria-hidden="true">school</span>
-                <span class="hwh-title-group">
-                  <span class="hwh-title">Student Outcomes</span>
-                  <span class="hwh-preview">Raise student achievement in 8 to 10 weeks through performance coaching.</span>
-                </span>
-                <span class="material-symbols-rounded hwh-chevron" aria-hidden="true">expand_more</span>
-              </button>
-            </h3>
-            <div class="hwh-panel" id="panel-student-outcomes">
-              <div class="hwh-panel-inner">
-                <div class="hwh-panel-grid">
-                  <div class="hwh-body">
-                    <p class="hwh-blurb">Raise student achievement in <span class="mark mark--circle" style="--mark-i: 0">8 to 10 weeks<svg viewBox="0 0 200 60" preserveAspectRatio="none" aria-hidden="true"><ellipse cx="100" cy="30" rx="95" ry="25" pathLength="100"/></svg></span> through <span class="mark" style="--mark-i: 1">performance coaching</span>.</p>
-                    <div class="hwh-links">
-                      <a href="#">Literacy Improvement</a>
-                      <a href="#">Math Improvement</a>
-                      <a href="#">Turnaround School Support</a>
-                    </div>
-                  </div>
-                  <aside class="hwh-card">
-                    <span class="eyebrow">Featured success story</span>
-                    <span class="hwh-card-district">Huntsville City Schools (AL)</span>
-                    <span class="hwh-card-stat"><span class="material-symbols-rounded" aria-hidden="true">arrow_upward</span><span class="count" data-target="43" data-suffix="%" aria-hidden="true">43%</span><span class="visually-hidden">Up 43 percent</span></span>
-                    <span class="rule" aria-hidden="true"></span>
-                    <p class="hwh-card-context">In ACAP math proficiency in one year through DMG's Breakthrough Results program.</p>
-                    <p class="hwh-card-footnote">ACAP: Alabama Comprehensive Assessment Program</p>
-                    <a class="link" href="#">Read More</a>
-                  </aside>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Row 2 -->
-          <div class="hwh-row" id="row-strategic-planning">
-            <span class="row-rule" aria-hidden="true"></span>
-            <h3 class="hwh-h3">
-              <button class="hwh-toggle" aria-expanded="false" aria-controls="panel-strategic-planning">
-                <span class="material-symbols-rounded row-icon" aria-hidden="true">query_stats</span>
-                <span class="hwh-title-group">
-                  <span class="hwh-title">Strategic Planning and Budgeting</span>
-                  <span class="hwh-preview">Shape the direction of your district, and know which programs work, for whom, and at what cost.</span>
-                </span>
-                <span class="material-symbols-rounded hwh-chevron" aria-hidden="true">expand_more</span>
-              </button>
-            </h3>
-            <div class="hwh-panel" id="panel-strategic-planning">
-              <div class="hwh-panel-inner">
-                <div class="hwh-panel-grid">
-                  <div class="hwh-body">
-                    <p class="hwh-blurb">Shape the direction of your district, and know <span class="mark" style="--mark-i: 0">which programs work</span>, <span class="mark" style="--mark-i: 1">for whom</span>, and <span class="mark mark--circle" style="--mark-i: 2">at what cost<svg viewBox="0 0 200 60" preserveAspectRatio="none" aria-hidden="true"><ellipse cx="100" cy="30" rx="95" ry="25" pathLength="100"/></svg></span>.</p>
-                    <div class="hwh-links">
-                      <a href="#">Prioritizing Resources and Initiatives for Strategic Management (PRISM)</a>
-                      <a href="#">Academic ROI Institute</a>
-                      <a href="#">Strategic Planning and Budgeting</a>
-                    </div>
-                  </div>
-                  <aside class="hwh-card">
-                    <span class="eyebrow">Featured success story</span>
-                    <span class="hwh-card-district">Fresno Unified School District (CA)</span>
-                    <span class="hwh-card-stat"><span class="count" data-target="73000" data-format="comma">73,000</span></span>
-                    <span class="rule" aria-hidden="true"></span>
-                    <span class="hwh-card-statlabel">students</span>
-                    <p class="hwh-card-context">California's third-largest district used PRISM to align resources to priorities.</p>
-                    <a class="link" href="#">Read More</a>
-                  </aside>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Row 3 -->
-          <div class="hwh-row" id="row-enrollment">
-            <span class="row-rule" aria-hidden="true"></span>
-            <h3 class="hwh-h3">
-              <button class="hwh-toggle" aria-expanded="false" aria-controls="panel-enrollment">
-                <span class="material-symbols-rounded row-icon" aria-hidden="true">event_available</span>
-                <span class="hwh-title-group">
-                  <span class="hwh-title">Enrollment and Attendance</span>
-                  <span class="hwh-preview">Proactively reverse chronic absenteeism and plan for enrollment shifts.</span>
-                </span>
-                <span class="material-symbols-rounded hwh-chevron" aria-hidden="true">expand_more</span>
-              </button>
-            </h3>
-            <div class="hwh-panel" id="panel-enrollment">
-              <div class="hwh-panel-inner">
-                <div class="hwh-panel-grid">
-                  <div class="hwh-body">
-                    <p class="hwh-blurb"><span class="mark" style="--mark-i: 0">Proactively reverse</span> chronic absenteeism and plan for <span class="mark" style="--mark-i: 1">enrollment shifts</span>.</p>
-                    <div class="hwh-links">
-                      <a href="#">Decreasing Absenteeism</a>
-                      <a href="#">Strategic Enrollment Planning</a>
-                    </div>
-                  </div>
-                  <aside class="hwh-card">
-                    <span class="eyebrow">Featured success story</span>
-                    <span class="hwh-card-district">Bibb County (GA)</span>
-                    <span class="hwh-card-stat"><span class="material-symbols-rounded" aria-hidden="true">arrow_downward</span><span class="count" data-target="56" data-suffix="%" aria-hidden="true">56%</span><span class="visually-hidden">Down 56 percent</span></span>
-                    <span class="rule" aria-hidden="true"></span>
-                    <p class="hwh-card-context">Chronic absenteeism in a targeted 10-week intervention.</p>
-                    <a class="link" href="#">Read More</a>
-                  </aside>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Row 4: no cleared stat, stat-less card variant -->
-          <div class="hwh-row" id="row-scheduling">
-            <span class="row-rule" aria-hidden="true"></span>
-            <h3 class="hwh-h3">
-              <button class="hwh-toggle" aria-expanded="false" aria-controls="panel-scheduling">
-                <span class="material-symbols-rounded row-icon" aria-hidden="true">calendar_month</span>
-                <span class="hwh-title-group">
-                  <span class="hwh-title">Scheduling</span>
-                  <span class="hwh-preview">Build schedules that protect instruction, prove individualized education program (IEP) compliance, and make better use of staff.</span>
-                </span>
-                <span class="material-symbols-rounded hwh-chevron" aria-hidden="true">expand_more</span>
-              </button>
-            </h3>
-            <div class="hwh-panel" id="panel-scheduling">
-              <div class="hwh-panel-inner">
-                <div class="hwh-panel-grid">
-                  <div class="hwh-body">
-                    <p class="hwh-blurb">Build schedules that <span class="mark" style="--mark-i: 0">protect instruction</span>, prove individualized education program (IEP) compliance, and <span class="mark" style="--mark-i: 1">make better use of staff</span>.</p>
-                    <div class="hwh-links">
-                      <a href="#">DMSchedules Software</a>
-                      <a href="#">Secondary Scheduling Institute</a>
-                      <a href="#">Elementary Scheduling and Design Institute</a>
-                    </div>
-                  </div>
-                  <aside class="hwh-card hwh-card--nostat">
-                    <span class="eyebrow">Featured success story</span>
-                    <span class="hwh-card-district">New Fairfield (CT)</span>
-                    <span class="rule" aria-hidden="true"></span>
-                    <p class="hwh-card-context">Maximized support-staff time and improved student performance with DMSchedules.</p>
-                    <a class="link" href="#">Read More</a>
-                  </aside>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Row 5: no cleared stat, stat-less card variant -->
-          <div class="hwh-row" id="row-special-education">
-            <span class="row-rule" aria-hidden="true"></span>
-            <h3 class="hwh-h3">
-              <button class="hwh-toggle" aria-expanded="false" aria-controls="panel-special-education">
-                <span class="material-symbols-rounded row-icon" aria-hidden="true">volunteer_activism</span>
-                <span class="hwh-title-group">
-                  <span class="hwh-title">Special Education</span>
-                  <span class="hwh-preview">Review special education cost, compliance, and service delivery.</span>
-                </span>
-                <span class="material-symbols-rounded hwh-chevron" aria-hidden="true">expand_more</span>
-              </button>
-            </h3>
-            <div class="hwh-panel" id="panel-special-education">
-              <div class="hwh-panel-inner">
-                <div class="hwh-panel-grid">
-                  <div class="hwh-body">
-                    <p class="hwh-blurb">Review special education <span class="mark" style="--mark-i: 0">cost</span>, <span class="mark" style="--mark-i: 1">compliance</span>, and <span class="mark" style="--mark-i: 2">service delivery</span>.</p>
-                    <div class="hwh-links">
-                      <a href="#">Special Education and Multi-Tiered System of Supports (MTSS) Reviews</a>
-                    </div>
-                  </div>
-                  <aside class="hwh-card hwh-card--nostat">
-                    <span class="eyebrow">Featured success story</span>
-                    <span class="hwh-card-district">Littleton Elementary School District (AZ)</span>
-                    <span class="rule" aria-hidden="true"></span>
-                    <p class="hwh-card-context">Protected Tier 1 instruction and expanded special education capacity with DMSchedules Student Services.</p>
-                    <a class="link" href="#">Read More</a>
-                  </aside>
-                </div>
-              </div>
-            </div>
-          </div>
-
+      <article class="dx-ch dx-ch--dark" id="row-student-outcomes">
+        <div class="dx-ch-body" data-reveal>
+          <h3>Student Outcomes</h3>
+          <p class="dx-ch-lede">Raise student achievement in <span class="mark" style="--mark-i:0">8 to 10 weeks</span> through performance coaching.</p>
+          <p class="dx-ch-links"><a href="#">Literacy Improvement</a><i>/</i><a href="#">Math Improvement</a><i>/</i><a href="#">Turnaround School Support</a></p>
+          <aside class="dx-proof stat">
+            <span class="dx-proof-k">Success story</span>
+            <span class="dx-proof-fig"><span class="material-symbols-rounded" aria-hidden="true">arrow_upward</span><span class="count" data-target="43" data-suffix="%" aria-hidden="true">43%</span><span class="visually-hidden">Up 43 percent</span></span>
+            <span class="dx-proof-d">Huntsville City Schools (AL)</span>
+            <p>In ACAP math proficiency in one year through DMG's Breakthrough Results program.</p>
+            <p class="dx-proof-n">ACAP: Alabama Comprehensive Assessment Program</p>
+            <a class="dx-more link" href="#">Read More</a>
+          </aside>
         </div>
-      </div>
+        <figure class="dx-ch-media dx-duo">
+          <img src="assets/img/focus/student-outcomes.jpg" alt="Illustration of four students climbing a rising arrow, with a gauge and a growing bar chart beneath them" width="1536" height="1024" loading="lazy">
+        </figure>
+      </article>
+
+      <article class="dx-ch dx-ch--flip dx-ch--tint" id="row-strategic-planning">
+        <div class="dx-ch-body" data-reveal>
+          <h3>Strategic Planning and Budgeting</h3>
+          <p class="dx-ch-lede">Shape the direction of your district, and know which programs work, for whom, and <span class="mark mark--circle" style="--mark-i:0">at what cost<svg viewBox="0 0 200 60" preserveAspectRatio="none" aria-hidden="true"><ellipse cx="100" cy="30" rx="95" ry="25" pathLength="100"/></svg></span>.</p>
+          <p class="dx-ch-links"><a href="#">Prioritizing Resources and Initiatives for Strategic Management (PRISM)</a><i>/</i><a href="#">Academic ROI Institute</a><i>/</i><a href="#">Strategic Planning and Budgeting</a></p>
+          <aside class="dx-proof stat">
+            <span class="dx-proof-k">Success story</span>
+            <span class="dx-proof-fig"><span class="count" data-target="73000" data-format="comma">73,000</span></span>
+            <span class="dx-proof-u">students</span>
+            <span class="dx-proof-d">Fresno Unified School District (CA)</span>
+            <p>California's third-largest district used PRISM to align resources to priorities.</p>
+            <a class="dx-more link" href="#">Read More</a>
+          </aside>
+        </div>
+        <figure class="dx-ch-media dx-duo">
+          <img src="assets/img/focus/strategic-planning-and-budgeting.jpg" alt="Illustration of a district leadership team reviewing a target, growth charts, and a budget on a large planning board" width="1536" height="1024" loading="lazy">
+        </figure>
+      </article>
+
+      <article class="dx-ch dx-ch--dark" id="row-enrollment">
+        <div class="dx-ch-body" data-reveal>
+          <h3>Enrollment and Attendance</h3>
+          <p class="dx-ch-lede"><span class="mark" style="--mark-i:0">Proactively reverse</span> chronic absenteeism and plan for enrollment shifts.</p>
+          <p class="dx-ch-links"><a href="#">Decreasing Absenteeism</a><i>/</i><a href="#">Strategic Enrollment Planning</a></p>
+          <aside class="dx-proof stat">
+            <span class="dx-proof-k">Success story</span>
+            <span class="dx-proof-fig"><span class="material-symbols-rounded" aria-hidden="true">arrow_downward</span><span class="count" data-target="56" data-suffix="%" aria-hidden="true">56%</span><span class="visually-hidden">Down 56 percent</span></span>
+            <span class="dx-proof-d">Bibb County (GA)</span>
+            <p>Chronic absenteeism in a targeted 10-week intervention.</p>
+            <a class="dx-more link" href="#">Read More</a>
+          </aside>
+        </div>
+        <figure class="dx-ch-media dx-duo">
+          <img src="assets/img/focus/enrollment-and-attendance.jpg" alt="Illustration of students walking a path toward a school building, framed by a checked-off calendar and an attendance checklist" width="1536" height="1024" loading="lazy">
+        </figure>
+      </article>
+
+      <article class="dx-ch dx-ch--flip dx-ch--tint" id="row-scheduling">
+        <div class="dx-ch-body" data-reveal>
+          <h3>Scheduling</h3>
+          <p class="dx-ch-lede">Build schedules that <span class="mark" style="--mark-i:0">protect instruction</span>, prove individualized education program (IEP) compliance, and make better use of staff.</p>
+          <p class="dx-ch-links"><a href="#">DMSchedules Software</a><i>/</i><a href="#">Secondary Scheduling Institute</a><i>/</i><a href="#">Elementary Scheduling and Design Institute</a></p>
+          <aside class="dx-proof dx-proof--nostat">
+            <span class="dx-proof-k">Success story</span>
+            <span class="dx-proof-d">New Fairfield (CT)</span>
+            <p>Maximized support-staff time and improved student performance with DMSchedules.</p>
+            <a class="dx-more link" href="#">Read More</a>
+          </aside>
+        </div>
+        <figure class="dx-ch-media dx-duo">
+          <img src="assets/img/focus/scheduling.jpg" alt="Illustration of a clock surrounded by staff moving schedule blocks into place" width="1536" height="1024" loading="lazy">
+        </figure>
+      </article>
+
+      <article class="dx-ch dx-ch--dark" id="row-special-education">
+        <div class="dx-ch-body" data-reveal>
+          <h3>Special Education</h3>
+          <p class="dx-ch-lede">Review special education <span class="mark" style="--mark-i:0">cost, compliance, and service delivery</span>.</p>
+          <p class="dx-ch-links"><a href="#">Special Education and Multi-Tiered System of Supports (MTSS) Reviews</a></p>
+          <aside class="dx-proof dx-proof--nostat">
+            <span class="dx-proof-k">Success story</span>
+            <span class="dx-proof-d">Littleton Elementary School District (AZ)</span>
+            <p>Protected Tier 1 instruction and expanded special education capacity with DMSchedules Student Services.</p>
+            <a class="dx-more link" href="#">Read More</a>
+          </aside>
+        </div>
+        <figure class="dx-ch-media dx-duo">
+          <img src="assets/img/focus/special-education.jpg" alt="Illustration of open hands holding a classroom of students learning together at a shared table" width="1536" height="1024" loading="lazy">
+        </figure>
+      </article>
     </section>
+
+
 
     <!-- ================= OUR VALUES ================= -->
     <section class="values section" aria-labelledby="values-title">
@@ -568,10 +554,20 @@
       </div>
     </section>
 
+
+
     <!-- ================= TESTIMONIALS ================= -->
     <section class="partners section" id="testimonials-section" aria-labelledby="partners-title">
+      <svg class="v3-vec v3-partners-vec" viewBox="0 0 512 512" aria-hidden="true" focusable="false">
+        <path d="M 112.132 117.068 A 200.000 200.000 0 0 1 399.868 117.068" fill="none" stroke-width="43" stroke-linecap="round"/>
+        <circle cx="256" cy="56" r="47"/>
+        <path d="M 448.252 200.873 A 200.000 200.000 0 0 1 304.384 450.059" fill="none" stroke-width="43" stroke-linecap="round"/>
+        <circle cx="429.205" cy="356" r="47"/>
+        <path d="M 207.616 450.059 A 200.000 200.000 0 0 1 63.748 200.873" fill="none" stroke-width="43" stroke-linecap="round"/>
+        <circle cx="82.795" cy="356" r="47"/>
+      </svg>
       <div class="container">
-        <h2 id="partners-title" data-reveal>Testimonials</h2>
+        <h2 id="partners-title" data-reveal>What our partners say</h2>
 
         <div class="testimonial-stage" id="testimonials">
 
@@ -649,6 +645,8 @@
       </div>
     </section>
 
+
+
     <!-- ================= CLOSING CTA ================= -->
     <section class="closing-cta section" id="contact" aria-labelledby="cta-title">
       <img class="cta-bg" src="assets/img/cta-background.jpg" alt="" width="1800" height="700" loading="lazy">
@@ -667,9 +665,10 @@
       </div>
     </section>
 
+
+
   </main>
 
-  <!-- ================= FOOTER ================= -->
   <footer class="site-footer">
     <div class="container">
       <div class="footer-grid">
@@ -726,6 +725,7 @@
     </div>
   </footer>
 
-  <script src="main.js"></script>
+  <script src="main-v3.js"></script>
+  <script src="v3.js"></script>
 </body>
 </html>
